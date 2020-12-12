@@ -7,8 +7,8 @@ public class Game {
     final Digits user = Digits.of(rawUser);
 
     return Result.builder()
-      .strike(com.strikes(user))
-      .ball(com.balls(user))
+      .strike(com.strikes(user).count())
+      .ball(com.balls(user).count())
       .build();
   }
 }

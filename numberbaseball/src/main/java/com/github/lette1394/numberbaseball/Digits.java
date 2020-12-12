@@ -1,59 +1,64 @@
 package com.github.lette1394.numberbaseball;
 
+import com.google.common.collect.Lists;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.Delegate;
 
 @RequiredArgsConstructor
 public class Digits {
   private final List<Digit> digits;
 
-  public static Digits of(int[] ints) {
+  public static Digits of(int... ints) {
     return new Digits(IntStream
       .range(0, ints.length)
       .mapToObj(i -> new Digit(i, ints[i]))
       .collect(Collectors.toUnmodifiableList()));
   }
 
-  public int strikes(Digits other) {
-    return (int) digits.stream()
-      .map(digit -> other
-        .matchIndex(digit)
-        .matchValue(digit))
-      .flatMap(digits -> digits.stream())
-      .count();
+  public Digits strikes(Digits other) {
+    return match(digit -> other
+      .sameValue(digit)
+      .sameIndex(digit));
   }
 
-  public int balls(Digits other) {
-    return (int) digits.stream()
-      .map(digit -> other
-        .notMatchIndex(digit)
-        .matchValue(digit))
-      .flatMap(digits -> digits.stream())
-      .count();
+  public Digits balls(Digits other) {
+    return match(digit -> other
+      .sameValue(digit)
+      .differentIndex(digit));
   }
 
-  private Digits notMatchIndex(Digit other) {
-    return new Digits(digits
-      .stream()
-      .filter(digit -> !digit.matchIndex(other))
+  public long count() {
+    return digits.size();
+  }
+
+  private Digits sameIndex(Digit other) {
+    return filter(digit -> other.matchIndex(digit));
+  }
+
+  private Digits differentIndex(Digit other) {
+    return filter(digit -> !other.matchIndex(digit));
+  }
+
+  private Digits sameValue(Digit other) {
+    return filter(digit -> other.matchValue(digit));
+  }
+
+  private Digits match(Function<Digit, Digits> function) {
+    return new Digits(digits.stream()
+      .map(function)
+      .flatMap(digits -> digits.stream())
       .collect(Collectors.toUnmodifiableList()));
   }
 
-  private Digits matchIndex(Digit other) {
-    return new Digits(digits
-      .stream()
-      .filter(digit -> digit.matchIndex(other))
-      .collect(Collectors.toUnmodifiableList()));
-  }
-
-  private Digits matchValue(Digit other) {
-    return new Digits(digits
-      .stream()
-      .filter(digit -> digit.matchValue(other))
+  private Digits filter(Predicate<Digit> predicate) {
+    return new Digits(digits.stream()
+      .filter(predicate)
       .collect(Collectors.toUnmodifiableList()));
   }
 

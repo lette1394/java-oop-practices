@@ -9,8 +9,7 @@ import java.util.Scanner;
 public class Main {
   public static void main(String[] args) {
 
-    int com[] = new int[3]; // 컴퓨터 숫자
-
+    int com[] = new int[3];
     Random r = new Random();
     // 랜덤 숫자 생성
     while (com[0] == 0) {
@@ -23,6 +22,16 @@ public class Main {
       com[2] = r.nextInt(10);
     }
 
-    new Game().run(com);
+    int user[] = new int[3];
+    final Scanner sc = new Scanner(System.in);
+    for (int i = 0; i < user.length; i++) {
+      System.out.print((i + 1) + "번째 수: ");
+      user[i] = sc.nextInt();
+      if (user[i] > 9 || user[i] <= 0) {
+        System.out.println("숫자 범위는 1~9 입니다.");
+      }
+    }
+
+    new Game().run(com, user);
   }
 }

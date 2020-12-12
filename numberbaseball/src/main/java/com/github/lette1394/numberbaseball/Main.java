@@ -32,6 +32,6 @@ public class Main {
       }
     }
 
-    new Game().run(new DigitStream(com), new DigitStream(user));
+    new Game().run(new Digits(com), new Digits(user));
   }
 }

@@ -34,7 +34,7 @@ class GameTest {
         .build()));
   }
 
-  private DigitStream digits(int... ints) {
-    return new DigitStream(ints);
+  private Digits digits(int... ints) {
+    return new Digits(ints);
   }
 }

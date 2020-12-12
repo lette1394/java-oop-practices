@@ -2,7 +2,10 @@ package com.github.lette1394.numberbaseball;
 
 public class Game {
 
-  public Result run(Digits com, Digits user) {
+  public Result run(int[] rawCom, int[] rawUser) {
+    final Digits com = Digits.of(rawCom);
+    final Digits user = Digits.of(rawUser);
+
     return Result.builder()
       .strike(com.strikes(user))
       .ball(com.balls(user))

@@ -35,11 +35,6 @@ public class Main {
 
     // FIXME (jaeeun) 2020-12-13:
     //  hard coded index
-    new Game().run(new Digits(com,
-      Stream.of(0, 1, 2)
-        .map(i -> new Digit(com[i], i))
-    ), new Digits(user,
-      Stream.of(0, 1, 2)
-        .map(i -> new Digit(user[i], i))));
+    new Game().run(com, user);
   }
 }

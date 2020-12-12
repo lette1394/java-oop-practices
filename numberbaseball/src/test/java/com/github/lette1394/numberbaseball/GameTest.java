@@ -10,7 +10,7 @@ class GameTest {
 
   @Test
   void test1() {
-    assertThat(new Game().run(digits(1, 2, 3), digits(1, 2, 3)), is(
+    assertThat(new Game().run(new int[]{1, 2, 3}, new int[]{1, 2, 3}), is(
       Result.builder()
         .ball(0)
         .strike(3)
@@ -19,7 +19,7 @@ class GameTest {
 
   @Test
   void test2() {
-    assertThat(new Game().run(digits(1, 2, 3), digits(1, 2, 4)), is(
+    assertThat(new Game().run(new int[]{1, 2, 3}, new int[]{1, 2, 4}), is(
       Result.builder()
         .ball(0)
         .strike(2)
@@ -28,16 +28,10 @@ class GameTest {
 
   @Test
   void test3() {
-    assertThat(new Game().run(digits(1, 2, 3), digits(1, 4, 2)), is(
+    assertThat(new Game().run(new int[]{1, 2, 3}, new int[]{1, 4, 2}), is(
       Result.builder()
         .ball(1)
         .strike(1)
         .build()));
-  }
-
-  private Digits digits(int... ints) {
-    // FIXME (jaeeun) 2020-12-13: hard coded index
-    return new Digits(ints, Stream.of(0, 1, 2)
-      .map(i -> new Digit(ints[i], i)));
   }
 }

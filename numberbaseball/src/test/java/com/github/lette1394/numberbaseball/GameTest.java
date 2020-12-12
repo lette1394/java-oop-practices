@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 class GameTest {
 
   @Test
-  void success() {
-    assertThat(new Game().run(new int[]{1, 2, 3}, new int[]{1, 2, 3}), is(
+  void test1() {
+    assertThat(new Game().run(digits(1, 2, 3), digits(1, 2, 3)), is(
       Result.builder()
         .ball(0)
         .strike(3)
@@ -17,11 +17,24 @@ class GameTest {
   }
 
   @Test
-  void fail() {
-    assertThat(new Game().run(new int[]{1, 2, 3}, new int[]{1, 2, 4}), is(
+  void test2() {
+    assertThat(new Game().run(digits(1, 2, 3), digits(1, 2, 4)), is(
       Result.builder()
         .ball(0)
         .strike(2)
         .build()));
+  }
+
+  @Test
+  void test3() {
+    assertThat(new Game().run(digits(1, 2, 3), digits(1, 4, 2)), is(
+      Result.builder()
+        .ball(1)
+        .strike(1)
+        .build()));
+  }
+
+  private DigitStream digits(int... ints) {
+    return new DigitStream(ints);
   }
 }

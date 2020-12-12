@@ -3,6 +3,7 @@ package com.github.lette1394.numberbaseball;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
+import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 
 class GameTest {
@@ -35,6 +36,8 @@ class GameTest {
   }
 
   private Digits digits(int... ints) {
-    return new Digits(ints);
+    // FIXME (jaeeun) 2020-12-13: hard coded index
+    return new Digits(ints, Stream.of(0, 1, 2)
+      .map(i -> new Digit(ints[i], i)));
   }
 }

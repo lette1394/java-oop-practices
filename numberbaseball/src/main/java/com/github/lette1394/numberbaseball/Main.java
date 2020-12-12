@@ -5,6 +5,7 @@ package com.github.lette1394.numberbaseball;
 
 import java.util.Random;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class Main {
   public static void main(String[] args) {
@@ -32,6 +33,13 @@ public class Main {
       }
     }
 
-    new Game().run(new Digits(com), new Digits(user));
+    // FIXME (jaeeun) 2020-12-13:
+    //  hard coded index
+    new Game().run(new Digits(com,
+      Stream.of(0, 1, 2)
+        .map(i -> new Digit(com[i], i))
+    ), new Digits(user,
+      Stream.of(0, 1, 2)
+        .map(i -> new Digit(user[i], i))));
   }
 }

@@ -8,8 +8,11 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
+@EqualsAndHashCode
 @RequiredArgsConstructor
 public class Digits {
   private final List<Digit> digits;
@@ -35,6 +38,10 @@ public class Digits {
 
   public long count() {
     return digits.size();
+  }
+
+  public List<Digit> asList() {
+    return digits;
   }
 
   private Digits sameIndex(Digit other) {
@@ -64,5 +71,14 @@ public class Digits {
 
   private Stream<Digit> stream() {
     return digits.stream();
+  }
+
+  @Override
+  public String toString() {
+    return digits
+      .stream()
+      .map(digit -> digit.getValue())
+      .map(value -> "" + value)
+      .collect(Collectors.joining(""));
   }
 }

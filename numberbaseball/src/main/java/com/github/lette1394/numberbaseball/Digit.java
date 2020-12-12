@@ -1,13 +1,11 @@
 package com.github.lette1394.numberbaseball;
 
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.Value;
 
-@ToString
-@EqualsAndHashCode
+@Value
 public class Digit {
-  private final int index;
-  private final int value;
+  int index;
+  int value;
 
   public Digit(int index, int value) {
     this.index = index;
@@ -19,11 +17,11 @@ public class Digit {
     Contracts.requires(0 <= index && index < 3, "index requires 0 <= index < 3");
   }
 
-  boolean matchIndex(Digit other) {
+  public boolean matchIndex(Digit other) {
     return index == other.index;
   }
 
-  boolean matchValue(Digit other) {
+  public boolean matchValue(Digit other) {
     return value == other.value;
   }
 }

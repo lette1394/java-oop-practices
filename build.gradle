@@ -1,0 +1,53 @@
+buildscript {
+  ext {
+  }
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+  }
+}
+
+subprojects {
+  apply plugin: 'java'
+  apply plugin: 'idea'
+
+  group = 'com.lette1394'
+  version = '0.0.1-SNAPSHOT'
+  sourceCompatibility = '11'
+
+  repositories {
+    mavenCentral()
+  }
+
+  dependencies {
+    implementation 'org.projectlombok:lombok:1.18.16'
+    annotationProcessor 'org.projectlombok:lombok:1.18.16'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testImplementation 'org.hamcrest:hamcrest:2.2'
+  }
+
+  task initSourceFolders {
+    sourceSets*.java.srcDirs*.each {
+      if (!it.exists()) {
+        it.mkdirs()
+      }
+    }
+
+    sourceSets*.resources.srcDirs*.each {
+      if (!it.exists()) {
+        it.mkdirs()
+      }
+    }
+  }
+
+  test {
+    useJUnitPlatform()
+  }
+}
+
+project(':numberbaseball') {
+  dependencies {
+  }
+}

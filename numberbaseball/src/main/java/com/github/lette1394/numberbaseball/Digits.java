@@ -1,7 +1,6 @@
 package com.github.lette1394.numberbaseball;
 
 import com.google.common.collect.Streams;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
 
@@ -11,13 +10,12 @@ public class Digits {
   private final Stream<Digit> stream;
 
   public int strikes(Digits other) {
-    return (int) Streams.zip(stream, other.stream, (digit1, digit2) -> digit1.matchValue(digit2) && digit1.matchIndex(digit2))
+    return (int) Streams
+      .zip(stream,
+           other.stream,
+           (digit1, digit2) -> digit1.matchValue(digit2) && digit1.matchIndex(digit2))
       .filter(aBoolean -> aBoolean)
       .count();
-  }
-
-  private boolean matchValue(int i) {
-    return false;
   }
 
   public int balls(Digits other) {

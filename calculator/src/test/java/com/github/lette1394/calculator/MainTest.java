@@ -9,8 +9,8 @@ class MainTest {
 
   @Test
   void test1() {
-    assertThat(subject("2 + 3"), is(5));
-    assertThat(subject("10 - 7"), is(3));
+    assertThat(subject("2 + 3"), is(5L));
+    assertThat(subject("10 - 7"), is(3L));
   }
 
   private long subject(String expression) {

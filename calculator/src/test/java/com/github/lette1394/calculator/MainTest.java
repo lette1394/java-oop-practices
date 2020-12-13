@@ -21,6 +21,13 @@ class MainTest {
   @Test
   void four() {
     assertThat(subject("2 - 3 + 6 - 5"), is(0L));
+    assertThat(subject("2 - 3 + 6 - 1"), is(4L));
+  }
+
+  @Test
+  void multiply() {
+    assertThat(subject("2 * 6"), is(12L));
+    assertThat(subject("2 * 6 - 2"), is(10L));
   }
 
   private long subject(String expression) {

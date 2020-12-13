@@ -17,7 +17,7 @@ public final class Expressions {
     return new SubtractExpression(left, right);
   }
 
-  public static Expression parsing(String expression) {
-    return new SequentialParsingExpression(expression);
+  public static Expression parse(String expression) {
+    return new PriorityParsingExpression(expression);
   }
 }

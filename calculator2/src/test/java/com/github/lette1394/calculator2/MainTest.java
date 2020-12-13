@@ -34,6 +34,7 @@ class MainTest {
   void multiply() {
     assertThat(subject("2 * 6"), is(12L));
     assertThat(subject("2 * 6 - 2"), is(10L));
+    assertThat(subject("2 - 6 * 2"), is(-10L));
   }
 
   private long subject(String expression) {

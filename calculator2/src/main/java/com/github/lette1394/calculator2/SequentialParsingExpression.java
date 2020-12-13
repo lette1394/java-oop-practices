@@ -9,8 +9,6 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang3.StringUtils;
 
 public class SequentialParsingExpression implements Expression {
-  // TODO: priorityParsing (괄호) 있는거 parttern
-//  private final static Pattern pattern = Pattern.compile("(\\d+)\\s*([*+\\-])\\s*(.*)");
   private final Matcher operandMatcher;
   private final Matcher operatorMatcher;
   private final String value;

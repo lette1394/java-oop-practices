@@ -8,6 +8,6 @@ public class StringExpression implements Expression {
 
   @Override
   public long evaluate() {
-    return Long.parseLong(value);
+    return Long.parseLong(value.trim());
   }
 }

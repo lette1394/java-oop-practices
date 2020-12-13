@@ -14,6 +14,6 @@ public final class Expressions {
   }
 
   public static Expression parsing(String expression) {
-    return new ParsingExpression(expression);
+    return new SequentialParsingExpression(expression);
   }
 }

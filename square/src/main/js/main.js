@@ -52,10 +52,12 @@ const square = function () {
 
   return {
     pushUp: function (col) {
-      const line = extractor.getColAt(col);
-      const firstItem = line[0];
-      const rest = line.slice(1, 3);
-      const newLine = [...rest, firstItem];
+      const oldLine = extractor.getColAt(col);
+
+      const first = oldLine[0];
+      const rest = oldLine.slice(1, 3);
+
+      const newLine = [...rest, first];
       updater.updateCol(col, newLine);
     },
     pushDown: function (col) {

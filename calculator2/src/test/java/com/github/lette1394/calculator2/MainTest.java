@@ -1,4 +1,4 @@
-package com.github.lette1394.calculator;
+package com.github.lette1394.calculator2;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -6,10 +6,13 @@ import static org.hamcrest.Matchers.is;
 import org.junit.jupiter.api.Test;
 
 class MainTest {
+  @Test
+  void one() {
+    assertThat(subject("2 + 3"), is(5L));
+  }
 
   @Test
   void two() {
-    assertThat(subject("2 + 3"), is(5L));
     assertThat(subject("10 - 7"), is(3L));
   }
 

@@ -32,6 +32,10 @@ public class Expression {
       .collect(Collectors.toList());
   }
 
+  Operators operators() {
+    return new Operators(operators);
+  }
+
   Operands operands() {
     return new Operands(operands);
   }

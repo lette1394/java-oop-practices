@@ -1,5 +1,6 @@
 package com.github.lette1394.calculator;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -11,14 +12,11 @@ public class Operands {
     this.operands = operands;
   }
 
-  public Operand reduce(List<Operator> operators) {
-//    IntStream
-//      .range(0, operands.size() - 1)
-//      .mapToObj(i -> operators.get(i).apply(operands.get(i), operands.get(i + 1)))
-//      .collect(Collectors.toList());
-//
-//    stream.reduce((o1, o2) -> operatorStream)
-
-    return null;
+  public Operand apply(List<Operator> operators) {
+    final Iterator<Operator> iterator = operators.iterator();
+    return operands
+      .stream()
+      .reduce((left, right) -> left.apply(iterator.next(), right))
+      .orElseThrow();
   }
 }

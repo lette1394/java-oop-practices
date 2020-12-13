@@ -12,4 +12,8 @@ public final class Expressions {
   public static Expression add(Expression left, Expression right) {
     return new AddExpression(left, right);
   }
+
+  public static Expression parsing(String expression) {
+    return new ParsingExpression(expression);
+  }
 }

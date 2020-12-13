@@ -10,6 +10,7 @@ class MainTest {
   @Test
   void test1() {
     assertThat(subject("2 + 3"), is(5));
+    assertThat(subject("10 - 7"), is(3));
   }
 
   private long subject(String expression) {

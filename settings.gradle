@@ -2,3 +2,4 @@ rootProject.name = 'java-oop-practices'
 include('numberbaseball')
 include('ladder')
 include('square')
+include('calculator')

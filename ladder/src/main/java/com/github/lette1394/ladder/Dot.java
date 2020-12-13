@@ -33,12 +33,12 @@ public class Dot implements Draw {
 
   @Override
   public Draw left() {
-    return new Line(this, new Dot(row + 1, col - 1));
+    return new Line(this, new Dot(row, col - 1));
   }
 
   @Override
   public Draw right() {
-    return new Line(this, new Dot(row + 1, col + 1));
+    return new Line(this, new Dot(row, col + 1));
   }
 
   @Override

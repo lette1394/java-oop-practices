@@ -2,22 +2,23 @@ package com.github.lette1394.ladder;
 
 public class Main {
   public static void main(String[] args) {
-    Dot rootDot = Dot.starting(0);
+    final Draw draw = Dot.starting(0)
+      .down()
+      .right()
+      .down()
+      .left()
+      .down();
 
-    rootDot
-      .down()
-      .down()
-      .down()
-      .right()
-      .right()
-      .right()
+
+    final Draw draw2 = Dot.starting(3)
       .down()
       .down()
       .left()
-      .left()
-      .left()
-      .down()
-      .down()
-      .visit(dot -> System.out.println(dot));
+      .down();
+
+    Painter painter = new Painter();
+
+    System.out.println(painter.paint(draw));
+    System.out.println(painter.paint(draw2));
   }
 }

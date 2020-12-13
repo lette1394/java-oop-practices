@@ -8,9 +8,14 @@ import org.junit.jupiter.api.Test;
 class MainTest {
 
   @Test
-  void test1() {
+  void two() {
     assertThat(subject("2 + 3"), is(5L));
     assertThat(subject("10 - 7"), is(3L));
+  }
+
+  @Test
+  void three() {
+    assertThat(subject("2 + 3 + 6"), is(11L));
   }
 
   private long subject(String expression) {

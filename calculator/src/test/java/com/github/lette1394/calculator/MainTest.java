@@ -18,6 +18,11 @@ class MainTest {
     assertThat(subject("2 + 3 + 6"), is(11L));
   }
 
+  @Test
+  void four() {
+    assertThat(subject("2 - 3 + 6 - 5"), is(0L));
+  }
+
   private long subject(String expression) {
     return new Calculator().calculate(expression);
   }

@@ -8,4 +8,8 @@ public class Operators {
   public static Operator subtract() {
     return (left, right) -> new SubtractExpression(left, right);
   }
+
+  public static Operator multiply() {
+    return (left, right) -> new MultiplyExpression(left, right);
+  }
 }

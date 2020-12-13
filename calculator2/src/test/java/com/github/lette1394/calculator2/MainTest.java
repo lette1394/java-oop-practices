@@ -9,6 +9,8 @@ class MainTest {
   @Test
   void one() {
     assertThat(subject("2 + 3"), is(5L));
+    assertThat(subject("2 - 3"), is(-1L));
+    assertThat(subject("3 - 2"), is(1L));
   }
 
   @Test
@@ -19,6 +21,7 @@ class MainTest {
   @Test
   void three() {
     assertThat(subject("2 + 3 + 6"), is(11L));
+    assertThat(subject("2 - 3 - 6"), is(-7L));
   }
 
   @Test
@@ -31,7 +34,6 @@ class MainTest {
   void multiply() {
     assertThat(subject("2 * 6"), is(12L));
     assertThat(subject("2 * 6 - 2"), is(10L));
-    assertThat(subject("2 + 3 * 2"), is(8L));
   }
 
   private long subject(String expression) {

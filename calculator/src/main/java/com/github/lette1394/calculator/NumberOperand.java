@@ -10,8 +10,14 @@ public class NumberOperand implements Operand {
   public static Operand of(String value) {
     return of(Long.parseLong(value));
   }
+
   public static Operand of(long value) {
     return new NumberOperand(value);
+  }
+
+  @Override
+  public Operand apply(Operator operator, Operand other) {
+    return operator.apply(this, other);
   }
 
   @Override

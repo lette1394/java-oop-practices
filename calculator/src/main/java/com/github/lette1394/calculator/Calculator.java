@@ -1,12 +1,24 @@
 package com.github.lette1394.calculator;
 
+import com.google.common.collect.Streams;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 
 public class Calculator {
+
+  public static void main(String[] args) {
+    final long ret = new NumberOperand(2)
+      .apply(new AddOperator(), new NumberOperand(5))
+      .apply(new SubtractOperator(), new NumberOperand(3))
+      .asLong();
+
+    System.out.println(ret);
+  }
+
   public long calculate(String expression) {
     final List<Operator> operators = Arrays
       .stream(expression.split("[^+-]"))
@@ -29,12 +41,10 @@ public class Calculator {
       .map(NumberOperand::of)
       .collect(Collectors.toList());
 
-    AtomicInteger index = new AtomicInteger(0);
+    final Iterator<Operator> iterator = operators.iterator();
     return operands
       .stream()
-      .reduce((a, b) -> operators
-        .get(index.getAndIncrement())
-        .apply(a, b))
+      .reduce((left, right) -> left.apply(iterator.next(), right))
       .orElseThrow()
       .asLong();
   }

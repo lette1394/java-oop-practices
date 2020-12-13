@@ -13,6 +13,10 @@ public final class Expressions {
     return new AddExpression(left, right);
   }
 
+  public static Expression subtract(Expression left, Expression right) {
+    return new SubtractExpression(left, right);
+  }
+
   public static Expression parsing(String expression) {
     return new SequentialParsingExpression(expression);
   }

@@ -11,7 +11,11 @@ public class ParsingExpression implements Expression {
 
   @Override
   public long evaluate() {
+    return parse().evaluate();
+  }
+
+  private Expression parse() {
     final String[] s = value.split(" ");
-    return add(of(s[0]), of(s[2])).evaluate();
+    return add(of(s[0]), of(s[2]));
   }
 }

@@ -4,9 +4,6 @@ public abstract class TwoOperand implements Expression {
   protected final Expression leftExpression;
   protected final Expression rightExpression;
 
-  private Result left;
-  private Result right;
-
   public TwoOperand(Expression left, Expression right) {
     this.leftExpression = left;
     this.rightExpression = right;
@@ -21,16 +18,10 @@ public abstract class TwoOperand implements Expression {
   }
 
   protected Result left() {
-    if (left == null) {
-      return leftExpression.evaluate();
-    }
-    return left;
+    return leftExpression.evaluate();
   }
 
   protected Result right() {
-    if (right == null) {
-      return rightExpression.evaluate();
-    }
-    return right;
+    return rightExpression.evaluate();
   }
 }

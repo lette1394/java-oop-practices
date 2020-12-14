@@ -16,6 +16,19 @@ public class Operators {
     return fallback(numberSubtract(), bigIntegerSubtract());
   }
 
+  public static Operator multiply() {
+    return fallback(numberMultiply(), bigIntegerMultiply());
+  }
+
+  private static Operator bigIntegerMultiply() {
+    return (left, right) -> new BigIntegerTwoOperand(left, right) {
+      @Override
+      protected BigInteger handle(BigInteger left, BigInteger right) {
+        return left.multiply(right);
+      }
+    };
+  }
+
   public static Operator bigIntegerAdd() {
     return (left, right) -> new BigIntegerTwoOperand(left, right) {
       @Override
@@ -62,7 +75,7 @@ public class Operators {
     };
   }
 
-  public static Operator multiply() {
+  public static Operator numberMultiply() {
     return (left, right) -> new NumberOperator(left, right) {
       @Override
       protected Number whenUseLong(long left, long right) {

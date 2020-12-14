@@ -29,7 +29,16 @@ class MainTest {
   void four() {
     assertThat(subjectLong("2 - 3 + 6 - 5"), is(0L));
     assertThat(subjectLong("2 - 3 + 6 - 1"), is(4L));
-    assertThat(subjectLong("99+112-1823+34+3"), is(-1575L));
+  }
+
+  @Test
+  void minusOperator() {
+    assertThat(subjectLong("99-3"), is(96L));
+    assertThat(subjectLong("99-3+3"), is(99L));
+    assertThat(subjectLong("99-3+3-99"), is(0L));
+    assertThat(subjectLong("99+112 - 1823+34+3"), is(-1575L));
+    assertThat(subjectLong("99+112 -1823+34+3"), is(-1575L));
+    assertThat(subjectLong("99+112- 1823+34+3"), is(-1575L));
   }
 
   @Test
@@ -43,7 +52,8 @@ class MainTest {
   @Test
   void overflow() {
     assertThat(subjectString("9223372036854775807 + 1"), is("9223372036854775808"));
-    assertThat(subjectString("9223372036854775807 + 3"), is("9223372036854775810"));
+    assertThat(subjectString("9223372036854775808 + 1"), is("9223372036854775809"));
+    assertThat(subjectString("-9223372036854775808 - 1"), is("-9223372036854775809"));
   }
 
   @Test

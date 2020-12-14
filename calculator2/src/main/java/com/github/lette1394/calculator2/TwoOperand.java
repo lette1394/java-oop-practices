@@ -10,7 +10,7 @@ public abstract class TwoOperand implements Expression {
   }
 
   private static boolean isDouble(Result result) {
-    return result.asLong() != result.asDouble();
+    return result.asLongExact() != result.asDouble();
   }
 
   protected boolean operandsInDouble() {

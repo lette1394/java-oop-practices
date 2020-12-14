@@ -99,12 +99,12 @@ public class Operators {
   }
 
   public static Operator fallback(Operator operator, Operator fallback) {
-    final Predicate<Throwable> unCoveredException = throwable -> throwable instanceof DivideByZeroException;
+    final Predicate<Throwable> unCoveredException = e -> e instanceof DivideByZeroException || e instanceof ContractsViolationException;
     final Predicate<Throwable> fallbackCondition = unCoveredException.negate();
 
     return (left, right) -> new FallbackExpression(
       fallbackCondition,
       () -> operator.apply(left, right).evaluate(),
-      () -> fallback.apply(left, right).evaluate());
+      () -> () -> fallback.apply(left, right).evaluate());
   }
 }

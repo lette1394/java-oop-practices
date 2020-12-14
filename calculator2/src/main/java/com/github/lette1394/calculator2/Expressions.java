@@ -2,14 +2,15 @@ package com.github.lette1394.calculator2;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.function.Supplier;
 
 public final class Expressions {
   public static Expression of(String value) {
-    return new StringExpression(value);
+    return fallback(new StringExpression(value), () -> of(new BigInteger(value)));
   }
 
   public static Expression of(long value) {
-    return new NumberExpression(value);
+    return fallback(new NumberExpression(value), () -> of(new BigInteger(Long.toString(value))));
   }
 
   public static Expression of(double value) {
@@ -30,5 +31,12 @@ public final class Expressions {
 
   public static Expression parse(String expression) {
     return new PriorityParsingExpression(expression);
+  }
+
+  public static Expression fallback(Expression expression, Supplier<Expression> fallback) {
+    return new FallbackExpression(
+      e -> e instanceof NumberFormatException,
+      expression,
+      fallback);
   }
 }

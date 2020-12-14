@@ -35,6 +35,12 @@ class MainTest {
     assertThat(subject("2 * 6"), is(12L));
     assertThat(subject("2 * 6 - 2"), is(10L));
     assertThat(subject("2 - 6 * 2"), is(-10L));
+    assertThat(subject("2 * 3 * 4 - 6 + 7 * 8"), is(74L));
+  }
+
+  @Test
+  void divide() {
+    assertThat(subject("6 / 3"), is(2L));
   }
 
   private long subject(String expression) {

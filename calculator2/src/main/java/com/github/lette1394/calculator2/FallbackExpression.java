@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class FallbackExpression implements Expression {
+  private final Class<? extends Throwable> excludeThrowableType;
   private final Expression expression;
   private final Expression fallback;
 
@@ -11,8 +12,11 @@ public class FallbackExpression implements Expression {
   public Result evaluate() {
     try {
       return expression.evaluate();
-    } catch (Exception e) {
-      return fallback.evaluate();
+    } catch (Throwable e) {
+      if (!excludeThrowableType.isInstance(e)) {
+        return fallback.evaluate();
+      }
+      throw e;
     }
   }
 }

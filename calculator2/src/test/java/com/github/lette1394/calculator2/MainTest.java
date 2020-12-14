@@ -43,6 +43,7 @@ class MainTest {
   @Test
   void overflow() {
     assertThat(subjectString("9223372036854775807 + 1"), is("9223372036854775808"));
+    assertThat(subjectString("9223372036854775807 + 3"), is("9223372036854775810"));
   }
 
   @Test
@@ -53,8 +54,8 @@ class MainTest {
 
   @Test
   void divideByZero() {
-    assertThrows(ArithmeticException.class, () -> subject("1 / 0"));
-    assertThrows(ArithmeticException.class, () -> subject("5*6+6/0-10"));
+    assertThrows(DivideByZeroException.class, () -> subject("1 / 0"));
+    assertThrows(DivideByZeroException.class, () -> subject("5*6+6/0-10"));
   }
 
   private Result subject(String expression) {

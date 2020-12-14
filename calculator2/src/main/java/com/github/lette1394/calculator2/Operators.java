@@ -5,19 +5,15 @@ import static java.lang.Math.multiplyExact;
 import static java.lang.Math.subtractExact;
 
 import java.math.BigInteger;
+import java.util.function.Predicate;
 
 public class Operators {
-//  public static Operator add() {
-//    return (left, right) -> fallback(
-//      new AddExpression(left, right),
-//      () -> cache(new BigIntegerExpression(
-//        new BigInteger(String.valueOf(left.evaluate()))
-//          .add(new BigInteger(String.valueOf(right.evaluate()))))).evaluate())
-//      .apply(left, right);
-//  }
-
   public static Operator add() {
     return fallback(numberAdd(), bigIntegerAdd());
+  }
+
+  public static Operator subtract() {
+    return fallback(numberSubtract(), bigIntegerSubtract());
   }
 
   public static Operator bigIntegerAdd() {
@@ -50,10 +46,6 @@ public class Operators {
         return left + right;
       }
     };
-  }
-
-  public static Operator subtract() {
-    return fallback(numberSubtract(), bigIntegerSubtract());
   }
 
   public static Operator numberSubtract() {
@@ -107,8 +99,11 @@ public class Operators {
   }
 
   public static Operator fallback(Operator operator, Operator fallback) {
+    final Predicate<Throwable> unCoveredException = throwable -> throwable instanceof DivideByZeroException;
+    final Predicate<Throwable> fallbackCondition = unCoveredException.negate();
+
     return (left, right) -> new FallbackExpression(
-      DivideByZeroException.class,
+      fallbackCondition,
       () -> operator.apply(left, right).evaluate(),
       () -> fallback.apply(left, right).evaluate());
   }

@@ -15,6 +15,8 @@ public class SequentialParsingExpression implements Expression {
 
   private final Map<String, Operator> operators = new HashMap<>();
 
+  private Result cache;
+
   public SequentialParsingExpression(String value) {
     this.value = value;
     this.operandMatcher = Pattern.compile("\\d+").matcher(value);
@@ -27,8 +29,12 @@ public class SequentialParsingExpression implements Expression {
   }
 
   @Override
-  public long evaluate() {
-    return parse().evaluate();
+  public Result evaluate() {
+    // cache가 없으면 결과가 매번 달라짐 (자체적으로 상태를 들고 있기 때문에 한 번만 평가되어야 한다)
+    if (cache == null) {
+      return cache = parse().evaluate();
+    }
+    return cache;
   }
 
   private Expression parse() {

@@ -8,7 +8,7 @@ public class FallbackExpression implements Expression {
   private final Expression fallback;
 
   @Override
-  public long evaluate() {
+  public Result evaluate() {
     try {
       return expression.evaluate();
     } catch (Exception e) {

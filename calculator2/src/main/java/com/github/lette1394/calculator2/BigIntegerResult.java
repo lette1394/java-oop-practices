@@ -28,4 +28,9 @@ public class BigIntegerResult implements Result {
   public String asString() {
     return value.toString();
   }
+
+  @Override
+  public String toString() {
+    return asString();
+  }
 }

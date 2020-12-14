@@ -5,7 +5,6 @@ public class Contracts {
     if (condition) {
       return;
     }
-
     throw new ContractsViolationException(message);
   }
 }

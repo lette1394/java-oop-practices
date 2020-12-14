@@ -14,6 +14,7 @@ public class PriorityParsingExpression implements Expression {
   private final Matcher matcher;
   private final Map<String, Operator> operators = new HashMap<>();
 
+  private Result cache;
 
   public PriorityParsingExpression(String value) {
     this.value = value;
@@ -27,8 +28,11 @@ public class PriorityParsingExpression implements Expression {
   }
 
   @Override
-  public long evaluate() {
-    return parse().evaluate();
+  public Result evaluate() {
+    if (cache == null) {
+      return cache = parse().evaluate();
+    }
+    return cache;
   }
 
   private Expression parse() {

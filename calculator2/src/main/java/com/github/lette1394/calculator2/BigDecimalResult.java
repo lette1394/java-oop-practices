@@ -28,4 +28,9 @@ public class BigDecimalResult implements Result {
   public String asString() {
     return bigDecimal.toString();
   }
+
+  @Override
+  public String toString() {
+    return asString();
+  }
 }

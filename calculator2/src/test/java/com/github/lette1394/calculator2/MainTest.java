@@ -4,51 +4,51 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.math.BigInteger;
 import org.junit.jupiter.api.Test;
 
 class MainTest {
   @Test
   void one() {
-    assertThat(subject("2 + 3"), is(5L));
-    assertThat(subject("2 - 3"), is(-1L));
-    assertThat(subject("3 - 2"), is(1L));
+    assertThat(subjectLong("2 + 3"), is(5L));
+    assertThat(subjectLong("2 - 3"), is(-1L));
+    assertThat(subjectLong("3 - 2"), is(1L));
   }
 
   @Test
   void two() {
-    assertThat(subject("10 - 7"), is(3L));
+    assertThat(subjectLong("10 - 7"), is(3L));
   }
 
   @Test
   void three() {
-    assertThat(subject("2 + 3 + 6"), is(11L));
-    assertThat(subject("2 - 3 - 6"), is(-7L));
+    assertThat(subjectLong("2 + 3 + 6"), is(11L));
+    assertThat(subjectLong("2 - 3 - 6"), is(-7L));
   }
 
   @Test
   void four() {
-    assertThat(subject("2 - 3 + 6 - 5"), is(0L));
-    assertThat(subject("2 - 3 + 6 - 1"), is(4L));
-    assertThat(subject("99+112-1823+34+3"), is(-1575L));
+    assertThat(subjectLong("2 - 3 + 6 - 5"), is(0L));
+    assertThat(subjectLong("2 - 3 + 6 - 1"), is(4L));
+    assertThat(subjectLong("99+112-1823+34+3"), is(-1575L));
   }
 
   @Test
   void multiply() {
-    assertThat(subject("2 * 6"), is(12L));
-    assertThat(subject("2 * 6 - 2"), is(10L));
-    assertThat(subject("2 - 6 * 2"), is(-10L));
-    assertThat(subject("2 * 3 * 4 - 6 + 7 * 8"), is(74L));
+    assertThat(subjectLong("2 * 6"), is(12L));
+    assertThat(subjectLong("2 * 6 - 2"), is(10L));
+    assertThat(subjectLong("2 - 6 * 2"), is(-10L));
+    assertThat(subjectLong("2 * 3 * 4 - 6 + 7 * 8"), is(74L));
   }
 
   @Test
   void overflow() {
-    assertThat(subject("9223372036854775806 + 1"), is(9223372036854775807L));
+    assertThat(subjectString("9223372036854775807 + 1"), is("9223372036854775808"));
   }
 
   @Test
   void divide() {
-    assertThat(subject("6 / 3"), is(2L));
+    assertThat(subjectLong("6 / 3"), is(2L));
+    assertThat(subjectDouble("6 / 3"), is(2.0));
   }
 
   @Test
@@ -57,7 +57,23 @@ class MainTest {
     assertThrows(ArithmeticException.class, () -> subject("5*6+6/0-10"));
   }
 
-  private long subject(String expression) {
+  private Result subject(String expression) {
     return new Calculator().calculate(expression);
+  }
+
+  private String subjectString(String expression) {
+    return subject(expression).asString();
+  }
+
+  private long subjectLong(String expression) {
+    return subject(expression).asLong();
+  }
+
+  private long subjectLongExact(String expression) {
+    return subject(expression).asLongExact();
+  }
+
+  private double subjectDouble(String expression) {
+    return subject(expression).asDouble();
   }
 }

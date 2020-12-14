@@ -26,4 +26,9 @@ public class NumberResult implements Result {
   public String asString() {
     return number.toString();
   }
+
+  @Override
+  public String toString() {
+    return asString();
+  }
 }

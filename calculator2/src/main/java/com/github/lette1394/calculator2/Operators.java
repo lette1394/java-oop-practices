@@ -12,4 +12,8 @@ public class Operators {
   public static Operator multiply() {
     return (left, right) -> new MultiplyExpression(left, right);
   }
+
+  public static Operator divide() {
+    return (left, right) -> new DivideExpression(left, right);
+  }
 }

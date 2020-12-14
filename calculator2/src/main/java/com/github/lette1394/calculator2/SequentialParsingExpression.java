@@ -18,11 +18,12 @@ public class SequentialParsingExpression implements Expression {
   public SequentialParsingExpression(String value) {
     this.value = value;
     this.operandMatcher = Pattern.compile("\\d+").matcher(value);
-    this.operatorMatcher = Pattern.compile("[*+\\-]").matcher(value);
+    this.operatorMatcher = Pattern.compile("[/*+\\-]").matcher(value);
 
     operators.put("+", Operators.add());
     operators.put("-", Operators.subtract());
     operators.put("*", Operators.multiply());
+    operators.put("/", Operators.divide());
   }
 
   @Override

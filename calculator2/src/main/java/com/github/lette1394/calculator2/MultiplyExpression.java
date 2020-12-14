@@ -7,6 +7,6 @@ public class MultiplyExpression extends TwoOperand {
 
   @Override
   public long evaluate() {
-    return left.evaluate() * right.evaluate();
+    return Math.multiplyExact(left.evaluate(), right.evaluate());
   }
 }

@@ -7,6 +7,6 @@ public class AddExpression extends TwoOperand {
 
   @Override
   public long evaluate() {
-    return left.evaluate() + right.evaluate();
+    return Math.addExact(left.evaluate(), right.evaluate());
   }
 }

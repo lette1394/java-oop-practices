@@ -7,6 +7,6 @@ public class SubtractExpression extends TwoOperand {
 
   @Override
   public long evaluate() {
-    return left.evaluate() - right.evaluate();
+    return Math.subtractExact(left.evaluate(), right.evaluate());
   }
 }

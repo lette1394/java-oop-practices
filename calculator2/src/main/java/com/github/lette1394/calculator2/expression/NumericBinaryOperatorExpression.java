@@ -4,8 +4,8 @@ import static com.github.lette1394.calculator2.Results.of;
 
 import com.github.lette1394.calculator2.Result;
 
-public abstract class NumberOperator extends TwoOperand {
-  public NumberOperator(Expression left, Expression right) {
+public abstract class NumericBinaryOperatorExpression extends TwoOperandExpression {
+  public NumericBinaryOperatorExpression(Expression left, Expression right) {
     super(left, right);
   }
 

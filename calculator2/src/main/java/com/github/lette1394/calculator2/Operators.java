@@ -4,9 +4,9 @@ import static java.lang.Math.addExact;
 import static java.lang.Math.multiplyExact;
 import static java.lang.Math.subtractExact;
 
-import com.github.lette1394.calculator2.expression.BigIntegerTwoOperand;
+import com.github.lette1394.calculator2.expression.BigIntegerTwoOperandExpression;
 import com.github.lette1394.calculator2.expression.FallbackExpression;
-import com.github.lette1394.calculator2.expression.NumberOperator;
+import com.github.lette1394.calculator2.expression.NumericBinaryOperatorExpression;
 import java.math.BigInteger;
 import java.util.function.Predicate;
 
@@ -24,7 +24,7 @@ public class Operators {
   }
 
   public static Operator bigIntegerMultiply() {
-    return (left, right) -> new BigIntegerTwoOperand(left, right) {
+    return (left, right) -> new BigIntegerTwoOperandExpression(left, right) {
       @Override
       protected BigInteger handle(BigInteger left, BigInteger right) {
         return left.multiply(right);
@@ -33,7 +33,7 @@ public class Operators {
   }
 
   public static Operator bigIntegerAdd() {
-    return (left, right) -> new BigIntegerTwoOperand(left, right) {
+    return (left, right) -> new BigIntegerTwoOperandExpression(left, right) {
       @Override
       protected BigInteger handle(BigInteger left, BigInteger right) {
         return left.add(right);
@@ -42,7 +42,7 @@ public class Operators {
   }
 
   public static Operator bigIntegerSubtract() {
-    return (left, right) -> new BigIntegerTwoOperand(left, right) {
+    return (left, right) -> new BigIntegerTwoOperandExpression(left, right) {
       @Override
       protected BigInteger handle(BigInteger left, BigInteger right) {
         return left.subtract(right);
@@ -51,7 +51,7 @@ public class Operators {
   }
 
   public static Operator numericAdd() {
-    return (left, right) -> new NumberOperator(left, right) {
+    return (left, right) -> new NumericBinaryOperatorExpression(left, right) {
       @Override
       protected Number whenUseLong(long left, long right) {
         return addExact(left, right);
@@ -65,7 +65,7 @@ public class Operators {
   }
 
   public static Operator numericSubtract() {
-    return (left, right) -> new NumberOperator(left, right) {
+    return (left, right) -> new NumericBinaryOperatorExpression(left, right) {
       @Override
       protected Number whenUseLong(long left, long right) {
         return subtractExact(left, right);
@@ -79,7 +79,7 @@ public class Operators {
   }
 
   public static Operator numericMultiply() {
-    return (left, right) -> new NumberOperator(left, right) {
+    return (left, right) -> new NumericBinaryOperatorExpression(left, right) {
       @Override
       protected Number whenUseLong(long left, long right) {
         return multiplyExact(left, right);
@@ -93,7 +93,7 @@ public class Operators {
   }
 
   public static Operator divide() {
-    return (left, right) -> new NumberOperator(left, right) {
+    return (left, right) -> new NumericBinaryOperatorExpression(left, right) {
       @Override
       protected Number whenUseLong(long left, long right) {
         checkDivideByZero(right);

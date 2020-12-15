@@ -5,9 +5,9 @@ import com.github.lette1394.calculator2.expression.BigIntegerOperatorFactory;
 import com.github.lette1394.calculator2.expression.Expression;
 import com.github.lette1394.calculator2.expression.ExpressionFactory;
 import com.github.lette1394.calculator2.expression.FallbackExpressionFactory;
-import com.github.lette1394.calculator2.expression.NumericOperatorFactory;
+import com.github.lette1394.calculator2.expression.NumericBinaryOperatorExpressionFactory;
 import com.github.lette1394.calculator2.expression.PriorityParsingExpression;
-import com.github.lette1394.calculator2.expression.TypeExpressionFactory;
+import com.github.lette1394.calculator2.expression.MathTypeExpressionFactory;
 
 public class Calculator {
   public static Result calculate(String expression) {
@@ -15,11 +15,11 @@ public class Calculator {
       new FindFirstOperatorFinder(
         new NumericFourRulesFinder(
           new FallbackOperatorFactory(
-            NumericOperatorFactory.INSTANCE,
+            NumericBinaryOperatorExpressionFactory.INSTANCE,
             BigIntegerOperatorFactory.INSTANCE))));
 
     final ExpressionFactory expressionFactory = new FallbackExpressionFactory(
-      TypeExpressionFactory.INSTANCE,
+      MathTypeExpressionFactory.INSTANCE,
       ArrayBasedExpressionFactory.INSTANCE
     );
 

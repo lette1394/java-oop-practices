@@ -8,15 +8,15 @@ import com.github.lette1394.calculator2.DivideByZeroException;
 import com.github.lette1394.calculator2.Operator;
 import com.github.lette1394.calculator2.OperatorFactory;
 
-public class NumericOperatorFactory implements OperatorFactory {
-  public static final OperatorFactory INSTANCE = new NumericOperatorFactory();
+public class NumericBinaryOperatorExpressionFactory implements OperatorFactory {
+  public static final OperatorFactory INSTANCE = new NumericBinaryOperatorExpressionFactory();
 
-  private NumericOperatorFactory() {
+  private NumericBinaryOperatorExpressionFactory() {
   }
 
   @Override
   public Operator add() {
-    return (left, right) -> new NumberOperator(left, right) {
+    return (left, right) -> new NumericBinaryOperatorExpression(left, right) {
       @Override
       protected Number whenUseLong(long left, long right) {
         return addExact(left, right);
@@ -31,7 +31,7 @@ public class NumericOperatorFactory implements OperatorFactory {
 
   @Override
   public Operator subtract() {
-    return (left, right) -> new NumberOperator(left, right) {
+    return (left, right) -> new NumericBinaryOperatorExpression(left, right) {
       @Override
       protected Number whenUseLong(long left, long right) {
         return subtractExact(left, right);
@@ -46,7 +46,7 @@ public class NumericOperatorFactory implements OperatorFactory {
 
   @Override
   public Operator multiply() {
-    return (left, right) -> new NumberOperator(left, right) {
+    return (left, right) -> new NumericBinaryOperatorExpression(left, right) {
       @Override
       protected Number whenUseLong(long left, long right) {
         return multiplyExact(left, right);
@@ -61,7 +61,7 @@ public class NumericOperatorFactory implements OperatorFactory {
 
   @Override
   public Operator divide() {
-    return (left, right) -> new NumberOperator(left, right) {
+    return (left, right) -> new NumericBinaryOperatorExpression(left, right) {
       @Override
       protected Number whenUseLong(long left, long right) {
         checkDivideByZero(right);

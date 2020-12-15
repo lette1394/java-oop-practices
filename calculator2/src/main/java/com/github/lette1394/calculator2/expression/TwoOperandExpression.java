@@ -1,13 +1,12 @@
 package com.github.lette1394.calculator2.expression;
 
 import com.github.lette1394.calculator2.Result;
-import com.github.lette1394.calculator2.expression.Expression;
 
-public abstract class TwoOperand implements Expression {
+public abstract class TwoOperandExpression implements Expression {
   protected final Expression leftExpression;
   protected final Expression rightExpression;
 
-  public TwoOperand(Expression left, Expression right) {
+  public TwoOperandExpression(Expression left, Expression right) {
     this.leftExpression = left;
     this.rightExpression = right;
   }

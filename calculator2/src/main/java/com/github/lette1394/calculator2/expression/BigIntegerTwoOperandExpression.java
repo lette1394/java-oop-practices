@@ -3,14 +3,14 @@ package com.github.lette1394.calculator2.expression;
 import static com.github.lette1394.calculator2.Results.of;
 
 import com.github.lette1394.calculator2.Result;
-import com.github.lette1394.calculator2.expression.Expression;
 import java.math.BigInteger;
 
-public abstract class BigIntegerTwoOperand implements Expression {
+// FIXME (jaeeun) 2020-12-16: ArrayBasedTwoOperandExpression
+public abstract class BigIntegerTwoOperandExpression implements Expression {
   protected final Expression leftExpression;
   protected final Expression rightExpression;
 
-  public BigIntegerTwoOperand(Expression left, Expression right) {
+  public BigIntegerTwoOperandExpression(Expression left, Expression right) {
     this.leftExpression = left;
     this.rightExpression = right;
   }

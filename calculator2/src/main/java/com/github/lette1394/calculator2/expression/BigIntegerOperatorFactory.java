@@ -12,7 +12,7 @@ public class BigIntegerOperatorFactory implements OperatorFactory {
 
   @Override
   public Operator add() {
-    return (left, right) -> new BigIntegerTwoOperand(left, right) {
+    return (left, right) -> new BigIntegerTwoOperandExpression(left, right) {
       @Override
       protected BigInteger handle(BigInteger left, BigInteger right) {
         return left.add(right);
@@ -22,7 +22,7 @@ public class BigIntegerOperatorFactory implements OperatorFactory {
 
   @Override
   public Operator subtract() {
-    return (left, right) -> new BigIntegerTwoOperand(left, right) {
+    return (left, right) -> new BigIntegerTwoOperandExpression(left, right) {
       @Override
       protected BigInteger handle(BigInteger left, BigInteger right) {
         return left.subtract(right);
@@ -32,7 +32,7 @@ public class BigIntegerOperatorFactory implements OperatorFactory {
 
   @Override
   public Operator multiply() {
-    return (left, right) -> new BigIntegerTwoOperand(left, right) {
+    return (left, right) -> new BigIntegerTwoOperandExpression(left, right) {
       @Override
       protected BigInteger handle(BigInteger left, BigInteger right) {
         return left.multiply(right);
@@ -42,7 +42,7 @@ public class BigIntegerOperatorFactory implements OperatorFactory {
 
   @Override
   public Operator divide() {
-    return (left, right) -> new BigIntegerTwoOperand(left, right) {
+    return (left, right) -> new BigIntegerTwoOperandExpression(left, right) {
       @Override
       protected BigInteger handle(BigInteger left, BigInteger right) {
         return left.divide(right);

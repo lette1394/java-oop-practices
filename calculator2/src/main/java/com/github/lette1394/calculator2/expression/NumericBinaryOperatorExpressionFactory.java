@@ -4,8 +4,8 @@ import static java.lang.Math.addExact;
 import static java.lang.Math.multiplyExact;
 import static java.lang.Math.subtractExact;
 
-import com.github.lette1394.calculator2.Operator;
-import com.github.lette1394.calculator2.OperatorFactory;
+import com.github.lette1394.calculator2.operator.Operator;
+import com.github.lette1394.calculator2.operator.OperatorFactory;
 
 public class NumericBinaryOperatorExpressionFactory implements OperatorFactory {
   public static final OperatorFactory INSTANCE = new NumericBinaryOperatorExpressionFactory();

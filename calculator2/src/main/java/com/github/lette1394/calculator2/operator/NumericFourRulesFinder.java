@@ -1,7 +1,8 @@
-package com.github.lette1394.calculator2;
+package com.github.lette1394.calculator2.operator;
 
 import static java.lang.String.format;
 
+import com.github.lette1394.calculator2.Contracts;
 import java.util.HashMap;
 import java.util.Map;
 

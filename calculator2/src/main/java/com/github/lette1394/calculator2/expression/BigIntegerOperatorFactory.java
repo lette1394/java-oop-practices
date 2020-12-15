@@ -1,7 +1,7 @@
 package com.github.lette1394.calculator2.expression;
 
-import com.github.lette1394.calculator2.Operator;
-import com.github.lette1394.calculator2.OperatorFactory;
+import com.github.lette1394.calculator2.operator.Operator;
+import com.github.lette1394.calculator2.operator.OperatorFactory;
 import java.math.BigInteger;
 
 public class BigIntegerOperatorFactory implements OperatorFactory {

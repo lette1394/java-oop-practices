@@ -1,4 +1,4 @@
-package com.github.lette1394.calculator2;
+package com.github.lette1394.calculator2.operator;
 
 import static java.lang.String.format;
 

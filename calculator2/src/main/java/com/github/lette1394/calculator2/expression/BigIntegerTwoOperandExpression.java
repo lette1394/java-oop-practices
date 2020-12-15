@@ -6,7 +6,7 @@ import com.github.lette1394.calculator2.Result;
 import java.math.BigInteger;
 
 // FIXME (jaeeun) 2020-12-16: ArrayBasedTwoOperandExpression
-public abstract class BigIntegerTwoOperandExpression implements Expression {
+abstract class BigIntegerTwoOperandExpression implements Expression {
   protected final Expression leftExpression;
   protected final Expression rightExpression;
 

@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.apache.commons.lang3.StringUtils;
 
-public class SequentialParsingExpression implements Expression {
+class SequentialParsingExpression implements Expression {
   private final String expression;
   private final Matcher matcher;
   private final OperatorFinder operatorFinder;

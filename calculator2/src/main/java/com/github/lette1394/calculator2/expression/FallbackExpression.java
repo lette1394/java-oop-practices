@@ -6,7 +6,7 @@ import java.util.function.Supplier;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class FallbackExpression implements Expression {
+class FallbackExpression implements Expression {
   private final Predicate<Throwable> fallbackTriggerCondition;
   private final Expression expression;
   private final Supplier<Expression> fallback;

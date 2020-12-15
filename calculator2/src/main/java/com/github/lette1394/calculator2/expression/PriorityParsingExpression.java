@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.apache.commons.lang3.StringUtils;
 
+// FIXME (jaeeun) 2020-12-16: 의존성 제거 // CalculatorBuilder 등으로
 public class PriorityParsingExpression implements Expression {
   private final String value;
   private final Matcher matcher;

@@ -7,7 +7,7 @@ import com.github.lette1394.calculator2.Result;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class StringExpression implements Expression {
+class StringExpression implements Expression {
   private final String value;
 
   @Override

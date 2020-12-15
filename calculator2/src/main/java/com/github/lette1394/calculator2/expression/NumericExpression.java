@@ -6,7 +6,7 @@ import com.github.lette1394.calculator2.Result;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class NumericExpression implements Expression {
+class NumericExpression implements Expression {
   private final Number value;
 
   @Override

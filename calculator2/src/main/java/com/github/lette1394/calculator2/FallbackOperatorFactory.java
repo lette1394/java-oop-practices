@@ -35,8 +35,8 @@ public class FallbackOperatorFactory implements OperatorFactory {
     return (left, right) -> () -> {
       try {
         return operator.apply(left, right).evaluate();
-        // FIXME (jaeeun) 2020-12-16: 이거 그냥 Exception 으로 받아도 되나?
-        //  exception을 먹어버리는 문제가 있다.
+      } catch (UnrecoverableException unrecoverableException) {
+        throw unrecoverableException;
       } catch (Exception e) {
         return fallback.apply(left, right).evaluate();
       }

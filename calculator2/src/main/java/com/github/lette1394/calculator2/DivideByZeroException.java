@@ -1,6 +1,6 @@
 package com.github.lette1394.calculator2;
 
-public class DivideByZeroException extends RuntimeException {
+public class DivideByZeroException extends UnrecoverableException {
   public DivideByZeroException() {
     super();
   }

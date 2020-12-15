@@ -3,7 +3,7 @@ package com.github.lette1394.calculator2.result;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-public final class Results {
+public final class ResultFactory {
   public static Result of(BigInteger bigInteger) {
     return new BigIntegerResult(bigInteger);
   }

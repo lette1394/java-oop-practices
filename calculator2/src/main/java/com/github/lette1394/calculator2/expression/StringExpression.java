@@ -1,6 +1,6 @@
 package com.github.lette1394.calculator2.expression;
 
-import static com.github.lette1394.calculator2.result.Results.of;
+import static com.github.lette1394.calculator2.result.ResultFactory.of;
 import static java.lang.Long.parseLong;
 
 import com.github.lette1394.calculator2.result.Result;

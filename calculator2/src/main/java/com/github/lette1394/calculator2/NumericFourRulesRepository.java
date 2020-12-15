@@ -9,9 +9,9 @@ public class NumericFourRulesRepository implements OperatorRepository {
   private final Map<String, Operator> operators = new HashMap<>();
 
   public NumericFourRulesRepository() {
-    operators.put("+", Operators.numberAdd());
-    operators.put("-", Operators.numberSubtract());
-    operators.put("*", Operators.numberMultiply());
+    operators.put("+", Operators.numericAdd());
+    operators.put("-", Operators.numericSubtract());
+    operators.put("*", Operators.numericMultiply());
     operators.put("/", Operators.divide());
   }
 

@@ -9,15 +9,15 @@ import java.util.function.Predicate;
 
 public class Operators {
   public static Operator add() {
-    return fallback(numberAdd(), bigIntegerAdd());
+    return fallback(numericAdd(), bigIntegerAdd());
   }
 
   public static Operator subtract() {
-    return fallback(numberSubtract(), bigIntegerSubtract());
+    return fallback(numericSubtract(), bigIntegerSubtract());
   }
 
   public static Operator multiply() {
-    return fallback(numberMultiply(), bigIntegerMultiply());
+    return fallback(numericMultiply(), bigIntegerMultiply());
   }
 
   public static Operator bigIntegerMultiply() {
@@ -47,7 +47,7 @@ public class Operators {
     };
   }
 
-  public static Operator numberAdd() {
+  public static Operator numericAdd() {
     return (left, right) -> new NumberOperator(left, right) {
       @Override
       protected Number whenUseLong(long left, long right) {
@@ -61,7 +61,7 @@ public class Operators {
     };
   }
 
-  public static Operator numberSubtract() {
+  public static Operator numericSubtract() {
     return (left, right) -> new NumberOperator(left, right) {
       @Override
       protected Number whenUseLong(long left, long right) {
@@ -75,7 +75,7 @@ public class Operators {
     };
   }
 
-  public static Operator numberMultiply() {
+  public static Operator numericMultiply() {
     return (left, right) -> new NumberOperator(left, right) {
       @Override
       protected Number whenUseLong(long left, long right) {

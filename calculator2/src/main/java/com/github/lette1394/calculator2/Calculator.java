@@ -8,6 +8,7 @@ import com.github.lette1394.calculator2.expression.FallbackExpressionFactory;
 import com.github.lette1394.calculator2.expression.NumericBinaryOperatorExpressionFactory;
 import com.github.lette1394.calculator2.expression.PriorityParsingExpression;
 import com.github.lette1394.calculator2.expression.MathTypeExpressionFactory;
+import com.github.lette1394.calculator2.result.Result;
 
 public class Calculator {
   public static Result calculate(String expression) {

@@ -2,7 +2,7 @@ package com.github.lette1394.calculator2.expression;
 
 import com.github.lette1394.calculator2.Operator;
 import com.github.lette1394.calculator2.OperatorFinder;
-import com.github.lette1394.calculator2.Result;
+import com.github.lette1394.calculator2.result.Result;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.apache.commons.lang3.StringUtils;

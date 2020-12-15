@@ -1,6 +1,6 @@
 package com.github.lette1394.calculator2.expression;
 
-import com.github.lette1394.calculator2.Result;
+import com.github.lette1394.calculator2.result.Result;
 
 public abstract class TwoOperandExpression implements Expression {
   protected final Expression leftExpression;

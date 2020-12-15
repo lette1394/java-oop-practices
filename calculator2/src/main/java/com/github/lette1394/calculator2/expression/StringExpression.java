@@ -1,9 +1,9 @@
 package com.github.lette1394.calculator2.expression;
 
-import static com.github.lette1394.calculator2.Results.of;
+import static com.github.lette1394.calculator2.result.Results.of;
 import static java.lang.Long.parseLong;
 
-import com.github.lette1394.calculator2.Result;
+import com.github.lette1394.calculator2.result.Result;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

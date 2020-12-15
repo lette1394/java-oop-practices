@@ -1,4 +1,4 @@
-package com.github.lette1394.calculator2;
+package com.github.lette1394.calculator2.result;
 
 public class NumberResult implements Result {
   private final Number number;

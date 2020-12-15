@@ -7,4 +7,11 @@ public class Contracts {
     }
     throw new ContractsViolationException(message);
   }
+
+  public static void requires(boolean condition, RuntimeException e) {
+    if (condition) {
+      return;
+    }
+    throw e;
+  }
 }

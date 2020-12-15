@@ -9,9 +9,9 @@ public class NumericFourRulesFactory implements OperatorFactory {
   private final Map<String, Operator> operators = new HashMap<>();
 
   public NumericFourRulesFactory() {
-    operators.put("+", Operators.numericAdd());
-    operators.put("-", Operators.numericSubtract());
-    operators.put("*", Operators.numericMultiply());
+    operators.put("+", Operators.add());
+    operators.put("-", Operators.subtract());
+    operators.put("*", Operators.multiply());
     operators.put("/", Operators.divide());
   }
 

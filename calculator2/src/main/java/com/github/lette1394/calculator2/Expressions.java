@@ -30,7 +30,10 @@ public final class Expressions {
   }
 
   public static Expression parse(String expression) {
-    return new PriorityParsingExpression(expression);
+    return new PriorityParsingExpression(expression, new FindFirstOperatorFactory(
+      new NumericFourRulesFactory(),
+      new BigIntegerOperatorFactory()
+    ));
   }
 
   public static Expression fallback(Expression expression, Supplier<Expression> fallback) {

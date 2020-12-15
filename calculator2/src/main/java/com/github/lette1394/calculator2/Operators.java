@@ -112,7 +112,8 @@ public class Operators {
   }
 
   public static Operator fallback(Operator operator, Operator fallback) {
-    final Predicate<Throwable> unCoveredException = e -> e instanceof DivideByZeroException || e instanceof ContractsViolationException;
+    final Predicate<Throwable> unCoveredException = e -> e instanceof DivideByZeroException
+      || e instanceof ContractsViolationException;
     final Predicate<Throwable> fallbackCondition = unCoveredException.negate();
 
     return (left, right) -> new FallbackExpression(

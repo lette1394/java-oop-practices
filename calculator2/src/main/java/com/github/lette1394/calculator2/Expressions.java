@@ -31,7 +31,7 @@ public final class Expressions {
 
   public static Expression parse(String expression) {
     return new PriorityParsingExpression(expression, new FindFirstOperatorFinder(
-      new NumericFourRulesFinder(BigIntegerOperatorFactory.INSTANCE),
+      new NumericFourRulesFinder(NumericOperatorFactory.INSTANCE),
       new BigIntegerOperatorFinder()
     ));
   }

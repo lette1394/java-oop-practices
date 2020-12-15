@@ -4,6 +4,9 @@ import static java.lang.Math.addExact;
 import static java.lang.Math.multiplyExact;
 import static java.lang.Math.subtractExact;
 
+import com.github.lette1394.calculator2.expression.BigIntegerTwoOperand;
+import com.github.lette1394.calculator2.expression.FallbackExpression;
+import com.github.lette1394.calculator2.expression.NumberOperator;
 import java.math.BigInteger;
 import java.util.function.Predicate;
 

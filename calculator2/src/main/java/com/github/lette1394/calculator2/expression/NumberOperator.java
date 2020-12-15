@@ -1,6 +1,8 @@
-package com.github.lette1394.calculator2;
+package com.github.lette1394.calculator2.expression;
 
 import static com.github.lette1394.calculator2.Results.of;
+
+import com.github.lette1394.calculator2.Result;
 
 public abstract class NumberOperator extends TwoOperand {
   public NumberOperator(Expression left, Expression right) {

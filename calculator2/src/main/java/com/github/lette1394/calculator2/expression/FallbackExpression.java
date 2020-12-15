@@ -1,5 +1,6 @@
-package com.github.lette1394.calculator2;
+package com.github.lette1394.calculator2.expression;
 
+import com.github.lette1394.calculator2.Result;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 import lombok.RequiredArgsConstructor;

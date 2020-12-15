@@ -1,5 +1,6 @@
-package com.github.lette1394.calculator2;
+package com.github.lette1394.calculator2.expression;
 
+import com.github.lette1394.calculator2.UnrecoverableException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 

@@ -1,4 +1,7 @@
-package com.github.lette1394.calculator2;
+package com.github.lette1394.calculator2.expression;
+
+import com.github.lette1394.calculator2.Result;
+import com.github.lette1394.calculator2.expression.Expression;
 
 public abstract class TwoOperand implements Expression {
   protected final Expression leftExpression;

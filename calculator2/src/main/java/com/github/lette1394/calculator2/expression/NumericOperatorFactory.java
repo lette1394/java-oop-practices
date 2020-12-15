@@ -1,8 +1,12 @@
-package com.github.lette1394.calculator2;
+package com.github.lette1394.calculator2.expression;
 
 import static java.lang.Math.addExact;
 import static java.lang.Math.multiplyExact;
 import static java.lang.Math.subtractExact;
+
+import com.github.lette1394.calculator2.DivideByZeroException;
+import com.github.lette1394.calculator2.Operator;
+import com.github.lette1394.calculator2.OperatorFactory;
 
 public class NumericOperatorFactory implements OperatorFactory {
   public static final OperatorFactory INSTANCE = new NumericOperatorFactory();

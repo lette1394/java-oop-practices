@@ -2,6 +2,7 @@ package com.github.lette1394.calculator2;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.List;
 import java.util.function.Supplier;
 
 public final class Expressions {
@@ -31,8 +32,11 @@ public final class Expressions {
 
   public static Expression parse(String expression) {
     return new PriorityParsingExpression(expression, new FindFirstOperatorFinder(
-      new NumericFourRulesFinder(NumericOperatorFactory.INSTANCE),
-      new BigIntegerOperatorFinder()
+      new FindFirstOperatorFinder(
+        new NumericFourRulesFinder(
+          new FallbackOperatorFactory(
+            NumericOperatorFactory.INSTANCE,
+            BigIntegerOperatorFactory.INSTANCE)))
     ));
   }
 

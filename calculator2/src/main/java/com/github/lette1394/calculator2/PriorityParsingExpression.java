@@ -35,11 +35,11 @@ public class PriorityParsingExpression implements Expression {
     if (matcher.matches()) {
       return operator().apply(left(), right());
     }
-    return new SequentialParsingExpression(value);
+    return new SequentialParsingExpression(value, operatorFinder);
   }
 
   private Expression left() {
-    return new SequentialParsingExpression(trim(matcher.group(1)));
+    return new SequentialParsingExpression(trim(matcher.group(1)), operatorFinder);
   }
 
   private Operator operator() {
@@ -47,7 +47,7 @@ public class PriorityParsingExpression implements Expression {
   }
 
   private Expression right() {
-    return new SequentialParsingExpression(trim(matcher.group(3)));
+    return new SequentialParsingExpression(trim(matcher.group(3)), operatorFinder);
   }
 
   private String trim(String value) {

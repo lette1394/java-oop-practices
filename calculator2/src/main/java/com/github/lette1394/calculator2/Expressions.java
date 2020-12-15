@@ -2,7 +2,6 @@ package com.github.lette1394.calculator2;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.List;
 import java.util.function.Supplier;
 
 public final class Expressions {

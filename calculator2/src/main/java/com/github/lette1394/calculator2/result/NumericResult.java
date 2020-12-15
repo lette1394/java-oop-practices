@@ -1,9 +1,9 @@
 package com.github.lette1394.calculator2.result;
 
-class NumberResult implements Result {
+class NumericResult implements Result {
   private final Number number;
 
-  public NumberResult(Number number) {
+  public NumericResult(Number number) {
     this.number = number;
   }
 

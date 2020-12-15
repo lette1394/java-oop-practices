@@ -13,6 +13,6 @@ public final class ResultFactory {
   }
 
   public static Result of(Number number) {
-    return new NumberResult(number);
+    return new NumericResult(number);
   }
 }

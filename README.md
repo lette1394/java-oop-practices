@@ -5,9 +5,13 @@ oop practices in JAVA
 - calculator: 문자열 계산기 (실패)
 - calculator2: 문자열 계산기 (진행 중)
 
+-------
 
-### TODO: timeout spec
+## calculator2 (wip)
+### TODO: support timeout
+- 몇 분 이상 지나면 계산 실패 처리
 - 몇 초 이상 지나면 계산 실패 처리
+- 몇 밀리초 이상 지나면 계산 실패 처리
 
 
 ### TODO: configurable calculator
@@ -22,9 +26,15 @@ oop practices in JAVA
 ### TODO: print detail expression process
 - 계산 과정을 추적할 수 있다
 - 어디서 중간에 어떻게 계산되었는지 확인 가능
-- 다양한 포맷으로 제공해야 한다. (html, string, text, json, ...)
+- 결과 및 과정은 다양한 포맷으로 제공 가능 (html, string, text, json, ...)
 
 
 ### TODO: support advanced operator
 - 사칙연산 외에 다른 연산자도 추가한다
 - 제곱근, n제곱, 팩토리얼, 괄호(), 로그, 미분, 적분
+
+
+### TODO: support various environment
+- console (jar) 지원
+- web-server 지원
+

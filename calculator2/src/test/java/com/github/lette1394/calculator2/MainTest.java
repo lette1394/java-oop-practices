@@ -4,6 +4,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import com.github.lette1394.calculator2.expression.DivideByZeroException;
 import com.github.lette1394.calculator2.result.Result;
 import org.junit.jupiter.api.Test;
 

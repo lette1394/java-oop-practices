@@ -30,9 +30,9 @@ public final class Expressions {
   }
 
   public static Expression parse(String expression) {
-    return new PriorityParsingExpression(expression, new FindFirstOperatorFactory(
-      new NumericFourRulesFactory(),
-      new BigIntegerOperatorFactory()
+    return new PriorityParsingExpression(expression, new FindFirstOperatorFinder(
+      new NumericFourRulesFinder(),
+      new BigIntegerOperatorFinder()
     ));
   }
 

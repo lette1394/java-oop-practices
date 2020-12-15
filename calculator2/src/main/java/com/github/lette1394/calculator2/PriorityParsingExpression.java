@@ -9,15 +9,15 @@ import org.apache.commons.lang3.StringUtils;
 public class PriorityParsingExpression implements Expression {
   private final String value;
   private final Matcher matcher;
-  private final OperatorFactory operatorFactory;
+  private final OperatorFinder operatorFinder;
 
   private Result cache;
 
   public PriorityParsingExpression(String value,
-                                   OperatorFactory operatorFactory) {
+                                   OperatorFinder operatorFinder) {
     this.value = value;
     this.matcher = Pattern.compile("(.*)(\\+|- )(.*)").matcher(value);
-    this.operatorFactory = operatorFactory;
+    this.operatorFinder = operatorFinder;
   }
 
   @Override
@@ -43,7 +43,7 @@ public class PriorityParsingExpression implements Expression {
   }
 
   private Operator operator() {
-    return operatorFactory.find(trim(matcher.group(2)));
+    return operatorFinder.find(trim(matcher.group(2)));
   }
 
   private Expression right() {

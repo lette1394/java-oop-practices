@@ -20,7 +20,7 @@ public class OperatorFactory {
     return fallback(numberMultiply(), bigIntegerMultiply());
   }
 
-  private static Operator bigIntegerMultiply() {
+  public static Operator bigIntegerMultiply() {
     return (left, right) -> new BigIntegerTwoOperand(left, right) {
       @Override
       protected BigInteger handle(BigInteger left, BigInteger right) {

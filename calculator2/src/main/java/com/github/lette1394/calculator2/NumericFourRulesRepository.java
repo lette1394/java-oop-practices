@@ -5,10 +5,10 @@ import static java.lang.String.format;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FourRuleCalculationsRepository implements OperatorRepository {
+public class NumericFourRulesRepository implements OperatorRepository {
   private final Map<String, Operator> operators = new HashMap<>();
 
-  public FourRuleCalculationsRepository() {
+  public NumericFourRulesRepository() {
     operators.put("+", OperatorFactory.numberAdd());
     operators.put("-", OperatorFactory.numberSubtract());
     operators.put("*", OperatorFactory.numberMultiply());

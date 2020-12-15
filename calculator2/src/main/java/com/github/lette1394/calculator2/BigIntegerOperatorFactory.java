@@ -5,18 +5,17 @@ import static java.lang.String.format;
 import java.util.HashMap;
 import java.util.Map;
 
-public class NumericFourRulesRepository implements OperatorRepository {
+public class BigIntegerOperatorFactory implements OperatorFactory {
   private final Map<String, Operator> operators = new HashMap<>();
 
-  public NumericFourRulesRepository() {
-    operators.put("+", Operators.numericAdd());
-    operators.put("-", Operators.numericSubtract());
-    operators.put("*", Operators.numericMultiply());
-    operators.put("/", Operators.divide());
+  public BigIntegerOperatorFactory() {
+    operators.put("+", Operators.bigIntegerAdd());
+    operators.put("-", Operators.bigIntegerSubtract());
+    operators.put("*", Operators.bigIntegerMultiply());
   }
 
   @Override
-  public Operator find(String operatorAsString) {
+  public Operator find(String operatorAsString) throws OperatorNotFoundException {
     Contracts.requires(
       operators.containsKey(operatorAsString),
       notFoundException(operatorAsString));

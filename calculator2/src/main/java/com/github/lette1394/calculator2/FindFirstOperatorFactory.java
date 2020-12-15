@@ -4,14 +4,14 @@ import static java.lang.String.format;
 
 import java.util.List;
 
-public class FindFirstOperatorRepository implements OperatorRepository {
-  private final List<OperatorRepository> operatorRepositories;
+public class FindFirstOperatorFactory implements OperatorFactory {
+  private final List<OperatorFactory> operatorRepositories;
 
-  public FindFirstOperatorRepository(List<OperatorRepository> operatorRepositories) {
+  public FindFirstOperatorFactory(List<OperatorFactory> operatorRepositories) {
     this.operatorRepositories = operatorRepositories;
   }
 
-  public FindFirstOperatorRepository(OperatorRepository... operatorRepositories) {
+  public FindFirstOperatorFactory(OperatorFactory... operatorRepositories) {
     this(List.of(operatorRepositories));
   }
 
@@ -20,7 +20,7 @@ public class FindFirstOperatorRepository implements OperatorRepository {
     final RuntimeException ex = new OperatorNotFoundException(
       format("Cannot find operator: [%s]", operatorAsString));
 
-    for (OperatorRepository repository : operatorRepositories) {
+    for (OperatorFactory repository : operatorRepositories) {
       try {
         return repository.find(operatorAsString);
       } catch (OperatorNotFoundException e) {

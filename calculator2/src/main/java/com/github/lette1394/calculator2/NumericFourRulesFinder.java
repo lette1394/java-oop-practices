@@ -8,11 +8,11 @@ import java.util.Map;
 public class NumericFourRulesFinder implements OperatorFinder {
   private final Map<String, Operator> operators = new HashMap<>();
 
-  public NumericFourRulesFinder() {
-    operators.put("+", Operators.add());
-    operators.put("-", Operators.subtract());
-    operators.put("*", Operators.multiply());
-    operators.put("/", Operators.divide());
+  public NumericFourRulesFinder(OperatorFactory operatorFactory) {
+    operators.put("+", operatorFactory.add());
+    operators.put("-", operatorFactory.subtract());
+    operators.put("*", operatorFactory.multiply());
+    operators.put("/", operatorFactory.divide());
   }
 
   @Override

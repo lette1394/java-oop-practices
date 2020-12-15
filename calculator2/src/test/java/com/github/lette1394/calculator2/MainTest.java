@@ -73,7 +73,7 @@ class MainTest {
   }
 
   private Result subject(String expression) {
-    return new Calculator().calculate(expression);
+    return Calculator.calculate(expression);
   }
 
   private String subjectString(String expression) {

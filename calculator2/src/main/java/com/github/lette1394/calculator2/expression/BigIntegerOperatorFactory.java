@@ -4,6 +4,7 @@ import com.github.lette1394.calculator2.operator.Operator;
 import com.github.lette1394.calculator2.operator.OperatorFactory;
 import java.math.BigInteger;
 
+// FIXME (jaeeun) 2020-12-16: package 위치가 마음에 안든다. 어떻게 해결하지?
 public class BigIntegerOperatorFactory implements OperatorFactory {
   public static final OperatorFactory INSTANCE = new BigIntegerOperatorFactory();
 

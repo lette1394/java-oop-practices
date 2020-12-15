@@ -32,12 +32,13 @@ public class FallbackOperatorFactory implements OperatorFactory {
   }
 
   private Operator installFallback(Operator operator, Operator fallback) {
-    return (left, right) -> {
+    return (left, right) -> () -> {
       try {
-        return operator.apply(left, right);
+        return operator.apply(left, right).evaluate();
         // FIXME (jaeeun) 2020-12-16: 이거 그냥 Exception 으로 받아도 되나?
+        //  exception을 먹어버리는 문제가 있다.
       } catch (Exception e) {
-        return fallback.apply(left, right);
+        return fallback.apply(left, right).evaluate();
       }
     };
   }

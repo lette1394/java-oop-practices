@@ -1,7 +1,6 @@
 package com.github.lette1394.calculator2;
 
 import static com.github.lette1394.calculator2.Expressions.of;
-import static java.lang.String.format;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,8 +13,7 @@ public class SequentialParsingExpression implements Expression {
 
   private Result cache;
 
-  public SequentialParsingExpression(String expression,
-    OperatorFinder operatorFinder) {
+  public SequentialParsingExpression(String expression, OperatorFinder operatorFinder) {
     this.expression = expression;
     this.matcher = Pattern.compile("^-\\d+|\\d+|[/*+\\-]").matcher(expression);
     this.operatorFinder = operatorFinder;

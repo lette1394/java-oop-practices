@@ -1,7 +1,5 @@
 package com.github.lette1394.calculator2;
 
-import static com.github.lette1394.calculator2.Expressions.of;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.apache.commons.lang3.StringUtils;
@@ -10,13 +8,16 @@ public class SequentialParsingExpression implements Expression {
   private final String expression;
   private final Matcher matcher;
   private final OperatorFinder operatorFinder;
+  private final ExpressionFactory expressionFactory;
 
   private Result cache;
 
-  public SequentialParsingExpression(String expression, OperatorFinder operatorFinder) {
+  public SequentialParsingExpression(String expression, OperatorFinder operatorFinder,
+    ExpressionFactory expressionFactory) {
     this.expression = expression;
     this.matcher = Pattern.compile("^-\\d+|\\d+|[/*+\\-]").matcher(expression);
     this.operatorFinder = operatorFinder;
+    this.expressionFactory = expressionFactory;
   }
 
   @Override
@@ -30,7 +31,7 @@ public class SequentialParsingExpression implements Expression {
 
   private Expression parse() {
     if (StringUtils.isNumericSpace(expression)) {
-      return of(expression);
+      return expressionFactory.of(expression);
     }
     return sequentialParse();
   }
@@ -65,7 +66,7 @@ public class SequentialParsingExpression implements Expression {
 
   private Expression getNextOperand() {
     Contracts.requires(findNext(), "cannot find next operand");
-    return of(trim(matcher.group()));
+    return expressionFactory.of(trim(matcher.group()));
   }
 
   private String trim(String value) {

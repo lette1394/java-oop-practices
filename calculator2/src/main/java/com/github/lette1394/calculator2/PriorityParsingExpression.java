@@ -1,7 +1,5 @@
 package com.github.lette1394.calculator2;
 
-import static com.github.lette1394.calculator2.Expressions.of;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.apache.commons.lang3.StringUtils;
@@ -10,14 +8,18 @@ public class PriorityParsingExpression implements Expression {
   private final String value;
   private final Matcher matcher;
   private final OperatorFinder operatorFinder;
+  private final ExpressionFactory expressionFactory;
 
   private Result cache;
 
-  public PriorityParsingExpression(String value,
-                                   OperatorFinder operatorFinder) {
+  public PriorityParsingExpression(
+    String value,
+    OperatorFinder operatorFinder,
+    ExpressionFactory expressionFactory) {
     this.value = value;
     this.matcher = Pattern.compile("(.*)(\\+|- )(.*)").matcher(value);
     this.operatorFinder = operatorFinder;
+    this.expressionFactory = expressionFactory;
   }
 
   @Override
@@ -30,16 +32,17 @@ public class PriorityParsingExpression implements Expression {
 
   private Expression parse() {
     if (StringUtils.isNumericSpace(value)) {
-      return of(value);
+      return expressionFactory.of(value);
     }
     if (matcher.matches()) {
       return operator().apply(left(), right());
     }
-    return new SequentialParsingExpression(value, operatorFinder);
+    return new SequentialParsingExpression(value, operatorFinder, expressionFactory);
   }
 
   private Expression left() {
-    return new SequentialParsingExpression(trim(matcher.group(1)), operatorFinder);
+    return new SequentialParsingExpression(trim(matcher.group(1)), operatorFinder,
+      expressionFactory);
   }
 
   private Operator operator() {
@@ -47,7 +50,8 @@ public class PriorityParsingExpression implements Expression {
   }
 
   private Expression right() {
-    return new SequentialParsingExpression(trim(matcher.group(3)), operatorFinder);
+    return new SequentialParsingExpression(trim(matcher.group(3)), operatorFinder,
+      expressionFactory);
   }
 
   private String trim(String value) {

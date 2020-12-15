@@ -1,6 +1,6 @@
 package com.github.lette1394.calculator2.result;
 
-public class NumberResult implements Result {
+class NumberResult implements Result {
   private final Number number;
 
   public NumberResult(Number number) {

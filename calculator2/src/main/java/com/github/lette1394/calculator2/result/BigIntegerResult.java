@@ -2,7 +2,7 @@ package com.github.lette1394.calculator2.result;
 
 import java.math.BigInteger;
 
-public class BigIntegerResult implements Result {
+class BigIntegerResult implements Result {
   private final BigInteger value;
 
   public BigIntegerResult(BigInteger value) {

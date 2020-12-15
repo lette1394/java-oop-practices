@@ -2,7 +2,7 @@ package com.github.lette1394.calculator2.result;
 
 import java.math.BigDecimal;
 
-public class BigDecimalResult implements Result {
+class BigDecimalResult implements Result {
   private final BigDecimal bigDecimal;
 
   public BigDecimalResult(BigDecimal bigDecimal) {

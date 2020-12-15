@@ -23,8 +23,8 @@ public class PriorityParsingExpression implements Expression {
     //  계층 구조를 주고 연산자 목록 중에서 "이것들"만 반전시켜서 여기에 로직 돌리면..??
     this.matcher = Pattern.compile("(.*)(\\+|- )(.*)").matcher(value);
 
-    operators.put("-", Operators.subtract());
-    operators.put("+", Operators.add());
+    operators.put("-", OperatorFactory.subtract());
+    operators.put("+", OperatorFactory.add());
   }
 
   @Override

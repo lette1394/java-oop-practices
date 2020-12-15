@@ -20,10 +20,10 @@ public class SequentialParsingExpression implements Expression {
     this.value = value;
     this.matcher = Pattern.compile("^-\\d+|\\d+|[/*+\\-]").matcher(value);
 
-    operators.put("+", Operators.add());
-    operators.put("-", Operators.subtract());
-    operators.put("*", Operators.multiply());
-    operators.put("/", Operators.divide());
+    operators.put("+", OperatorFactory.add());
+    operators.put("-", OperatorFactory.subtract());
+    operators.put("*", OperatorFactory.multiply());
+    operators.put("/", OperatorFactory.divide());
   }
 
   @Override

@@ -9,9 +9,9 @@ public class BigIntegerOperatorRepository implements OperatorRepository {
   private final Map<String, Operator> operators = new HashMap<>();
 
   public BigIntegerOperatorRepository() {
-    operators.put("+", OperatorFactory.bigIntegerAdd());
-    operators.put("-", OperatorFactory.bigIntegerSubtract());
-    operators.put("*", OperatorFactory.bigIntegerMultiply());
+    operators.put("+", Operators.bigIntegerAdd());
+    operators.put("-", Operators.bigIntegerSubtract());
+    operators.put("*", Operators.bigIntegerMultiply());
   }
 
   @Override

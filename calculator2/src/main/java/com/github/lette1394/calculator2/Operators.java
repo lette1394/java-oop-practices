@@ -7,7 +7,7 @@ import static java.lang.Math.subtractExact;
 import java.math.BigInteger;
 import java.util.function.Predicate;
 
-public class OperatorFactory {
+public class Operators {
   public static Operator add() {
     return fallback(numberAdd(), bigIntegerAdd());
   }

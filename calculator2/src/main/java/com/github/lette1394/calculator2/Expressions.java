@@ -6,11 +6,11 @@ import java.util.function.Supplier;
 
 public final class Expressions {
   public static Expression of(String value) {
-    return fallback(new StringExpression(value), () -> of(new BigInteger(value)));
+    return fallback(new StringExpression(value), () -> new BigIntegerExpression(value));
   }
 
   public static Expression of(long value) {
-    return fallback(new NumberExpression(value), () -> of(new BigInteger(Long.toString(value))));
+    return fallback(new NumberExpression(value), () -> new BigIntegerExpression(value));
   }
 
   public static Expression of(double value) {

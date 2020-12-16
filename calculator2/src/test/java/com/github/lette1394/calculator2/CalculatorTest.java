@@ -45,15 +45,18 @@ class CalculatorTest {
     assertThat(subjectLong("2 - 3 + 6"), is(5L));
     assertThat(subjectLong("2 * 3 + 6"), is(12L));
     assertThat(subjectLong("2 * 3 - 6"), is(0L));
-    assertThat(subjectLong("2 * 3 / 6"), is(1L));
   }
 
   @Test
   void three_operand_divide() {
-    assertThat(subjectString("2 / 3 / 6"), is("0"));
-    assertThat(subjectString("2 / 3 + 6"), is("6"));
-    assertThat(subjectString("2 / 3 - 6"), is("-6"));
-    assertThat(subjectString("2 / 3 * 6"), is("0"));
+    assertThat(subjectLong("2 * 3 / 6"), is(1L));
+    assertThat(subjectString("2 * 3 / 6"), is("1"));
+    assertThat(subjectString("2 / 3 / 6"), is("0.1111111111111111"));
+    assertThat(subjectString("2 / 3 + 6"), is("6.666666666666667"));
+    assertThat(subjectString("2 / 3 - 6"), is("-5.333333333333333"));
+
+    // FIXME (jaeeun) 2020-12-17: string으로 뽑으면 "4"라고 나와야 하는거 아니냐
+    assertThat(subjectString("2 / 3 * 6"), is("4.0"));
   }
 
   @Test

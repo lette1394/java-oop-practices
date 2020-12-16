@@ -11,10 +11,12 @@ abstract class NumericBinaryOperatorExpression extends TwoOperandExpression {
 
   @Override
   public Result evaluate() {
-    if (operandsInDouble()) {
-      return of(whenUseDouble(left().asDouble(), right().asDouble()));
+    final Number whenUseDouble = whenUseDouble(left().asDouble(), right().asDouble());
+    final Number whenUseLong = whenUseLong(left().asLongExact(), right().asLongExact());
+    if (whenUseLong.doubleValue() == whenUseDouble.doubleValue()) {
+      return of(whenUseLong);
     }
-    return of(whenUseLong(left().asLongExact(), right().asLongExact()));
+    return of(whenUseDouble);
   }
 
   protected abstract Number whenUseLong(long left, long right);

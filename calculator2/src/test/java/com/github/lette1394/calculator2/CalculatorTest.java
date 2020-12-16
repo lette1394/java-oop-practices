@@ -57,6 +57,8 @@ class CalculatorTest {
 
     // FIXME (jaeeun) 2020-12-17: string으로 뽑으면 "4"라고 나와야 하는거 아니냐
     assertThat(subjectString("2 / 3 * 6"), is("4.0"));
+    assertThat(subjectDouble("2 / 3 * 6"), is(4.0));
+    assertThat(subjectLong("2 / 3 * 6"), is(4L));
   }
 
   @Test

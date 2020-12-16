@@ -68,19 +68,17 @@ class CalculatorTest {
   }
 
   @Test
-  void minus_prefix() {
+  void formatting() {
     assertThat(subjectLong("99-3"), is(96L));
     assertThat(subjectLong("99-3+3"), is(99L));
-    assertThat(subjectLong("99-3+3-99"), is(0L));
-    assertThat(subjectLong("99+112 - 1823+34+3"), is(-1575L));
-    assertThat(subjectLong("99+112 -1823+34+3"), is(-1575L));
-    assertThat(subjectLong("99+112- 1823+34+3"), is(-1575L));
+    assertThat(subjectLong("99-3+3*99"), is(393L));
   }
 
   @Test
-  void multiply() {
-    assertThat(subjectLong("2 * 6"), is(12L));
-    assertThat(subjectLong("2 * 3 * 4 - 6 + 7 * 8"), is(74L));
+  void minus_prefix() {
+    assertThat(subjectLong("99+112 - 1823+34+3"), is(-1575L));
+    assertThat(subjectLong("99+112 -1823+34+3"), is(-1575L));
+    assertThat(subjectLong("99+112- 1823+34+3"), is(-1575L));
   }
 
   @Test

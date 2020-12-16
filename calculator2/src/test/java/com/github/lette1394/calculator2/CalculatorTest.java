@@ -99,12 +99,6 @@ class CalculatorTest {
   }
 
   @Test
-  void divide() {
-    assertThat(subjectLong("6 / 3"), is(2L));
-    assertThat(subjectDouble("6 / 3"), is(2.0));
-  }
-
-  @Test
   void divideByZero() {
     assertThrows(DivideByZeroException.class, () -> subject("1 / 0"));
     assertThrows(DivideByZeroException.class, () -> subject("5*6+6/0-10"));

@@ -1,5 +1,6 @@
 package com.github.lette1394.calculator2.expression;
 
+import static com.github.lette1394.calculator2.common.ExceptionUtils.throwAsUncheckedException;
 import static java.lang.String.format;
 
 import com.github.lette1394.calculator2.operator.Operator;
@@ -22,11 +23,6 @@ public class PreemptiveTimeoutOperator implements Operator {
     this.duration = duration;
   }
 
-  public static RuntimeException throwAsUncheckedException(Throwable t) {
-    throwAs(t);
-    return null;
-  }
-
   private Callable<Result> getResultCallable(Expression left, Expression right) {
     return new Callable<>() {
       @Override
@@ -45,11 +41,6 @@ public class PreemptiveTimeoutOperator implements Operator {
   @Override
   public String toString() {
     return format("expression: [%s], timeout: [%s]", operator.toString(), duration.toString());
-  }
-
-  @SuppressWarnings("unchecked")
-  private static <T extends Throwable> void throwAs(Throwable t) throws T {
-    throw (T) t;
   }
 
   @Override

@@ -21,6 +21,7 @@ oop practices in JAVA
 - 계산 중간에 실수형으로 변환되면 강제로 정수형으로 바꾼다
 - 계산 중간에 실수형으로 변환되면 실수형으로 계산한다
 - 처음부터 실수형으로 계산한다
+- 실수형 정확도 설정
 
 
 ### TODO: print detail expression process

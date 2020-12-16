@@ -39,6 +39,21 @@ class CalculatorTest {
   void three_operand() {
     assertThat(subjectLong("2 + 3 + 6"), is(11L));
     assertThat(subjectLong("2 - 3 - 6"), is(-7L));
+    assertThat(subjectLong("2 * 3 * 6"), is(36L));
+
+    assertThat(subjectLong("2 + 3 - 6"), is(-1L));
+    assertThat(subjectLong("2 - 3 + 6"), is(5L));
+    assertThat(subjectLong("2 * 3 + 6"), is(12L));
+    assertThat(subjectLong("2 * 3 - 6"), is(0L));
+    assertThat(subjectLong("2 * 3 / 6"), is(1L));
+  }
+
+  @Test
+  void three_operand_divide() {
+    assertThat(subjectString("2 / 3 / 6"), is("0"));
+    assertThat(subjectString("2 / 3 + 6"), is("6"));
+    assertThat(subjectString("2 / 3 - 6"), is("-6"));
+    assertThat(subjectString("2 / 3 * 6"), is("0"));
   }
 
   @Test
@@ -60,8 +75,6 @@ class CalculatorTest {
   @Test
   void multiply() {
     assertThat(subjectLong("2 * 6"), is(12L));
-    assertThat(subjectLong("2 * 6 - 2"), is(10L));
-    assertThat(subjectLong("2 - 6 * 2"), is(-10L));
     assertThat(subjectLong("2 * 3 * 4 - 6 + 7 * 8"), is(74L));
   }
 

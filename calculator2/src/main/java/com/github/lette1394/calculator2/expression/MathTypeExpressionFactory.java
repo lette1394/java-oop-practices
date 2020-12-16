@@ -26,11 +26,13 @@ public class MathTypeExpressionFactory implements ExpressionFactory {
 
   @Override
   public Expression of(BigInteger value) {
+    // FIXME (jaeeun) 2020-12-16: throw exception
     return new BigIntegerExpression(value);
   }
 
   @Override
   public Expression of(BigDecimal value) {
+    // FIXME (jaeeun) 2020-12-16: throw exception
     return new BigDecimalExpression(value);
   }
 }

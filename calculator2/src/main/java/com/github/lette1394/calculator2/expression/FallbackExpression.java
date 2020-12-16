@@ -1,5 +1,7 @@
 package com.github.lette1394.calculator2.expression;
 
+import static java.lang.String.format;
+
 import com.github.lette1394.calculator2.result.Result;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -21,5 +23,10 @@ class FallbackExpression implements Expression {
       }
       throw e;
     }
+  }
+
+  @Override
+  public String toString() {
+    return format("origin: [%s], fallback: [%s]", expression.toString(), fallback.get().toString());
   }
 }

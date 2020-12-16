@@ -14,4 +14,9 @@ class StringExpression implements Expression {
   public Result evaluate() {
     return of(parseLong(value.trim()));
   }
+
+  @Override
+  public String toString() {
+    return value;
+  }
 }

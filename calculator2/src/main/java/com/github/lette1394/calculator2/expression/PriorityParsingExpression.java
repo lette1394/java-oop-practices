@@ -61,4 +61,9 @@ public class PriorityParsingExpression implements Expression {
   private String trim(String value) {
     return value.trim();
   }
+
+  @Override
+  public String toString() {
+    return value;
+  }
 }

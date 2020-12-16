@@ -76,4 +76,9 @@ class SequentialParsingExpression implements Expression {
   private String trim(String value) {
     return value.trim();
   }
+
+  @Override
+  public String toString() {
+    return expression;
+  }
 }

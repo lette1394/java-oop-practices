@@ -20,4 +20,9 @@ class BigDecimalExpression implements Expression {
   public Result evaluate() {
     return of(value);
   }
+
+  @Override
+  public String toString() {
+    return value.toString();
+  }
 }

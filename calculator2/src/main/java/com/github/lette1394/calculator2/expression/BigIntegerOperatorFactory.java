@@ -1,5 +1,7 @@
 package com.github.lette1394.calculator2.expression;
 
+import static java.lang.String.format;
+
 import com.github.lette1394.calculator2.operator.Operator;
 import com.github.lette1394.calculator2.operator.OperatorFactory;
 import java.math.BigInteger;
@@ -18,6 +20,11 @@ public class BigIntegerOperatorFactory implements OperatorFactory {
       protected BigInteger handle(BigInteger left, BigInteger right) {
         return left.add(right);
       }
+
+      @Override
+      public String toString() {
+        return format("%s + %s", leftExpression, rightExpression);
+      }
     };
   }
 
@@ -28,15 +35,35 @@ public class BigIntegerOperatorFactory implements OperatorFactory {
       protected BigInteger handle(BigInteger left, BigInteger right) {
         return left.subtract(right);
       }
+
+      @Override
+      public String toString() {
+        return format("%s - %s", leftExpression, rightExpression);
+      }
     };
   }
 
   @Override
   public Operator multiply() {
-    return (left, right) -> new BigIntegerTwoOperandExpression(left, right) {
+    return new Operator() {
       @Override
-      protected BigInteger handle(BigInteger left, BigInteger right) {
-        return left.multiply(right);
+      public Expression apply(Expression left, Expression right) throws EvaluationTimeoutException {
+        return new BigIntegerTwoOperandExpression(left, right) {
+          @Override
+          protected BigInteger handle(BigInteger left, BigInteger right) {
+            return left.multiply(right);
+          }
+
+          @Override
+          public String toString() {
+            return format("%s * %s", leftExpression, rightExpression);
+          }
+        };
+      }
+
+      @Override
+      public String toString() {
+        return "*";
       }
     };
   }
@@ -50,6 +77,11 @@ public class BigIntegerOperatorFactory implements OperatorFactory {
           throw new DivideByZeroException();
         }
         return left.divide(right);
+      }
+
+      @Override
+      public String toString() {
+        return format("%s / %s", leftExpression, rightExpression);
       }
     };
   }

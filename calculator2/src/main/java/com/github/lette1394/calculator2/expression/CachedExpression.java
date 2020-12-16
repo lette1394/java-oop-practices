@@ -1,5 +1,7 @@
 package com.github.lette1394.calculator2.expression;
 
+import static java.lang.String.format;
+
 import com.github.lette1394.calculator2.result.Result;
 
 class CachedExpression implements Expression {
@@ -16,5 +18,10 @@ class CachedExpression implements Expression {
       return result = expression.evaluate();
     }
     return result;
+  }
+
+  @Override
+  public String toString() {
+    return format("cached: [%s]", expression.toString());
   }
 }

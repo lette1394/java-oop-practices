@@ -13,11 +13,12 @@ import com.github.lette1394.calculator2.expression.DivideByZeroException;
 import org.junit.jupiter.api.Test;
 
 class CalculatorTest {
+
   @Test
-  void one() {
-    assertThat(subjectLong("2 + 3"), is(5L));
-    assertThat(subjectLong("2 - 3"), is(-1L));
-    assertThat(subjectLong("3 - 2"), is(1L));
+  void one_operand() {
+    assertThat(subjectLong("0"), is(0L));
+    assertThat(subjectLong("1"), is(1L));
+    assertThat(subjectLong("-1"), is(-1L));
   }
 
   @Test

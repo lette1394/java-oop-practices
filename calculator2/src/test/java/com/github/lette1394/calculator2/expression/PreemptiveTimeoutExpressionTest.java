@@ -12,13 +12,12 @@ class PreemptiveTimeoutExpressionTest {
 
   @Test
   void timeout() {
-    assertThrows(EvaluationTimeoutException.class,
-      () -> subject(delayed("12345", TIMEOUT), TIMEOUT));
+    assertThrows(EvaluationTimeoutException.class, () -> subject(delayed("123", TIMEOUT), TIMEOUT));
   }
 
   @Test
   void no_timeout() {
-    assertThat(subject(zeroDelayed("12345"), TIMEOUT), is(12345L));
+    assertThat(subject(zeroDelayed("123"), TIMEOUT), is(123L));
   }
 
   private Expression zeroDelayed(String stringExpression) {

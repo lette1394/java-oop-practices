@@ -48,7 +48,7 @@ class CalculatorTest {
   }
 
   @Test
-  void minusOperator() {
+  void minus_prefix() {
     assertThat(subjectLong("99-3"), is(96L));
     assertThat(subjectLong("99-3+3"), is(99L));
     assertThat(subjectLong("99-3+3-99"), is(0L));

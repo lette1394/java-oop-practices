@@ -18,6 +18,7 @@ class CalculatorTest {
   void one_operand() {
     assertThat(subjectLong("0"), is(0L));
     assertThat(subjectLong("1"), is(1L));
+    assertThat(subjectLong("+1"), is(+1L));
     assertThat(subjectLong("-1"), is(-1L));
   }
 

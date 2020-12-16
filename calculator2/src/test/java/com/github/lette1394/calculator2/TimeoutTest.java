@@ -3,10 +3,23 @@ package com.github.lette1394.calculator2;
 import static com.github.lette1394.calculator2.Fixtures.subjectString;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import com.github.lette1394.calculator2.expression.DelayedExpression;
 import com.github.lette1394.calculator2.expression.EvaluationTimeoutException;
+import com.github.lette1394.calculator2.expression.Expression;
+import com.github.lette1394.calculator2.expression.MathTypeExpressionFactory;
+import com.github.lette1394.calculator2.expression.PreemptiveTimeoutExpression;
+import java.time.Duration;
 import org.junit.jupiter.api.Test;
 
 class TimeoutTest {
+
+  @Test
+  void time1() {
+    final Expression expression = new DelayedExpression(
+      MathTypeExpressionFactory.INSTANCE.of("12345"), Duration.ofMillis(500));
+
+    new PreemptiveTimeoutExpression(expression, Duration.ofSeconds(1)).evaluate();
+  }
 
   @Test
   void longtime() {

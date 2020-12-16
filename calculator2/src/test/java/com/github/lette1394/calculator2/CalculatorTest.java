@@ -75,7 +75,7 @@ class CalculatorTest {
   }
 
   @Test
-  void minus_prefix() {
+  void formatting_minus_prefix() {
     assertThat(subjectLong("99+112 - 1823+34+3"), is(-1575L));
     assertThat(subjectLong("99+112 -1823+34+3"), is(-1575L));
     assertThat(subjectLong("99+112- 1823+34+3"), is(-1575L));

@@ -22,40 +22,9 @@ public class PreemptiveTimeoutOperator implements Operator {
     this.duration = duration;
   }
 
-  @Override
-  public Expression apply(Expression left, Expression right) throws EvaluationTimeoutException {
-    // FIXME (jaeeun) 2020-12-16: 외부에서 주입?이 필요할까?
-    final ExecutorService executorService = Executors.newSingleThreadExecutor();
-    final Future<Result> future = executorService.submit(getResultCallable(left, right));
-
-    return new Expression() {
-      @Override
-      public Result evaluate() throws DivideByZeroException {
-        try {
-          return future.get(duration.toMillis(), TimeUnit.MILLISECONDS);
-          // FIXME (jaeeun) 2020-12-16: exception translator
-        } catch (TimeoutException e) {
-          throw new EvaluationTimeoutException(e, String.format("%s %s %s", left, operator, right));
-        } catch (ExecutionException e) {
-          if (e.getCause() instanceof EvaluationTimeoutException) {
-            throw new EvaluationTimeoutException(e.getCause(),
-              ((EvaluationTimeoutException) e.getCause()).getExpression());
-//            throw new EvaluationTimeoutException(e.getCause(), String.format("%s %s %s", left, operator, right));
-          }
-          throw new UnrecoverableException(e);
-        } catch (InterruptedException e) {
-          throw new UnrecoverableException(e);
-        } finally {
-          executorService.shutdownNow();
-        }
-      }
-
-      @Override
-      public String toString() {
-        // FIXME (jaeeun) 2020-12-16: timeout난 그 부분만 출력해 줄 수는 없나?
-        return String.format("%s %s %s", left, operator, right);
-      }
-    };
+  public static RuntimeException throwAsUncheckedException(Throwable t) {
+    throwAs(t);
+    return null;
   }
 
   private Callable<Result> getResultCallable(Expression left, Expression right) {
@@ -76,5 +45,47 @@ public class PreemptiveTimeoutOperator implements Operator {
   @Override
   public String toString() {
     return format("expression: [%s], timeout: [%s]", operator.toString(), duration.toString());
+  }
+
+  @SuppressWarnings("unchecked")
+  private static <T extends Throwable> void throwAs(Throwable t) throws T {
+    throw (T) t;
+  }
+
+  @Override
+  public Expression apply(Expression left, Expression right) throws EvaluationTimeoutException {
+    // FIXME (jaeeun) 2020-12-16: 외부에서 주입?이 필요할까?
+    final ExecutorService executorService = Executors.newSingleThreadExecutor();
+    final Future<Result> future = executorService.submit(getResultCallable(left, right));
+
+    return new Expression() {
+      @Override
+      public Result evaluate() throws DivideByZeroException {
+        try {
+          return future.get(duration.toMillis(), TimeUnit.MILLISECONDS);
+          // FIXME (jaeeun) 2020-12-16: exception translator
+        } catch (TimeoutException e) {
+          throw new EvaluationTimeoutException(e, String.format("%s %s %s", left, operator, right));
+        } catch (ExecutionException e) {
+          if (e.getCause() instanceof EvaluationTimeoutException) {
+            throw new EvaluationTimeoutException(e.getCause(),
+              ((EvaluationTimeoutException) e.getCause()).getExpression());
+//            throw new EvaluationTimeoutException(e.getCause(), String.format("%s %s %s", left, operator, right));
+          }
+          // FIXME (jaeeun) 2020-12-16: naive implementation
+          throw throwAsUncheckedException(e.getCause());
+        } catch (InterruptedException e) {
+          throw new UnrecoverableException(e);
+        } finally {
+          executorService.shutdownNow();
+        }
+      }
+
+      @Override
+      public String toString() {
+        // FIXME (jaeeun) 2020-12-16: timeout난 그 부분만 출력해 줄 수는 없나?
+        return String.format("%s %s %s", left, operator, right);
+      }
+    };
   }
 }

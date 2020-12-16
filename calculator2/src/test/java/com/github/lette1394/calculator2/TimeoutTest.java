@@ -10,10 +10,7 @@ class TimeoutTest {
 
   @Test
   void longtime() {
-    final EvaluationTimeoutException evaluationTimeoutException = assertThrows(
-      EvaluationTimeoutException.class, () -> subjectString(aHugeMultiplyExpression()));
-
-    System.out.println(evaluationTimeoutException);
+    assertThrows(EvaluationTimeoutException.class, () -> subjectString(aHugeMultiplyExpression()));
   }
 
   private String aHugeMultiplyExpression() {

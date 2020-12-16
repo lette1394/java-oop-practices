@@ -6,8 +6,8 @@ import com.github.lette1394.calculator2.expression.DecorateOperatorFactory;
 import com.github.lette1394.calculator2.expression.Expression;
 import com.github.lette1394.calculator2.expression.ExpressionFactory;
 import com.github.lette1394.calculator2.expression.FallbackExpressionFactory;
-import com.github.lette1394.calculator2.expression.MathTypeExpressionFactory;
 import com.github.lette1394.calculator2.expression.NumericBinaryOperatorExpressionFactory;
+import com.github.lette1394.calculator2.expression.NumericExpressionFactory;
 import com.github.lette1394.calculator2.expression.PreemptiveTimeoutBinaryOperator;
 import com.github.lette1394.calculator2.expression.PriorityParsingExpression;
 import com.github.lette1394.calculator2.operator.FallbackOperatorFactory;
@@ -32,7 +32,7 @@ public class Calculator {
         new NumericFourRulesFinder(operatorFactory)));
 
     final ExpressionFactory expressionFactory = new FallbackExpressionFactory(
-      MathTypeExpressionFactory.INSTANCE,
+      NumericExpressionFactory.INSTANCE,
       ArrayBasedExpressionFactory.INSTANCE
     );
 

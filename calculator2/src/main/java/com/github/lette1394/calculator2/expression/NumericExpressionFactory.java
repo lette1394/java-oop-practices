@@ -3,10 +3,10 @@ package com.github.lette1394.calculator2.expression;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-public class MathTypeExpressionFactory implements ExpressionFactory {
-  public static final ExpressionFactory INSTANCE = new MathTypeExpressionFactory();
+public class NumericExpressionFactory implements ExpressionFactory {
+  public static final ExpressionFactory INSTANCE = new NumericExpressionFactory();
 
-  private MathTypeExpressionFactory() {
+  private NumericExpressionFactory() {
   }
 
   @Override

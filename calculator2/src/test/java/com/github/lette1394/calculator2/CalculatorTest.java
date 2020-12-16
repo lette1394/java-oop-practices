@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import com.github.lette1394.calculator2.expression.DivideByZeroException;
 import org.junit.jupiter.api.Test;
 
-class MainTest {
+class CalculatorTest {
   @Test
   void one() {
     assertThat(subjectLong("2 + 3"), is(5L));

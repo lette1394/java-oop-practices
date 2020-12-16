@@ -25,7 +25,10 @@ public class PreemptiveTimeoutExpression implements Expression {
   }
 
   @Override
-  public Result evaluate() throws DivideByZeroException, OverflowException, UnderflowException {
+  public Result evaluate() throws DivideByZeroException,
+                                  OverflowException,
+                                  UnderflowException,
+                                  EvaluationTimeoutException {
     // FIXME (jaeeun) 2020-12-16: thread pool 매번 생성하는거 overhead는 없을까?
     final ExecutorService executorService = Executors.newSingleThreadExecutor();
     final Future<Result> future = executorService.submit(callableResult());

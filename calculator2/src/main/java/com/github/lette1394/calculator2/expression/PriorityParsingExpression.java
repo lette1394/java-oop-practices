@@ -29,7 +29,10 @@ public class PriorityParsingExpression implements Expression {
   }
 
   @Override
-  public Result evaluate() throws DivideByZeroException, OverflowException, UnderflowException {
+  public Result evaluate() throws DivideByZeroException,
+                                  OverflowException,
+                                  UnderflowException,
+                                  EvaluationTimeoutException {
     if (cache == null) {
       return cache = parse().evaluate();
     }

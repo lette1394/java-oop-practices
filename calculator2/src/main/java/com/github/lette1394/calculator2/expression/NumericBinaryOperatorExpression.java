@@ -12,7 +12,10 @@ abstract class NumericBinaryOperatorExpression extends TwoOperandExpression {
   }
 
   @Override
-  public Result evaluate() throws DivideByZeroException, OverflowException, UnderflowException {
+  public Result evaluate() throws DivideByZeroException,
+                                  OverflowException,
+                                  UnderflowException,
+                                  EvaluationTimeoutException {
     final Number whenUseDouble = whenUseDouble(left().asDouble(), right().asDouble());
     final Number whenUseLong = whenUseLong(left().asLongExact(), right().asLongExact());
     if (whenUseLong.doubleValue() == whenUseDouble.doubleValue()) {

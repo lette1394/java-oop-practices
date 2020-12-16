@@ -13,7 +13,10 @@ class StringExpression implements Expression {
   private final String value;
 
   @Override
-  public Result evaluate() throws DivideByZeroException, OverflowException, UnderflowException {
+  public Result evaluate() throws DivideByZeroException,
+                                  OverflowException,
+                                  UnderflowException,
+                                  EvaluationTimeoutException {
     return of(parseLong(value.trim()));
   }
 

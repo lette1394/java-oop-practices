@@ -23,7 +23,10 @@ public class DelayedExpression implements Expression {
   }
 
   @Override
-  public Result evaluate() throws DivideByZeroException, OverflowException, UnderflowException {
+  public Result evaluate() throws DivideByZeroException,
+                                  OverflowException,
+                                  UnderflowException,
+                                  EvaluationTimeoutException {
     final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
     final Future<Result> future = executorService
       .schedule(() -> expression.evaluate(), delay.toMillis(), TimeUnit.MILLISECONDS);

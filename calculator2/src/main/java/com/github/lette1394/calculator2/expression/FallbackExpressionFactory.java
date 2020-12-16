@@ -47,7 +47,10 @@ public class FallbackExpressionFactory implements ExpressionFactory {
   private Expression installFallback(Expression expression, Expression fallback) {
     return new Expression() {
       @Override
-      public Result evaluate() throws DivideByZeroException, OverflowException, UnderflowException {
+      public Result evaluate() throws DivideByZeroException,
+                                      OverflowException,
+                                      UnderflowException,
+                                      EvaluationTimeoutException {
         try {
           return expression.evaluate();
         } catch (UnrecoverableException e) {

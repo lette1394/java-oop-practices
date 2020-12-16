@@ -16,7 +16,10 @@ class FallbackExpression implements Expression {
   private final Supplier<Expression> fallback;
 
   @Override
-  public Result evaluate() throws DivideByZeroException, OverflowException, UnderflowException {
+  public Result evaluate() throws DivideByZeroException,
+                                  OverflowException,
+                                  UnderflowException,
+                                  EvaluationTimeoutException {
     try {
       return expression.evaluate();
     } catch (Throwable e) {

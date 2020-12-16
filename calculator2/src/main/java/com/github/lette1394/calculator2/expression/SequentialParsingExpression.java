@@ -27,7 +27,10 @@ class SequentialParsingExpression implements Expression {
   }
 
   @Override
-  public Result evaluate() throws DivideByZeroException, OverflowException, UnderflowException {
+  public Result evaluate() throws DivideByZeroException,
+                                  OverflowException,
+                                  UnderflowException,
+                                  EvaluationTimeoutException {
     // cache가 없으면 결과가 매번 달라짐 (자체적으로 상태를 들고 있기 때문에 한 번만 평가되어야 한다)
     if (cache == null) {
       return cache = parse().evaluate();

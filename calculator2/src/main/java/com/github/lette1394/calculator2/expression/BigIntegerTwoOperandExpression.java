@@ -29,7 +29,10 @@ abstract class BigIntegerTwoOperandExpression implements Expression {
   //  BigDecimal 언제 써야 하는지 check
   //  NumericBinaryOperatorExpression 구현 참고
   @Override
-  public Result evaluate() throws DivideByZeroException, OverflowException, UnderflowException {
+  public Result evaluate() throws DivideByZeroException,
+                                  OverflowException,
+                                  UnderflowException,
+                                  EvaluationTimeoutException {
     return of(handle(left(), right()));
   }
 

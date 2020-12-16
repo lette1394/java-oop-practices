@@ -12,7 +12,10 @@ class NumericExpression implements Expression {
   private final Number value;
 
   @Override
-  public Result evaluate() throws DivideByZeroException, OverflowException, UnderflowException {
+  public Result evaluate() throws DivideByZeroException,
+                                  OverflowException,
+                                  UnderflowException,
+                                  EvaluationTimeoutException {
     return of(value);
   }
 

@@ -15,7 +15,10 @@ class CachedExpression implements Expression {
   }
 
   @Override
-  public Result evaluate() throws DivideByZeroException, OverflowException, UnderflowException {
+  public Result evaluate() throws DivideByZeroException,
+                                  OverflowException,
+                                  UnderflowException,
+                                  EvaluationTimeoutException {
     if (result == null) {
       return result = expression.evaluate();
     }

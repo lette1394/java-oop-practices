@@ -15,7 +15,10 @@ public class DecorateExpression<T extends Expression> implements Expression {
   }
 
   @Override
-  public Result evaluate() throws DivideByZeroException, OverflowException, UnderflowException {
+  public Result evaluate() throws DivideByZeroException,
+                                  OverflowException,
+                                  UnderflowException,
+                                  EvaluationTimeoutException {
     return decorator
       .apply(expression)
       .evaluate();

@@ -48,8 +48,10 @@ public class FallbackOperatorFactory implements OperatorFactory {
       public Expression apply(Expression left, Expression right) throws EvaluationTimeoutException {
         return new Expression() {
           @Override
-          public Result evaluate()
-            throws DivideByZeroException, OverflowException, UnderflowException {
+          public Result evaluate() throws DivideByZeroException,
+                                          OverflowException,
+                                          UnderflowException,
+                                          EvaluationTimeoutException {
             try {
               return binaryOperator.apply(left, right).evaluate();
             } catch (UnrecoverableException unrecoverableException) {

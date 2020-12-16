@@ -2,7 +2,9 @@ package com.github.lette1394.calculator2.expression;
 
 import static com.github.lette1394.calculator2.result.ResultFactory.of;
 
+import com.github.lette1394.calculator2.result.OverflowException;
 import com.github.lette1394.calculator2.result.Result;
+import com.github.lette1394.calculator2.result.UnderflowException;
 
 abstract class NumericBinaryOperatorExpression extends TwoOperandExpression {
   public NumericBinaryOperatorExpression(Expression left, Expression right) {
@@ -10,7 +12,7 @@ abstract class NumericBinaryOperatorExpression extends TwoOperandExpression {
   }
 
   @Override
-  public Result evaluate() {
+  public Result evaluate() throws DivideByZeroException, OverflowException, UnderflowException {
     final Number whenUseDouble = whenUseDouble(left().asDouble(), right().asDouble());
     final Number whenUseLong = whenUseLong(left().asLongExact(), right().asLongExact());
     if (whenUseLong.doubleValue() == whenUseDouble.doubleValue()) {

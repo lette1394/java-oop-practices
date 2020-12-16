@@ -1,6 +1,8 @@
 package com.github.lette1394.calculator2.expression;
 
+import com.github.lette1394.calculator2.result.OverflowException;
 import com.github.lette1394.calculator2.result.Result;
+import com.github.lette1394.calculator2.result.UnderflowException;
 import java.util.function.Function;
 
 public class DecorateExpression<T extends Expression> implements Expression {
@@ -13,7 +15,7 @@ public class DecorateExpression<T extends Expression> implements Expression {
   }
 
   @Override
-  public Result evaluate() throws DivideByZeroException {
+  public Result evaluate() throws DivideByZeroException, OverflowException, UnderflowException {
     return decorator
       .apply(expression)
       .evaluate();

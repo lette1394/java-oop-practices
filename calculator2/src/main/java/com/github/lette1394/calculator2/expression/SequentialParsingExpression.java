@@ -3,7 +3,9 @@ package com.github.lette1394.calculator2.expression;
 import com.github.lette1394.calculator2.common.Contracts;
 import com.github.lette1394.calculator2.operator.BinaryOperator;
 import com.github.lette1394.calculator2.operator.OperatorFinder;
+import com.github.lette1394.calculator2.result.OverflowException;
 import com.github.lette1394.calculator2.result.Result;
+import com.github.lette1394.calculator2.result.UnderflowException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.apache.commons.lang3.StringUtils;
@@ -25,7 +27,7 @@ class SequentialParsingExpression implements Expression {
   }
 
   @Override
-  public Result evaluate() {
+  public Result evaluate() throws DivideByZeroException, OverflowException, UnderflowException {
     // cache가 없으면 결과가 매번 달라짐 (자체적으로 상태를 들고 있기 때문에 한 번만 평가되어야 한다)
     if (cache == null) {
       return cache = parse().evaluate();

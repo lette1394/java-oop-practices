@@ -3,7 +3,9 @@ package com.github.lette1394.calculator2.expression;
 import static com.github.lette1394.calculator2.common.ExceptionUtils.throwAsUncheckedException;
 import static java.lang.String.format;
 
+import com.github.lette1394.calculator2.result.OverflowException;
 import com.github.lette1394.calculator2.result.Result;
+import com.github.lette1394.calculator2.result.UnderflowException;
 import java.time.Duration;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -23,7 +25,7 @@ public class PreemptiveTimeoutExpression implements Expression {
   }
 
   @Override
-  public Result evaluate() throws DivideByZeroException {
+  public Result evaluate() throws DivideByZeroException, OverflowException, UnderflowException {
     // FIXME (jaeeun) 2020-12-16: thread pool 매번 생성하는거 overhead는 없을까?
     final ExecutorService executorService = Executors.newSingleThreadExecutor();
     final Future<Result> future = executorService.submit(callableResult());

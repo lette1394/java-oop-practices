@@ -3,7 +3,9 @@ package com.github.lette1394.calculator2.expression;
 import static java.lang.String.format;
 
 import com.github.lette1394.calculator2.common.ExceptionUtils;
+import com.github.lette1394.calculator2.result.OverflowException;
 import com.github.lette1394.calculator2.result.Result;
+import com.github.lette1394.calculator2.result.UnderflowException;
 import java.time.Duration;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
@@ -21,7 +23,7 @@ public class DelayedExpression implements Expression {
   }
 
   @Override
-  public Result evaluate() throws DivideByZeroException {
+  public Result evaluate() throws DivideByZeroException, OverflowException, UnderflowException {
     final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
     final Future<Result> future = executorService
       .schedule(() -> expression.evaluate(), delay.toMillis(), TimeUnit.MILLISECONDS);

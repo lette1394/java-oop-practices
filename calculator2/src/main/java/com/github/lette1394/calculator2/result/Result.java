@@ -3,7 +3,7 @@ package com.github.lette1394.calculator2.result;
 public interface Result {
   long asLong();
 
-  long asLongExact() throws OverflowException, UnderflowException;
+  long asLongExact();
 
   double asDouble();
 

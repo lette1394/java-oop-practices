@@ -6,7 +6,9 @@ import com.github.lette1394.calculator2.expression.DivideByZeroException;
 import com.github.lette1394.calculator2.expression.EvaluationTimeoutException;
 import com.github.lette1394.calculator2.expression.Expression;
 import com.github.lette1394.calculator2.expression.UnrecoverableException;
+import com.github.lette1394.calculator2.result.OverflowException;
 import com.github.lette1394.calculator2.result.Result;
+import com.github.lette1394.calculator2.result.UnderflowException;
 
 public class FallbackOperatorFactory implements OperatorFactory {
   private final OperatorFactory factory;
@@ -46,7 +48,8 @@ public class FallbackOperatorFactory implements OperatorFactory {
       public Expression apply(Expression left, Expression right) throws EvaluationTimeoutException {
         return new Expression() {
           @Override
-          public Result evaluate() throws DivideByZeroException {
+          public Result evaluate()
+            throws DivideByZeroException, OverflowException, UnderflowException {
             try {
               return binaryOperator.apply(left, right).evaluate();
             } catch (UnrecoverableException unrecoverableException) {

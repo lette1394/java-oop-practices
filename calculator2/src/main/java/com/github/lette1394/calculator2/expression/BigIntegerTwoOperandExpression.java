@@ -2,7 +2,9 @@ package com.github.lette1394.calculator2.expression;
 
 import static com.github.lette1394.calculator2.result.ResultFactory.of;
 
+import com.github.lette1394.calculator2.result.OverflowException;
 import com.github.lette1394.calculator2.result.Result;
+import com.github.lette1394.calculator2.result.UnderflowException;
 import java.math.BigInteger;
 
 // FIXME (jaeeun) 2020-12-16: ArrayBasedTwoOperandExpression
@@ -27,7 +29,7 @@ abstract class BigIntegerTwoOperandExpression implements Expression {
   //  BigDecimal 언제 써야 하는지 check
   //  NumericBinaryOperatorExpression 구현 참고
   @Override
-  public Result evaluate() {
+  public Result evaluate() throws DivideByZeroException, OverflowException, UnderflowException {
     return of(handle(left(), right()));
   }
 

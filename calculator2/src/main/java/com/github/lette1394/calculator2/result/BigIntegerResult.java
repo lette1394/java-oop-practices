@@ -15,7 +15,7 @@ class BigIntegerResult implements Result {
   }
 
   @Override
-  public long asLongExact() throws OverflowException, UnderflowException {
+  public long asLongExact() {
     return value.longValueExact();
   }
 

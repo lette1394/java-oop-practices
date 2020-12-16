@@ -2,7 +2,9 @@ package com.github.lette1394.calculator2.expression;
 
 import static java.lang.String.format;
 
+import com.github.lette1394.calculator2.result.OverflowException;
 import com.github.lette1394.calculator2.result.Result;
+import com.github.lette1394.calculator2.result.UnderflowException;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +16,7 @@ class FallbackExpression implements Expression {
   private final Supplier<Expression> fallback;
 
   @Override
-  public Result evaluate() {
+  public Result evaluate() throws DivideByZeroException, OverflowException, UnderflowException {
     try {
       return expression.evaluate();
     } catch (Throwable e) {

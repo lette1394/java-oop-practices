@@ -36,7 +36,7 @@ class CalculatorTest {
   }
 
   @Test
-  void three() {
+  void three_operand() {
     assertThat(subjectLong("2 + 3 + 6"), is(11L));
     assertThat(subjectLong("2 - 3 - 6"), is(-7L));
   }

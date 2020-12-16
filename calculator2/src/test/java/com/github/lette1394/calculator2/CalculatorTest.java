@@ -62,7 +62,7 @@ class CalculatorTest {
   }
 
   @Test
-  void four() {
+  void four_operand() {
     assertThat(subjectLong("2 - 3 + 6 - 5"), is(0L));
     assertThat(subjectLong("2 - 3 + 6 - 1"), is(4L));
   }

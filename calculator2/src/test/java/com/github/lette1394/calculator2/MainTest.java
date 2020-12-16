@@ -1,11 +1,15 @@
 package com.github.lette1394.calculator2;
 
+import static com.github.lette1394.calculator2.Fixtures.subject;
+import static com.github.lette1394.calculator2.Fixtures.subjectDouble;
+import static com.github.lette1394.calculator2.Fixtures.subjectLong;
+import static com.github.lette1394.calculator2.Fixtures.subjectLongExact;
+import static com.github.lette1394.calculator2.Fixtures.subjectString;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.github.lette1394.calculator2.expression.DivideByZeroException;
-import com.github.lette1394.calculator2.result.Result;
 import org.junit.jupiter.api.Test;
 
 class MainTest {
@@ -66,11 +70,6 @@ class MainTest {
   }
 
   @Test
-  void longtime() {
-
-  }
-
-  @Test
   void divide() {
     assertThat(subjectLong("6 / 3"), is(2L));
     assertThat(subjectDouble("6 / 3"), is(2.0));
@@ -82,25 +81,5 @@ class MainTest {
     assertThrows(DivideByZeroException.class, () -> subject("5*6+6/0-10"));
     assertThrows(DivideByZeroException.class,
       () -> subject("119722337102359424610218840948736/0-10"));
-  }
-
-  private Result subject(String expression) {
-    return Calculator.calculate(expression);
-  }
-
-  private String subjectString(String expression) {
-    return subject(expression).asString();
-  }
-
-  private long subjectLong(String expression) {
-    return subject(expression).asLong();
-  }
-
-  private long subjectLongExact(String expression) {
-    return subject(expression).asLongExact();
-  }
-
-  private double subjectDouble(String expression) {
-    return subject(expression).asDouble();
   }
 }

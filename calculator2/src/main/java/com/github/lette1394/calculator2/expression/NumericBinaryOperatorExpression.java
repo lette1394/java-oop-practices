@@ -2,9 +2,7 @@ package com.github.lette1394.calculator2.expression;
 
 import static com.github.lette1394.calculator2.result.ResultFactory.of;
 
-import com.github.lette1394.calculator2.result.OverflowException;
 import com.github.lette1394.calculator2.result.Result;
-import com.github.lette1394.calculator2.result.UnderflowException;
 
 abstract class NumericBinaryOperatorExpression extends TwoOperandExpression {
   public NumericBinaryOperatorExpression(Expression left, Expression right) {

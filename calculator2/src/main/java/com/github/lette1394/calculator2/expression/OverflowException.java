@@ -1,4 +1,4 @@
-package com.github.lette1394.calculator2.result;
+package com.github.lette1394.calculator2.expression;
 
 public class OverflowException extends RuntimeException {
   public OverflowException() {

@@ -3,9 +3,7 @@ package com.github.lette1394.calculator2.expression;
 import static com.github.lette1394.calculator2.common.ExceptionUtils.throwAsUncheckedException;
 import static java.lang.String.format;
 
-import com.github.lette1394.calculator2.result.OverflowException;
 import com.github.lette1394.calculator2.result.Result;
-import com.github.lette1394.calculator2.result.UnderflowException;
 import java.time.Duration;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;

@@ -1,4 +1,4 @@
-package com.github.lette1394.calculator2.result;
+package com.github.lette1394.calculator2.expression;
 
 public class UnderflowException extends RuntimeException {
   public UnderflowException() {

@@ -5,10 +5,10 @@ import static java.lang.String.format;
 import com.github.lette1394.calculator2.expression.DivideByZeroException;
 import com.github.lette1394.calculator2.expression.EvaluationTimeoutException;
 import com.github.lette1394.calculator2.expression.Expression;
+import com.github.lette1394.calculator2.expression.OverflowException;
+import com.github.lette1394.calculator2.expression.UnderflowException;
 import com.github.lette1394.calculator2.expression.UnrecoverableException;
-import com.github.lette1394.calculator2.result.OverflowException;
 import com.github.lette1394.calculator2.result.Result;
-import com.github.lette1394.calculator2.result.UnderflowException;
 
 public class FallbackOperatorFactory implements OperatorFactory {
   private final OperatorFactory factory;

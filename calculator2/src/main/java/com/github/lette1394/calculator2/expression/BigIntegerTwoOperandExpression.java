@@ -23,6 +23,9 @@ abstract class BigIntegerTwoOperandExpression implements Expression {
     return new BigInteger(rightExpression.evaluate().asString());
   }
 
+  // FIXME (jaeeun) 2020-12-17:
+  //  BigDecimal 언제 써야 하는지 check
+  //  NumericBinaryOperatorExpression 구현 참고
   @Override
   public Result evaluate() {
     return of(handle(left(), right()));

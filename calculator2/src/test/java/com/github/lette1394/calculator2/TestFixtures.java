@@ -2,7 +2,7 @@ package com.github.lette1394.calculator2;
 
 import com.github.lette1394.calculator2.result.Result;
 
-public class Fixtures {
+public class TestFixtures {
   public static Result subject(String expression) {
     return Calculator.calculate(expression);
   }

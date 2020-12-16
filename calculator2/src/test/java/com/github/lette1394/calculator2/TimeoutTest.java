@@ -1,6 +1,6 @@
 package com.github.lette1394.calculator2;
 
-import static com.github.lette1394.calculator2.Fixtures.subjectString;
+import static com.github.lette1394.calculator2.TestFixtures.subjectString;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.github.lette1394.calculator2.expression.DelayedExpression;

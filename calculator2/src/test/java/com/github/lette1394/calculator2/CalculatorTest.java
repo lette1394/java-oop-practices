@@ -1,10 +1,10 @@
 package com.github.lette1394.calculator2;
 
-import static com.github.lette1394.calculator2.Fixtures.subject;
-import static com.github.lette1394.calculator2.Fixtures.subjectDouble;
-import static com.github.lette1394.calculator2.Fixtures.subjectLong;
-import static com.github.lette1394.calculator2.Fixtures.subjectLongExact;
-import static com.github.lette1394.calculator2.Fixtures.subjectString;
+import static com.github.lette1394.calculator2.TestFixtures.subject;
+import static com.github.lette1394.calculator2.TestFixtures.subjectDouble;
+import static com.github.lette1394.calculator2.TestFixtures.subjectLong;
+import static com.github.lette1394.calculator2.TestFixtures.subjectLongExact;
+import static com.github.lette1394.calculator2.TestFixtures.subjectString;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertThrows;

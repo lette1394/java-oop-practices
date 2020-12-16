@@ -15,7 +15,7 @@ class BigDecimalResult implements Result {
   }
 
   @Override
-  public long asLongExact() {
+  public long asLongExact() throws OverflowException, UnderflowException {
     return bigDecimal.longValueExact();
   }
 

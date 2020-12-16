@@ -46,6 +46,9 @@ public class BigIntegerOperatorFactory implements OperatorFactory {
     return (left, right) -> new BigIntegerTwoOperandExpression(left, right) {
       @Override
       protected BigInteger handle(BigInteger left, BigInteger right) {
+        if (right.longValue() == 0) {
+          throw new DivideByZeroException();
+        }
         return left.divide(right);
       }
     };

@@ -10,7 +10,6 @@ import java.time.Duration;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.ThrowingSupplier;
 
 public class DelayedExpressionTest {
   private static final Duration DELAY = Duration.ofMillis(10);
@@ -20,7 +19,7 @@ public class DelayedExpressionTest {
 
   @Test
   void delayed() {
-    assertThat(assertDoesNotThrow(subject("12345", DELAY)), is(12345L));
+    assertThat(assertDoesNotThrow(() -> subject("12345", DELAY)), is(12345L));
   }
 
   @BeforeEach
@@ -34,8 +33,8 @@ public class DelayedExpressionTest {
     assertThat(stopwatch.elapsed(), greaterThanOrEqualTo(DELAY));
   }
 
-  private ThrowingSupplier<Long> subject(String expression, Duration duration) {
-    return () -> new DelayedExpression(NumericExpressionFactory.INSTANCE.of(expression), duration)
-      .evaluate().asLongExact();
+  private long subject(String stringExpression, Duration duration) {
+    final Expression expression = NumericExpressionFactory.INSTANCE.of(stringExpression);
+    return new DelayedExpression(expression, duration).evaluate().asLongExact();
   }
 }

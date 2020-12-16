@@ -99,7 +99,7 @@ class CalculatorTest {
   }
 
   @Test
-  void divideByZero() {
+  void divide_by_zero() {
     assertThrows(DivideByZeroException.class, () -> subject("1 / 0"));
     assertThrows(DivideByZeroException.class, () -> subject("5*6+6/0-10"));
     assertThrows(DivideByZeroException.class,

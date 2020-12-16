@@ -20,35 +20,35 @@ public class FallbackOperatorFactory implements OperatorFactory {
   }
 
   @Override
-  public Operator add() {
+  public BinaryOperator add() {
     return installFallback(factory.add(), fallbackFactory.add());
   }
 
   @Override
-  public Operator subtract() {
+  public BinaryOperator subtract() {
     return installFallback(factory.subtract(), fallbackFactory.subtract());
   }
 
   @Override
-  public Operator multiply() {
+  public BinaryOperator multiply() {
     return installFallback(factory.multiply(), fallbackFactory.multiply());
   }
 
   @Override
-  public Operator divide() {
+  public BinaryOperator divide() {
     return installFallback(factory.divide(), fallbackFactory.divide());
   }
 
   // FIXME (jaeeun) 2020-12-16: toString
-  private Operator installFallback(Operator operator, Operator fallback) {
-    return new Operator() {
+  private BinaryOperator installFallback(BinaryOperator binaryOperator, BinaryOperator fallback) {
+    return new BinaryOperator() {
       @Override
       public Expression apply(Expression left, Expression right) throws EvaluationTimeoutException {
         return new Expression() {
           @Override
           public Result evaluate() throws DivideByZeroException {
             try {
-              return operator.apply(left, right).evaluate();
+              return binaryOperator.apply(left, right).evaluate();
             } catch (UnrecoverableException unrecoverableException) {
               throw unrecoverableException;
             } catch (Exception e) {
@@ -58,14 +58,14 @@ public class FallbackOperatorFactory implements OperatorFactory {
 
           @Override
           public String toString() {
-            return format("%s %s %s", left, operator, right);
+            return format("%s %s %s", left, binaryOperator, right);
           }
         };
       }
 
       @Override
       public String toString() {
-        return format("%s", operator);
+        return format("%s", binaryOperator);
       }
     };
   }

@@ -1,7 +1,7 @@
 package com.github.lette1394.calculator2.expression;
 
 import com.github.lette1394.calculator2.common.Contracts;
-import com.github.lette1394.calculator2.operator.Operator;
+import com.github.lette1394.calculator2.operator.BinaryOperator;
 import com.github.lette1394.calculator2.operator.OperatorFinder;
 import com.github.lette1394.calculator2.result.Result;
 import java.util.regex.Matcher;
@@ -61,7 +61,7 @@ class SequentialParsingExpression implements Expression {
     return matcher.find();
   }
 
-  private Operator nextOperator() {
+  private BinaryOperator nextOperator() {
     Contracts.requires(findNext(), "cannot find next operator");
     final String key = trim(matcher.group());
 

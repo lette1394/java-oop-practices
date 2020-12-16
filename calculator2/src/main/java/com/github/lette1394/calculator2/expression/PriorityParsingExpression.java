@@ -1,6 +1,6 @@
 package com.github.lette1394.calculator2.expression;
 
-import com.github.lette1394.calculator2.operator.Operator;
+import com.github.lette1394.calculator2.operator.BinaryOperator;
 import com.github.lette1394.calculator2.operator.OperatorFinder;
 import com.github.lette1394.calculator2.result.Result;
 import java.util.regex.Matcher;
@@ -49,7 +49,7 @@ public class PriorityParsingExpression implements Expression {
       expressionFactory);
   }
 
-  private Operator operator() {
+  private BinaryOperator operator() {
     return operatorFinder.find(trim(matcher.group(2)));
   }
 

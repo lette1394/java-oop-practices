@@ -16,7 +16,7 @@ public class FindFirstOperatorFinder implements OperatorFinder {
   }
 
   @Override
-  public Operator find(String operatorAsString) throws OperatorNotFoundException {
+  public BinaryOperator find(String operatorAsString) throws OperatorNotFoundException {
     final RuntimeException ex = new OperatorNotFoundException(
       format("Cannot find operator: [%s]", operatorAsString));
 

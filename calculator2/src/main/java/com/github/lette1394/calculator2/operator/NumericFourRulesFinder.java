@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class NumericFourRulesFinder implements OperatorFinder {
-  private final Map<String, Operator> operators = new HashMap<>();
+  private final Map<String, BinaryOperator> operators = new HashMap<>();
 
   public NumericFourRulesFinder(OperatorFactory operatorFactory) {
     operators.put("+", operatorFactory.add());
@@ -17,7 +17,7 @@ public class NumericFourRulesFinder implements OperatorFinder {
   }
 
   @Override
-  public Operator find(String operatorAsString) {
+  public BinaryOperator find(String operatorAsString) {
     Contracts.requires(
       operators.containsKey(operatorAsString),
       notFoundException(operatorAsString));

@@ -8,7 +8,7 @@ import com.github.lette1394.calculator2.expression.ExpressionFactory;
 import com.github.lette1394.calculator2.expression.FallbackExpressionFactory;
 import com.github.lette1394.calculator2.expression.MathTypeExpressionFactory;
 import com.github.lette1394.calculator2.expression.NumericBinaryOperatorExpressionFactory;
-import com.github.lette1394.calculator2.expression.PreemptiveTimeoutOperator;
+import com.github.lette1394.calculator2.expression.PreemptiveTimeoutBinaryOperator;
 import com.github.lette1394.calculator2.expression.PriorityParsingExpression;
 import com.github.lette1394.calculator2.operator.FallbackOperatorFactory;
 import com.github.lette1394.calculator2.operator.FindFirstOperatorFinder;
@@ -22,7 +22,7 @@ public class Calculator {
   public static Result calculate(String expression) {
     final OperatorFactory operatorFactory =
       new DecorateOperatorFactory(
-        operator -> new PreemptiveTimeoutOperator(operator, Duration.ofMillis(100)),
+        operator -> new PreemptiveTimeoutBinaryOperator(operator, Duration.ofMillis(100)),
         new FallbackOperatorFactory(
           NumericBinaryOperatorExpressionFactory.INSTANCE,
           BigIntegerOperatorFactory.INSTANCE));

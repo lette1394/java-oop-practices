@@ -5,7 +5,7 @@ import static java.lang.Math.multiplyExact;
 import static java.lang.Math.subtractExact;
 import static java.lang.String.format;
 
-import com.github.lette1394.calculator2.operator.Operator;
+import com.github.lette1394.calculator2.operator.BinaryOperator;
 import com.github.lette1394.calculator2.operator.OperatorFactory;
 
 public class NumericBinaryOperatorExpressionFactory implements OperatorFactory {
@@ -15,8 +15,8 @@ public class NumericBinaryOperatorExpressionFactory implements OperatorFactory {
   }
 
   @Override
-  public Operator add() {
-    return new Operator() {
+  public BinaryOperator add() {
+    return new BinaryOperator() {
       @Override
       public Expression apply(Expression left, Expression right) throws EvaluationTimeoutException {
         return new NumericBinaryOperatorExpression(left, right) {
@@ -45,7 +45,7 @@ public class NumericBinaryOperatorExpressionFactory implements OperatorFactory {
   }
 
   @Override
-  public Operator subtract() {
+  public BinaryOperator subtract() {
     return (left, right) -> new NumericBinaryOperatorExpression(left, right) {
       @Override
       protected Number whenUseLong(long left, long right) {
@@ -65,8 +65,8 @@ public class NumericBinaryOperatorExpressionFactory implements OperatorFactory {
   }
 
   @Override
-  public Operator multiply() {
-    return new Operator() {
+  public BinaryOperator multiply() {
+    return new BinaryOperator() {
       @Override
       public Expression apply(Expression left, Expression right) throws EvaluationTimeoutException {
         return new NumericBinaryOperatorExpression(left, right) {
@@ -95,7 +95,7 @@ public class NumericBinaryOperatorExpressionFactory implements OperatorFactory {
   }
 
   @Override
-  public Operator divide() {
+  public BinaryOperator divide() {
     return (left, right) -> new NumericBinaryOperatorExpression(left, right) {
       @Override
       protected Number whenUseLong(long left, long right) {

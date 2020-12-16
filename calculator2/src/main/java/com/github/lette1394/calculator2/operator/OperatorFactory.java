@@ -1,11 +1,11 @@
 package com.github.lette1394.calculator2.operator;
 
 public interface OperatorFactory {
-  Operator add();
+  BinaryOperator add();
 
-  Operator subtract();
+  BinaryOperator subtract();
 
-  Operator multiply();
+  BinaryOperator multiply();
 
-  Operator divide();
+  BinaryOperator divide();
 }

@@ -1,41 +1,42 @@
 package com.github.lette1394.calculator2.expression;
 
-import com.github.lette1394.calculator2.operator.Operator;
+import com.github.lette1394.calculator2.operator.BinaryOperator;
 import com.github.lette1394.calculator2.operator.OperatorFactory;
 import java.util.function.Function;
 
 public class DecorateOperatorFactory implements OperatorFactory {
-  private final Function<Operator, Operator> decorator;
+  private final Function<BinaryOperator, BinaryOperator> decorator;
   private final OperatorFactory factory;
 
   public DecorateOperatorFactory(
-    Function<Operator, Operator> decorator,
+    Function<BinaryOperator, BinaryOperator> decorator,
     OperatorFactory factory) {
     this.decorator = decorator;
     this.factory = factory;
   }
 
   @Override
-  public Operator add() {
+  public BinaryOperator add() {
     return decorate(decorator, factory.add());
   }
 
   @Override
-  public Operator subtract() {
+  public BinaryOperator subtract() {
     return decorate(decorator, factory.subtract());
   }
 
   @Override
-  public Operator multiply() {
+  public BinaryOperator multiply() {
     return decorate(decorator, factory.multiply());
   }
 
   @Override
-  public Operator divide() {
+  public BinaryOperator divide() {
     return decorate(decorator, factory.divide());
   }
 
-  private Operator decorate(Function<Operator, Operator> decorator, Operator operator) {
-    return (left, right) -> decorator.apply(operator).apply(left, right);
+  private BinaryOperator decorate(Function<BinaryOperator, BinaryOperator> decorator,
+    BinaryOperator binaryOperator) {
+    return (left, right) -> decorator.apply(binaryOperator).apply(left, right);
   }
 }

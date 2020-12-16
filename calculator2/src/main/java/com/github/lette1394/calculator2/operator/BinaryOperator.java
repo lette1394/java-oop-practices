@@ -4,6 +4,6 @@ import com.github.lette1394.calculator2.expression.EvaluationTimeoutException;
 import com.github.lette1394.calculator2.expression.Expression;
 
 @FunctionalInterface
-public interface Operator {
+public interface BinaryOperator {
   Expression apply(Expression left, Expression right) throws EvaluationTimeoutException;
 }

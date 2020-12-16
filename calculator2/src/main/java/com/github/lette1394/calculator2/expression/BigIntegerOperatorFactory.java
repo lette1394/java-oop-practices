@@ -2,7 +2,7 @@ package com.github.lette1394.calculator2.expression;
 
 import static java.lang.String.format;
 
-import com.github.lette1394.calculator2.operator.Operator;
+import com.github.lette1394.calculator2.operator.BinaryOperator;
 import com.github.lette1394.calculator2.operator.OperatorFactory;
 import java.math.BigInteger;
 
@@ -14,7 +14,7 @@ public class BigIntegerOperatorFactory implements OperatorFactory {
   }
 
   @Override
-  public Operator add() {
+  public BinaryOperator add() {
     return (left, right) -> new BigIntegerTwoOperandExpression(left, right) {
       @Override
       protected BigInteger handle(BigInteger left, BigInteger right) {
@@ -29,7 +29,7 @@ public class BigIntegerOperatorFactory implements OperatorFactory {
   }
 
   @Override
-  public Operator subtract() {
+  public BinaryOperator subtract() {
     return (left, right) -> new BigIntegerTwoOperandExpression(left, right) {
       @Override
       protected BigInteger handle(BigInteger left, BigInteger right) {
@@ -44,8 +44,8 @@ public class BigIntegerOperatorFactory implements OperatorFactory {
   }
 
   @Override
-  public Operator multiply() {
-    return new Operator() {
+  public BinaryOperator multiply() {
+    return new BinaryOperator() {
       @Override
       public Expression apply(Expression left, Expression right) throws EvaluationTimeoutException {
         return new BigIntegerTwoOperandExpression(left, right) {
@@ -69,7 +69,7 @@ public class BigIntegerOperatorFactory implements OperatorFactory {
   }
 
   @Override
-  public Operator divide() {
+  public BinaryOperator divide() {
     return (left, right) -> new BigIntegerTwoOperandExpression(left, right) {
       @Override
       protected BigInteger handle(BigInteger left, BigInteger right) {

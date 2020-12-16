@@ -16,7 +16,11 @@ class CalculatorTest {
 
   @Test
   void one_operand() {
+    assertThat(subjectString("0"), is("0"));
+    assertThat(subjectDouble("0"), is(0.0));
     assertThat(subjectLong("0"), is(0L));
+    assertThat(subjectLongExact("0"), is(0L));
+
     assertThat(subjectLong("1"), is(1L));
     // FIXME (jaeeun) 2020-12-17: pass test
 //    assertThat(subjectLong("+1"), is(+1L));
@@ -24,8 +28,11 @@ class CalculatorTest {
   }
 
   @Test
-  void two() {
-    assertThat(subjectLong("10 - 7"), is(3L));
+  void two_operand() {
+    assertThat(subjectLong("10 + 5"), is(15L));
+    assertThat(subjectLong("10 - 5"), is(5L));
+    assertThat(subjectLong("10 * 5"), is(50L));
+    assertThat(subjectLong("10 / 5"), is(2L));
   }
 
   @Test

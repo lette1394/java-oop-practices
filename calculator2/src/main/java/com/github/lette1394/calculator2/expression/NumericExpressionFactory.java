@@ -26,13 +26,11 @@ public class NumericExpressionFactory implements ExpressionFactory {
 
   @Override
   public Expression of(BigInteger value) {
-    // FIXME (jaeeun) 2020-12-16: throw exception
-    return new BigIntegerExpression(value);
+    throw new UnsupportedOperationException("NumericExpressionFactory does not support BigInteger");
   }
 
   @Override
   public Expression of(BigDecimal value) {
-    // FIXME (jaeeun) 2020-12-16: throw exception
-    return new BigDecimalExpression(value);
+    throw new UnsupportedOperationException("NumericExpressionFactory does not support BigDecimal");
   }
 }

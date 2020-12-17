@@ -24,6 +24,11 @@ class ParenthesesParsingExpressionTest {
     assertThat(subjectLong("((1 + 2) * 4)"), is(12L));
   }
 
+  @Test
+  void complex() {
+    assertThat(subjectLong("((((((((1)))) + 2 + (6 * (51 - 59)) + ((3)))))+ 7) * 3"), is(-105L));
+  }
+
   private Long subjectLong(String expression) {
     return subject(expression).asLongExact();
   }

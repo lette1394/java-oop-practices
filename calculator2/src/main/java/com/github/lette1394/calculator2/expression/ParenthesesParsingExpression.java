@@ -1,5 +1,7 @@
 package com.github.lette1394.calculator2.expression;
 
+import static java.lang.String.format;
+
 import com.github.lette1394.calculator2.result.Result;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -34,13 +36,21 @@ public class ParenthesesParsingExpression implements Expression {
 
   private Expression parse(String expression) {
     if (matcher.find()) {
-      final String left = matcher.group(1);
-      final Expression inner = expressionFactory.of(unwrapParentheses(matcher.group(2)));
-      final String right = matcher.group(3);
-      return parse(String.format("%s%s%s",
-        left, inner.evaluate().asString(), right));
+      return parse(format("%s%s%s", left(), inner(), right()));
     }
     return expressionFactory.of(expression);
+  }
+
+  private String left() {
+    return matcher.group(1);
+  }
+
+  private String inner() {
+    return expressionFactory.of(unwrapParentheses(matcher.group(2))).evaluate().asString();
+  }
+
+  private String right() {
+    return matcher.group(3);
   }
 
   @Override

@@ -51,7 +51,8 @@ public class ParenthesesParsingExpression implements Expression {
 
   private String unwrapParentheses(String value) {
     final int length = value.length();
-    return value.substring(1, length - 1);
+    final String unwrapped = value.substring(1, length - 1);
+    return new ParenthesesParsingExpression(unwrapped, expressionFactory).evaluate().asString();
   }
 
   @Override

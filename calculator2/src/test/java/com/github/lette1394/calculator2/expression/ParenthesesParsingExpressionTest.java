@@ -14,6 +14,11 @@ class ParenthesesParsingExpressionTest {
     assertThat(subjectLong("(50)"), is(50L));
   }
 
+  @Test
+  void parentheses_two_operand() {
+    assertThat(subjectLong("(1) + (2)"), is(3L));
+  }
+
   private Long subjectLong(String expression) {
     return subject(expression).asLongExact();
   }

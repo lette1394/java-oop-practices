@@ -24,7 +24,7 @@ class ParenthesesParsingExpressionTest {
   }
 
   private Result subject(String expression) {
-    return new ParenthesesParsingExpression(expression, NumericExpressionFactory.INSTANCE)
+    return new ParenthesesParsingExpression(expression, new ParsingExpressionFactory())
       .evaluate();
   }
 }

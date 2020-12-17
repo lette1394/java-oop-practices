@@ -31,7 +31,8 @@ public class ParenthesesParsingExpression implements Expression {
 
   private Expression parse(String expression) {
     if (matcher.find()) {
-      return parse(format("%s%s%s", left(), inner(), right()));
+      return new ParenthesesParsingExpression(format("%s%s%s", left(), inner(), right()),
+        expressionFactory);
     }
     return expressionFactory.of(expression);
   }

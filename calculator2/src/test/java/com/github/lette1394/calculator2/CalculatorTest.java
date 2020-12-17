@@ -105,9 +105,4 @@ class CalculatorTest {
     assertThrows(DivideByZeroException.class,
       () -> subject("119722337102359424610218840948736/0-10"));
   }
-
-  @Test
-  void parentheses() {
-    assertThat(subjectString("(1)"), is(1L));
-  }
 }

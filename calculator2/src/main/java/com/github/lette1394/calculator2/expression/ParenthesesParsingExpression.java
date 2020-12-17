@@ -17,7 +17,7 @@ public class ParenthesesParsingExpression implements Expression {
     String expression,
     ExpressionFactory expressionFactory) {
     this.expression = expression;
-    this.matcher = Pattern.compile("(.*)(\\(.+\\))(.*)").matcher(expression);
+    this.matcher = Pattern.compile("\\(.+\\)").matcher(expression);
     this.expressionFactory = expressionFactory;
   }
 
@@ -38,15 +38,15 @@ public class ParenthesesParsingExpression implements Expression {
   }
 
   private String left() {
-    return matcher.group(1);
+    return expression.substring(0, matcher.start());
   }
 
   private String inner() {
-    return expressionFactory.of(unwrapParentheses(matcher.group(2))).evaluate().asString();
+    return expressionFactory.of(unwrapParentheses(matcher.group())).evaluate().asString();
   }
 
   private String right() {
-    return matcher.group(3);
+    return expression.substring(matcher.end());
   }
 
   private String unwrapParentheses(String value) {

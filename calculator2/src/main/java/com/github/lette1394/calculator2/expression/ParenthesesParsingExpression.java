@@ -21,11 +21,6 @@ public class ParenthesesParsingExpression implements Expression {
     this.expressionFactory = expressionFactory;
   }
 
-  private static String unwrapParentheses(String value) {
-    final int length = value.length();
-    return value.substring(1, length - 1);
-  }
-
   @Override
   public Result evaluate() throws DivideByZeroException,
                                   OverflowException,
@@ -51,6 +46,11 @@ public class ParenthesesParsingExpression implements Expression {
 
   private String right() {
     return matcher.group(3);
+  }
+
+  private String unwrapParentheses(String value) {
+    final int length = value.length();
+    return value.substring(1, length - 1);
   }
 
   @Override

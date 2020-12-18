@@ -8,15 +8,15 @@ import java.util.List;
 import java.util.function.Supplier;
 import org.junit.jupiter.api.Test;
 
-class FirstMatchedExpressionTest {
+class FirstSupportedExpressionTest {
 
   @Test
-  void matched() {
+  void supported() {
     assertThat(subjectLong("1 + 4"), is(5L));
   }
 
   @Test
-  void unmatched() {
+  void unsupported() {
     assertThrows(UnsupportedExpressionException.class, () -> subjectLong("2 * 4"));
   }
 
@@ -24,7 +24,7 @@ class FirstMatchedExpressionTest {
     final List<Supplier<Expression>> suppliers = List.of(
       supportAdd(expression),
       supportSubtract(expression));
-    return new FirstMatchedExpression(suppliers).evaluate().asLongExact();
+    return new FirstSupportedExpression(suppliers).evaluate().asLongExact();
   }
 
   private Supplier<Expression> supportSubtract(String expression) {

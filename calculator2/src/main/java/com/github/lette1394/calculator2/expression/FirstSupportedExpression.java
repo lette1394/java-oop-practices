@@ -4,10 +4,10 @@ import com.github.lette1394.calculator2.result.Result;
 import java.util.List;
 import java.util.function.Supplier;
 
-public class FirstMatchedExpression implements Expression {
+public class FirstSupportedExpression implements Expression {
   private final List<Supplier<Expression>> expressions;
 
-  public FirstMatchedExpression(List<Supplier<Expression>> expressions) {
+  public FirstSupportedExpression(List<Supplier<Expression>> expressions) {
     this.expressions = expressions;
   }
 

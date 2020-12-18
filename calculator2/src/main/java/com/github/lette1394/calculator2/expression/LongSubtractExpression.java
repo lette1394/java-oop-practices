@@ -1,5 +1,8 @@
 package com.github.lette1394.calculator2.expression;
 
+import static com.github.lette1394.calculator2.result.ResultFactory.of;
+
+import com.github.lette1394.calculator2.result.Result;
 import java.util.regex.Pattern;
 
 public class LongSubtractExpression extends LongExpression {
@@ -12,13 +15,12 @@ public class LongSubtractExpression extends LongExpression {
   }
 
   @Override
-  protected Number whenUseLong(long left, long right) {
-    return left - right;
-  }
-
-  @Override
-  protected Number whenUseDouble(double left, double right) {
-    return left - right;
+  public Result evaluate() throws
+                           DivideByZeroException,
+                           OverflowException,
+                           UnderflowException,
+                           EvaluationTimeoutException {
+    return of(left() - right());
   }
 
   @Override

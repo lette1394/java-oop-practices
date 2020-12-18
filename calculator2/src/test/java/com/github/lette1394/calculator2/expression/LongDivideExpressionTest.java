@@ -60,8 +60,6 @@ class LongDivideExpressionTest {
   void divide_by_zero() {
     assertThrows(DivideByZeroException.class, () -> subjectLong("1 / 0"));
     assertThrows(DivideByZeroException.class, () -> subjectDouble("1 / 0"));
-
-    assertThat(subjectDouble("1 / 0.00000000000001"), is(1000000000000000000L));
   }
 
   private long subjectLong(String expression) {

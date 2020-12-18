@@ -12,6 +12,18 @@ class LongAddExpressionTest {
     assertThat(subjectLong("1+2"), is(3L));
   }
 
+  @Test
+  void formatted() {
+    assertThat(subjectLong("1 + 2"), is(3L));
+    assertThat(subjectLong("1 +2"), is(3L));
+    assertThat(subjectLong("1+ 2"), is(3L));
+    assertThat(subjectLong("1+    2"), is(3L));
+    assertThat(subjectLong("1  +     2"), is(3L));
+    assertThat(subjectLong("    1  +     2"), is(3L));
+    assertThat(subjectLong("    1  +     2    "), is(3L));
+    assertThat(subjectLong("1  +     2    "), is(3L));
+  }
+
   private long subjectLong(String expression) {
     return new LongAddExpression(expression).evaluate().asLongExact();
   }

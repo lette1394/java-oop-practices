@@ -56,6 +56,12 @@ class LongDivideExpressionTest {
     assertThrows(UnsupportedExpressionException.class, () -> subjectLong("1 / 2 / 4"));
   }
 
+  @Test
+  void divide_by_zero() {
+    assertThrows(DivideByZeroException.class, () -> subjectLong("1 / 0"));
+    assertThrows(DivideByZeroException.class, () -> subjectDouble("1 / 0"));
+  }
+
   private long subjectLong(String expression) {
     return subject(expression).asLongExact();
   }

@@ -26,6 +26,11 @@ class LongAddExpressionTest {
     assertThat(subjectLong("  1+2     "), is(3L));
   }
 
+  @Test
+  void unsupported() {
+    assertThrows(UnsupportedExpressionException.class, () -> subjectLong("1 + 2 \n"));
+  }
+
   private long subjectLong(String expression) {
     return new LongAddExpression(expression).evaluate().asLongExact();
   }

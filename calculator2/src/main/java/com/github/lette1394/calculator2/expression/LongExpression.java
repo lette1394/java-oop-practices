@@ -5,8 +5,7 @@ import static java.lang.Long.parseLong;
 import java.util.regex.Matcher;
 
 public abstract class LongExpression extends MatchedTwoOperandExpression<Long, Long> {
-
-  public LongExpression(Matcher matcher) {
+  protected LongExpression(Matcher matcher) throws UnsupportedExpressionException {
     super(matcher);
   }
 

@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 public abstract class MatchedTwoOperandExpression<L, R> implements Expression {
   private final Matcher matcher;
 
-  protected MatchedTwoOperandExpression(Matcher matcher) {
+  protected MatchedTwoOperandExpression(Matcher matcher) throws UnsupportedExpressionException {
     this.matcher = matcher;
     requires(matcher.matches(), new UnsupportedExpressionException(format("matcher: %s", matcher)));
   }

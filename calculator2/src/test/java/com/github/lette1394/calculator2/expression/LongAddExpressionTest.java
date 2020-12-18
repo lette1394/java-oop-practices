@@ -28,7 +28,13 @@ class LongAddExpressionTest {
 
   @Test
   void unsupported() {
-    assertThrows(UnsupportedExpressionException.class, () -> subjectLong("1 + 2 \n"));
+    assertThrows(UnsupportedExpressionException.class, () -> subjectLong("(1 +2)"));
+    assertThrows(UnsupportedExpressionException.class, () -> subjectLong("( 1 +2 )"));
+    assertThrows(UnsupportedExpressionException.class, () -> subjectLong("(1 +2 )"));
+    assertThrows(UnsupportedExpressionException.class, () -> subjectLong("1 +2 )"));
+    assertThrows(UnsupportedExpressionException.class, () -> subjectLong("1 +2 )"));
+
+    assertThrows(UnsupportedExpressionException.class, () -> subjectLong("1 + 2 + 4"));
   }
 
   private long subjectLong(String expression) {

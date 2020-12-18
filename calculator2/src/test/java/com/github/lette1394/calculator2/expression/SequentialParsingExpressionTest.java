@@ -8,4 +8,8 @@ class SequentialParsingExpressionTest {
   void test1() {
 
   }
+
+  private long subjectLong(String expression) {
+    return new SequentialParsingExpression(expression, null, null).evaluate().asLongExact();
+  }
 }

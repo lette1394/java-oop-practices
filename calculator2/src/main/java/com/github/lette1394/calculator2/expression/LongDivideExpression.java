@@ -1,9 +1,5 @@
 package com.github.lette1394.calculator2.expression;
 
-import static com.github.lette1394.calculator2.result.ResultFactory.of;
-import static java.lang.String.format;
-
-import com.github.lette1394.calculator2.result.Result;
 import java.util.regex.Pattern;
 
 public class LongDivideExpression extends LongExpression {
@@ -17,17 +13,19 @@ public class LongDivideExpression extends LongExpression {
   }
 
   @Override
-  public Result evaluate() throws DivideByZeroException,
-                                  OverflowException,
-                                  UnderflowException,
-                                  EvaluationTimeoutException {
-    if (right() == 0) {
-      throw new DivideByZeroException(format("%s / %s", left(), right()));
+  protected Number whenUseLong(long left, long right) {
+    if (right == 0) {
+      throw new DivideByZeroException();
     }
-    if (right() % 10 == 0) {
-      return of(left() / right());
+    return left / right;
+  }
+
+  @Override
+  protected Number whenUseDouble(double left, double right) {
+    if (right == 0.0) {
+      throw new DivideByZeroException();
     }
-    return of(left().doubleValue() / right().doubleValue());
+    return left / right;
   }
 
   @Override

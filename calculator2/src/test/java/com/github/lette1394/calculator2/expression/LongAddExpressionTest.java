@@ -4,6 +4,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import com.github.lette1394.calculator2.result.Result;
 import org.junit.jupiter.api.Test;
 
 class LongAddExpressionTest {
@@ -11,6 +12,11 @@ class LongAddExpressionTest {
   @Test
   void add() {
     assertThat(subjectLong("1+2"), is(3L));
+    assertThat(subjectLong("1.0+2"), is(3L));
+    assertThat(subjectDouble("1.0+2"), is(3.0));
+
+    assertThat(subjectLong("1.7+2"), is(3L));
+    assertThat(subjectDouble("1.7+2"), is(3.7));
   }
 
   @Test
@@ -37,7 +43,15 @@ class LongAddExpressionTest {
     assertThrows(UnsupportedExpressionException.class, () -> subjectLong("1 + 2 + 4"));
   }
 
+  private Result subject(String expression) {
+    return new LongAddExpression(expression).evaluate();
+  }
+
   private long subjectLong(String expression) {
-    return new LongAddExpression(expression).evaluate().asLongExact();
+    return subject(expression).asLongExact();
+  }
+
+  private double subjectDouble(String expression) {
+    return subject(expression).asDouble();
   }
 }

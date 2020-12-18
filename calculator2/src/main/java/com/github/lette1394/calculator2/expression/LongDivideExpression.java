@@ -7,7 +7,8 @@ import com.github.lette1394.calculator2.result.Result;
 import java.util.regex.Pattern;
 
 public class LongDivideExpression extends LongExpression {
-  private final static Pattern pattern = Pattern.compile("\\s*(\\d+)\\s*(/)\\s*(\\d+)\\s*");
+  private final static Pattern pattern = Pattern
+    .compile("\\s*(\\d+\\.?\\d*)\\s*(/)\\s*(\\d+\\.?\\d*)\\s*");
   private final String expression;
 
   public LongDivideExpression(String expression) throws UnsupportedOperationException {

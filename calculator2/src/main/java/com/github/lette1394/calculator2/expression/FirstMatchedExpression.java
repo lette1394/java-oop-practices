@@ -16,6 +16,14 @@ public class FirstMatchedExpression implements Expression {
                                   OverflowException,
                                   UnderflowException,
                                   EvaluationTimeoutException {
-    return null;
+    final UnsupportedExpressionException unsupported = new UnsupportedExpressionException();
+    for (Supplier<Expression> expression : expressions) {
+      try {
+        return expression.get().evaluate();
+      } catch (UnsupportedExpressionException e) {
+        unsupported.addSuppressed(e);
+      }
+    }
+    throw unsupported;
   }
 }

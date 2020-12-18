@@ -7,7 +7,7 @@ import com.github.lette1394.calculator2.result.Result;
 import java.util.regex.Pattern;
 
 public class LongAddExpression extends MatchedTwoOperandExpression<Long, Long> {
-  private final static Pattern pattern = Pattern.compile("(\\d+)(\\+)(\\d+)");
+  private final static Pattern pattern = Pattern.compile("\\s*(\\d+)\\s*(\\+)\\s*(\\d+)\\s*");
   private final String expression;
 
   public LongAddExpression(String expression) throws UnsupportedOperationException {

@@ -55,5 +55,9 @@ public class CastingTest {
     assertThat(Float.MIN_NORMAL * Float.MIN_VALUE, is(0F));
     assertThat(Double.isFinite((double) Float.MAX_VALUE * Float.MAX_VALUE), is(true));
     assertThat(Double.MAX_VALUE * Double.MAX_VALUE, is(Double.POSITIVE_INFINITY));
+
+    assertThat(Double.MAX_VALUE + 12, is(Double.MAX_VALUE));
+    assertThat(Double.MAX_VALUE + 99999999999L, is(Double.MAX_VALUE));
+    assertThat(Double.MAX_VALUE + 99999999999D, is(Double.MAX_VALUE));
   }
 }

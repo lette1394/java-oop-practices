@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import com.github.lette1394.calculator2.result.Result;
 import org.junit.jupiter.api.Test;
 
-class LongDivideExpressionTest {
+class DivideExpressionTest {
 
   @Test
   void divide() {
@@ -71,6 +71,6 @@ class LongDivideExpressionTest {
   }
 
   private Result subject(String expression) {
-    return new LongDivideExpression(expression).evaluate();
+    return new DivideExpression(expression).evaluate();
   }
 }

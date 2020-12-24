@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class LongDivideExpressionTest {
 
   @Test
-  void subtract() {
+  void divide() {
     assertThat(subjectLong("3/2"), is(1L));
     assertThat(subjectDouble("3/2"), is(1.5));
   }

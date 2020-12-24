@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import com.github.lette1394.calculator2.result.Result;
 import org.junit.jupiter.api.Test;
 
-class LongAddExpressionTest {
+class AddExpressionTest {
 
   @Test
   void add() {
@@ -44,7 +44,7 @@ class LongAddExpressionTest {
   }
 
   private Result subject(String expression) {
-    return new LongAddExpression(expression).evaluate();
+    return new AddExpression(expression).evaluate();
   }
 
   private long subjectLong(String expression) {

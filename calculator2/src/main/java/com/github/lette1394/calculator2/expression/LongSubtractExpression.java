@@ -20,7 +20,9 @@ public class LongSubtractExpression extends LongExpression {
                            OverflowException,
                            UnderflowException,
                            EvaluationTimeoutException {
-    return of(left() - right());
+    final long left = Long.parseLong(left());
+    final long right = Long.parseLong(right());
+    return of(left - right);
   }
 
   @Override

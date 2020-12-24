@@ -32,6 +32,6 @@ class FirstSupportedExpressionTest {
   }
 
   private Supplier<Expression> supportAdd(String expression) {
-    return () -> new LongAddExpression(expression);
+    return () -> new AddExpression(expression);
   }
 }

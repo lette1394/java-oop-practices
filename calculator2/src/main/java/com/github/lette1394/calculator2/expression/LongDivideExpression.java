@@ -21,13 +21,16 @@ public class LongDivideExpression extends LongExpression {
                                   OverflowException,
                                   UnderflowException,
                                   EvaluationTimeoutException {
-    if (right() == 0) {
-      throw new DivideByZeroException(format("%s / %s", left(), right()));
+    final long left = Long.parseLong(left());
+    final long right = Long.parseLong(right());
+
+    if (right == 0) {
+      throw new DivideByZeroException(format("%s / %s", left, right));
     }
-    if (right() % 10 == 0) {
-      return of(left() / right());
+    if (right % 10 == 0) {
+      return of(left / right);
     }
-    return of(left().doubleValue() / right().doubleValue());
+    return of(left / right);
   }
 
   @Override

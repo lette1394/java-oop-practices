@@ -1,6 +1,8 @@
 package com.github.lette1394.calculator2.expression;
 
 import static com.github.lette1394.calculator2.result.ResultFactory.of;
+import static java.lang.Double.parseDouble;
+import static java.lang.Long.parseLong;
 import static java.lang.String.format;
 
 import com.github.lette1394.calculator2.result.Result;
@@ -21,16 +23,25 @@ public class DivideExpression extends LongExpression {
                                   OverflowException,
                                   UnderflowException,
                                   EvaluationTimeoutException {
-    final long left = Long.parseLong(left());
-    final long right = Long.parseLong(right());
+    if (isDecimal(left()) || isDecimal(right())) {
+      final double left = parseDouble(left());
+      final double right = parseDouble(right());
+      if (Double.compare(right, 0) == 0) {
+        throw new DivideByZeroException(expression);
+      }
 
+      return of(left / right);
+    }
+
+    final long left = parseLong(left());
+    final long right = parseLong(right());
     if (right == 0) {
       throw new DivideByZeroException(format("%s / %s", left, right));
     }
-    if (right % 10 == 0) {
+    if (left % right == 0) {
       return of(left / right);
     }
-    return of(left / right);
+    return of((double) left / right);
   }
 
   @Override

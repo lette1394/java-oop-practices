@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Test;
 
 class DivideExpressionTest {
 
+  // TODO:
+  //  3/2*2 = 3L, not 3.0D
+
   @Test
   void divide() {
     assertThat(subjectLong("3/2"), is(1L));

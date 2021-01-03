@@ -82,6 +82,36 @@ class CalculatorSpec extends Specification {
       DivideByZeroException exception = thrown()
   }
 
+  def 'evaluate n operator #expression == #expected'() {
+    given: 'complex expression'
+    when: 'evaluate'
+    then: 'get a evaluated value'
+      evaluate(expression) == expected
+    where:
+      expression           | expected
+      '2 + 3 + 6'          | '11'
+      '2 - 3 - 6'          | '-7'
+      '2 * 3 * 6'          | '36'
+      '2 + 3 - 6'          | '-1'
+      '2 - 3 + 6'          | '5'
+      '2 * 3 + 6'          | '12'
+      '2 * 3 - 6'          | '0'
+      '2 * 3 / 6'          | '1'
+      '2 * 3 / 6'          | '1'
+      '2 / 3 / 6'          | '0.1111111111111111'
+      '2 / 3 + 6'          | '6.666666666666667'
+      '2 / 3 - 6'          | '-5.333333333333333'
+      '2 / 3 * 6'          | '4'
+      '2 - 3 + 6 - 5'      | '0'
+      '2 - 3 + 6 - 1'      | '4'
+      '99-3+3'             | '99'
+      '99-3+3*99'          | '393'
+      '99+112 - 1823+34+3' | '-1575'
+      '99+112 -1823+34+3'  | '-1575'
+      '99+112- 1823+34+3'  | '-1575'
+  }
+
+
   static def evaluate(String expression) {
     return new ExhaustiveCalculator().evaluate(expression)
   }

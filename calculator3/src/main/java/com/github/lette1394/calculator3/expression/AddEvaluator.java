@@ -6,18 +6,19 @@ import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class AddExpression implements Expression {
+public class AddEvaluator implements Evaluator {
   private final static Pattern pattern =
     Pattern.compile("\\s*(-?\\d+\\.?\\d*)\\s*(\\+)\\s*(-?\\d+\\.?\\d*)\\s*");
 
   private final Adder adder;
 
   @Override
-  public String evaluate(String expression) throws UnsupportedOperationException,
-                                                   DivideByZeroException,
-                                                   OverflowException,
-                                                   UnderflowException,
-                                                   EvaluationTimeoutException {
+  public String evaluate(String expression) throws
+                                            UnsupportedExpressionException,
+                                            DivideByZeroException,
+                                            OverflowException,
+                                            UnderflowException,
+                                            EvaluationTimeoutException {
     final Matcher matcher = pattern.matcher(expression);
     Contracts.requires(matcher.matches(), "Not supported expression");
 

@@ -1,6 +1,6 @@
 package com.github.lette1394.calculator3.evaluator;
 
-public class SubtractorInNumeric extends Operator implements Subtractor {
+public class NumericSubtractor extends Operator implements Subtractor {
   @Override
   public String subtract(String left, String right) {
     if (isDecimal(left) || isDecimal(right)) {

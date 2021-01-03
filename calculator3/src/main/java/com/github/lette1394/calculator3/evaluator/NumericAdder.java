@@ -1,6 +1,6 @@
 package com.github.lette1394.calculator3.evaluator;
 
-public class AdderInNumeric extends Operator implements Adder {
+public class NumericAdder extends Operator implements Adder {
   @Override
   public String add(String left, String right) {
     if (isDecimal(left) || isDecimal(right)) {

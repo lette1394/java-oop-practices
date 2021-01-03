@@ -2,7 +2,7 @@ package com.github.lette1394.calculator3.evaluator;
 
 import com.github.lette1394.calculator3.common.Contracts;
 
-public class DividerInNumeric extends Operator implements Divider {
+public class NumericDivider extends Operator implements Divider {
   @Override
   public String divide(String left, String right) {
     Contracts.requires(parseDouble(right) != 0, "cannot divide by zero");

@@ -16,19 +16,17 @@ class CalculatorSpec extends Specification {
       '-500'     | '-500'
   }
 
-  def 'evaluate two operand expression #expression == #expected'() {
-    given: 'two operand expression'
+  def 'evaluate add operator #expression == #expected'() {
+    given: 'add expression'
+    and: 'two operand'
     when: 'evaluate'
     then: 'get a evaluated value'
       evaluate(expression) == expected
     where:
       expression | expected
       '10+2'     | '12'
-      '10*2'     | '20'
-      '10x2'     | '20'
-      '50-6'     | '44'
-      '-10*2'    | '-20'
-      '-10/2'    | '-10'
+      '0+0'      | '0'
+      '-10+500'  | '490'
   }
 
   static def evaluate(String expression) {

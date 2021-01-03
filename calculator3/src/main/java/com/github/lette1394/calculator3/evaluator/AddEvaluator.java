@@ -1,4 +1,4 @@
-package com.github.lette1394.calculator3.expression;
+package com.github.lette1394.calculator3.evaluator;
 
 import static com.github.lette1394.calculator3.common.Contracts.requires;
 
@@ -7,11 +7,11 @@ import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class DivideEvaluator implements Evaluator {
+public class AddEvaluator implements Evaluator {
   private final static Pattern pattern =
-    Pattern.compile("\\s*(-?\\d+\\.?\\d*)\\s*(/)\\s*(-?\\d+\\.?\\d*)\\s*");
+    Pattern.compile("\\s*(-?\\d+\\.?\\d*)\\s*(\\+)\\s*(-?\\d+\\.?\\d*)\\s*");
 
-  private final Divider divider;
+  private final Adder adder;
 
   @Override
   public String evaluate(String expression) throws UnsupportedExpressionException,
@@ -24,18 +24,11 @@ public class DivideEvaluator implements Evaluator {
 
     final String left = matcher.group(1);
     final String right = matcher.group(3);
-
-    requires(notZero(right),
-      new DivideByZeroException(String.format("divide by zero: %s / %s", left, right)));
-    return divider.divide(left, right);
+    return adder.add(left, right);
   }
 
   @Override
   public String toString() {
     return "";
-  }
-
-  private boolean notZero(String value) {
-    return Double.parseDouble(value) != 0;
   }
 }

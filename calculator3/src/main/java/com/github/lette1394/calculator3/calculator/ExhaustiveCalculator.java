@@ -1,15 +1,15 @@
 package com.github.lette1394.calculator3.calculator;
 
-import com.github.lette1394.calculator3.expression.AddEvaluator;
-import com.github.lette1394.calculator3.expression.AdderInNumeric;
-import com.github.lette1394.calculator3.expression.DivideEvaluator;
-import com.github.lette1394.calculator3.expression.DividerInNumeric;
-import com.github.lette1394.calculator3.expression.Evaluator;
-import com.github.lette1394.calculator3.expression.FallbackEvaluator;
-import com.github.lette1394.calculator3.expression.MultiplierInNumeric;
-import com.github.lette1394.calculator3.expression.MultiplyEvaluator;
-import com.github.lette1394.calculator3.expression.SubtractEvaluator;
-import com.github.lette1394.calculator3.expression.SubtractorInNumeric;
+import com.github.lette1394.calculator3.evaluator.AddEvaluator;
+import com.github.lette1394.calculator3.evaluator.AdderInNumeric;
+import com.github.lette1394.calculator3.evaluator.DivideEvaluator;
+import com.github.lette1394.calculator3.evaluator.DividerInNumeric;
+import com.github.lette1394.calculator3.evaluator.Evaluator;
+import com.github.lette1394.calculator3.evaluator.FallbackEvaluator;
+import com.github.lette1394.calculator3.evaluator.MultiplierInNumeric;
+import com.github.lette1394.calculator3.evaluator.MultiplyEvaluator;
+import com.github.lette1394.calculator3.evaluator.SubtractEvaluator;
+import com.github.lette1394.calculator3.evaluator.SubtractorInNumeric;
 import java.util.List;
 import java.util.regex.Pattern;
 

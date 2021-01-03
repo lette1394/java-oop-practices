@@ -1,4 +1,4 @@
-package com.github.lette1394.calculator3.expression;
+package com.github.lette1394.calculator3.evaluator;
 
 import static com.github.lette1394.calculator3.common.Contracts.requires;
 
@@ -7,11 +7,11 @@ import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class MultiplyEvaluator implements Evaluator {
+public class SubtractEvaluator implements Evaluator {
   private final static Pattern pattern =
-    Pattern.compile("\\s*(-?\\d+\\.?\\d*)\\s*(\\*)\\s*(-?\\d+\\.?\\d*)\\s*");
+    Pattern.compile("\\s*(-?\\d+\\.?\\d*)\\s*(-)\\s*(-?\\d+\\.?\\d*)\\s*");
 
-  private final Multiplier multiplier;
+  private final Subtractor subtractor;
 
   @Override
   public String evaluate(String expression) throws UnsupportedExpressionException,
@@ -24,7 +24,7 @@ public class MultiplyEvaluator implements Evaluator {
 
     final String left = matcher.group(1);
     final String right = matcher.group(3);
-    return multiplier.multiply(left, right);
+    return subtractor.subtract(left, right);
   }
 
   @Override

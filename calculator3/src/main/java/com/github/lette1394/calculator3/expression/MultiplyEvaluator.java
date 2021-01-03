@@ -7,11 +7,11 @@ import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class SubtractEvaluator implements Evaluator {
+public class MultiplyEvaluator implements Evaluator {
   private final static Pattern pattern =
-    Pattern.compile("\\s*(-?\\d+\\.?\\d*)\\s*(-)\\s*(-?\\d+\\.?\\d*)\\s*");
+    Pattern.compile("\\s*(-?\\d+\\.?\\d*)\\s*(\\*)\\s*(-?\\d+\\.?\\d*)\\s*");
 
-  private final Subtractor subtractor;
+  private final Multiplier multiplier;
 
   @Override
   public String evaluate(String expression) throws UnsupportedExpressionException,
@@ -24,7 +24,7 @@ public class SubtractEvaluator implements Evaluator {
 
     final String left = matcher.group(1);
     final String right = matcher.group(3);
-    return subtractor.subtract(left, right);
+    return multiplier.multiply(left, right);
   }
 
   @Override

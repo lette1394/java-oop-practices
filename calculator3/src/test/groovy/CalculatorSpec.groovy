@@ -56,7 +56,7 @@ class CalculatorSpec extends Specification {
       '0*0'      | '0'
       '500*0'    | '0'
       '10*-500'  | '-5000'
-      '-10*500'  | '-500'
+      '-10*500' | '-5000'
   }
 
   static def evaluate(String expression) {

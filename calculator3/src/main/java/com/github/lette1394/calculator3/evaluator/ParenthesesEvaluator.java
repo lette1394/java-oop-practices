@@ -1,18 +1,13 @@
 package com.github.lette1394.calculator3.evaluator;
 
-import static com.github.lette1394.calculator3.common.Contracts.requires;
-import static java.lang.String.format;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class SubtractEvaluator implements Evaluator {
-  private final static Pattern pattern =
-    Pattern.compile("\\s*(-?\\d+\\.?\\d*)\\s*(-)\\s*(-?\\d+\\.?\\d*)\\s*");
-
-  private final Subtractor subtractor;
+public class ParenthesesEvaluator implements Evaluator {
+  private static final Pattern pattern = Pattern.compile("(.*)(\\([^()]+\\))(.*)");
+  private final Evaluator evaluator;
 
   @Override
   public String evaluate(String expression) throws UnsupportedExpressionException,
@@ -21,16 +16,17 @@ public class SubtractEvaluator implements Evaluator {
                                                    UnderflowException,
                                                    EvaluationTimeoutException {
     final Matcher matcher = pattern.matcher(expression);
-    requires(matcher.matches(),
-      new UnsupportedExpressionException(format("Not supported expression: %s", expression)));
-
-    final String left = matcher.group(1);
-    final String right = matcher.group(3);
-    return subtractor.subtract(left, right);
+    if (matcher.matches()) {
+      final String left = matcher.group(1);
+      final String mid = evaluate(unwrap(matcher.group(2)));
+      final String right = matcher.group(3);
+      return evaluator.evaluate(evaluate(left + mid + right));
+    }
+    return evaluator.evaluate(expression);
   }
 
-  @Override
-  public String toString() {
-    return "";
+  private String unwrap(String value) {
+    final int length = value.length();
+    return value.substring(1, length - 1);
   }
 }

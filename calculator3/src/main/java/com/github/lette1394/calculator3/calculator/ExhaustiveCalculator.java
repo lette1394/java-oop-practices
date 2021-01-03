@@ -9,6 +9,7 @@ import com.github.lette1394.calculator3.evaluator.FallbackEvaluator;
 import com.github.lette1394.calculator3.evaluator.JustEvaluator;
 import com.github.lette1394.calculator3.evaluator.MultiplierInNumeric;
 import com.github.lette1394.calculator3.evaluator.MultiplyEvaluator;
+import com.github.lette1394.calculator3.evaluator.ParenthesesEvaluator;
 import com.github.lette1394.calculator3.evaluator.PriorReducingEvaluator;
 import com.github.lette1394.calculator3.evaluator.SubtractEvaluator;
 import com.github.lette1394.calculator3.evaluator.SubtractorInNumeric;
@@ -31,7 +32,9 @@ public class ExhaustiveCalculator implements Calculator {
       new PriorReducingEvaluator(Pattern.compile("(.*)(\\+|- )(.*)"), operators),
       new PriorReducingEvaluator(Pattern.compile("(.*)([*/])(.*)"), operators)
     ));
-    evaluator = priority;
+
+    final Evaluator parentheses = new ParenthesesEvaluator(priority);
+    evaluator = parentheses;
   }
 
   @Override

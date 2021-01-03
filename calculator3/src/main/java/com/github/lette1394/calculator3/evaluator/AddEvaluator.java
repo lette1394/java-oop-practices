@@ -1,6 +1,7 @@
 package com.github.lette1394.calculator3.evaluator;
 
 import static com.github.lette1394.calculator3.common.Contracts.requires;
+import static java.lang.String.format;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,7 +21,8 @@ public class AddEvaluator implements Evaluator {
                                                    UnderflowException,
                                                    EvaluationTimeoutException {
     final Matcher matcher = pattern.matcher(expression);
-    requires(matcher.matches(), new UnsupportedExpressionException("Not supported expression"));
+    requires(matcher.matches(),
+      new UnsupportedExpressionException(format("Not supported expression: %s", expression)));
 
     final String left = matcher.group(1);
     final String right = matcher.group(3);

@@ -1,5 +1,7 @@
 package com.github.lette1394.calculator3.evaluator;
 
+import static java.lang.String.format;
+
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 
@@ -14,7 +16,8 @@ public class FallbackEvaluator implements Evaluator {
                                             OverflowException,
                                             UnderflowException,
                                             EvaluationTimeoutException {
-    final RuntimeException exception = new UnsupportedExpressionException();
+    final RuntimeException exception = new UnsupportedExpressionException(
+      format("Not supported expression:[%s]", expression));
     for (Evaluator evaluator : evaluators) {
       try {
         return evaluator.evaluate(expression);

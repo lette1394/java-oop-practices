@@ -1,5 +1,5 @@
 import com.github.lette1394.calculator3.calculator.ExhaustiveCalculator
-import com.github.lette1394.calculator3.expression.DivideByZeroException
+import com.github.lette1394.calculator3.evaluator.DivideByZeroException
 import spock.lang.Specification
 
 

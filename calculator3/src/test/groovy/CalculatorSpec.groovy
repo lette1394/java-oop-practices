@@ -1,4 +1,5 @@
 import com.github.lette1394.calculator3.calculator.ExhaustiveCalculator
+import com.github.lette1394.calculator3.expression.DivideByZeroException
 import spock.lang.Specification
 
 
@@ -56,7 +57,29 @@ class CalculatorSpec extends Specification {
       '0*0'      | '0'
       '500*0'    | '0'
       '10*-500'  | '-5000'
-      '-10*500' | '-5000'
+      '-10*500'  | '-5000'
+  }
+
+  def 'evaluate divide operator #expression == #expected'() {
+    given: 'divide expression'
+    and: 'two operand'
+    when: 'evaluate'
+    then: 'get a evaluated value'
+      evaluate(expression) == expected
+    where:
+      expression | expected
+      '10/2'     | '5'
+      '500/-10'  | '-50'
+      '-500/-10' | '50'
+  }
+
+  def 'throw exception when divide by zero'() {
+    given: 'divide expression'
+    and: 'two operand with zero'
+    when: 'try to evaluate'
+      evaluate('1/0')
+    then: 'throw exception'
+      DivideByZeroException exception = thrown()
   }
 
   static def evaluate(String expression) {

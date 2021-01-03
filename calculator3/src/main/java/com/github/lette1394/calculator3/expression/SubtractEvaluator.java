@@ -10,7 +10,7 @@ public class SubtractEvaluator implements Evaluator {
   private final static Pattern pattern =
     Pattern.compile("\\s*(-?\\d+\\.?\\d*)\\s*(-)\\s*(-?\\d+\\.?\\d*)\\s*");
 
-  private final Adder adder;
+  private final Subtractor subtractor;
 
   @Override
   public String evaluate(String expression) throws UnsupportedExpressionException,
@@ -23,7 +23,7 @@ public class SubtractEvaluator implements Evaluator {
 
     final String left = matcher.group(1);
     final String right = matcher.group(3);
-    return adder.add(left, right);
+    return subtractor.subtract(left, right);
   }
 
   @Override

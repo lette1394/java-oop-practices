@@ -27,6 +27,7 @@ class CalculatorSpec extends Specification {
       '10+2'     | '12'
       '0+0'      | '0'
       '-10+500'  | '490'
+      '-10+-500' | '-510'
   }
 
   static def evaluate(String expression) {

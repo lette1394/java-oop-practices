@@ -1,5 +1,7 @@
 package com.github.lette1394.calculator3.evaluator;
 
+import static java.lang.String.format;
+
 abstract class Operator {
   protected static String toInteger(String value) {
     if (value.contains(".")) {
@@ -26,7 +28,14 @@ abstract class Operator {
   }
 
   protected static long parseLong(String value) {
-    return Long.parseLong(value);
+    try {
+      return Long.parseLong(value);
+    } catch (NumberFormatException e) {
+      if (value.contains("-")) {
+        throw new UnderflowException(format("underflow: %s", value));
+      }
+      throw new OverflowException(format("overflow: %s", value));
+    }
   }
 
   protected static boolean isInteger(String value) {

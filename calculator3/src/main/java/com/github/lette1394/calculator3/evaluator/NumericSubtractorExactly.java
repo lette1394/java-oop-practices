@@ -15,7 +15,7 @@ public class NumericSubtractorExactly extends Operator implements Subtractor {
     try {
       return toString(Math.subtractExact(parseLong(left), parseLong(right)));
     } catch (ArithmeticException e) {
-      throw new OverflowException(format("%s - %s", left, right), e);
+      throw new UnderflowException(format("%s - %s", left, right), e);
     }
   }
 }

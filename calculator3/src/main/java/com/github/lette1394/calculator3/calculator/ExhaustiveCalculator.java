@@ -6,10 +6,10 @@ import com.github.lette1394.calculator3.evaluator.Evaluator;
 import com.github.lette1394.calculator3.evaluator.FallbackEvaluator;
 import com.github.lette1394.calculator3.evaluator.JustEvaluator;
 import com.github.lette1394.calculator3.evaluator.MultiplyEvaluator;
-import com.github.lette1394.calculator3.evaluator.NumericAdder;
+import com.github.lette1394.calculator3.evaluator.NumericAdderExactly;
 import com.github.lette1394.calculator3.evaluator.NumericDivider;
-import com.github.lette1394.calculator3.evaluator.NumericMultiplier;
-import com.github.lette1394.calculator3.evaluator.NumericSubtractor;
+import com.github.lette1394.calculator3.evaluator.NumericMultiplierExactly;
+import com.github.lette1394.calculator3.evaluator.NumericSubtractorExactly;
 import com.github.lette1394.calculator3.evaluator.ParenthesesEvaluator;
 import com.github.lette1394.calculator3.evaluator.PriorReducingEvaluator;
 import com.github.lette1394.calculator3.evaluator.SubtractEvaluator;
@@ -21,9 +21,9 @@ public class ExhaustiveCalculator implements Calculator {
 
   public ExhaustiveCalculator() {
     final Evaluator operators = new FallbackEvaluator(List.of(
-      new AddEvaluator(new NumericAdder()),
-      new SubtractEvaluator(new NumericSubtractor()),
-      new MultiplyEvaluator(new NumericMultiplier()),
+      new AddEvaluator(new NumericAdderExactly()),
+      new SubtractEvaluator(new NumericSubtractorExactly()),
+      new MultiplyEvaluator(new NumericMultiplierExactly()),
       new DivideEvaluator(new NumericDivider()),
       new JustEvaluator()
     ));

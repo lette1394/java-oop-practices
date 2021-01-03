@@ -144,7 +144,7 @@ class CalculatorSpec extends Specification {
     where:
       expression                | expected
       '9223372036854775807 + 1' | '9223372036854775808'
-      '9223372036854775808'     | '9223372036854775808'
+      '9223372036854775808 + 1' | '9223372036854775809'
   }
 
   def 'throw underflow exception #expression == #expected'() {
@@ -152,12 +152,12 @@ class CalculatorSpec extends Specification {
     and: 'normal calculator'
     when: 'evaluate'
       evaluate(expression)
-    then: 'throw overflow exception'
+    then: 'throw underflow exception'
       UnderflowException exception = thrown()
     where:
       expression                 | expected
       '-9223372036854775808 - 1' | '-9223372036854775809'
-      '-9223372036854775809'     | '-9223372036854775809'
+      '-9223372036854775809 - 1' | '-9223372036854775810'
   }
 
   static def evaluate(String expression) {

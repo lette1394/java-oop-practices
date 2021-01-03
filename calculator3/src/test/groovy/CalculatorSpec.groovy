@@ -1,5 +1,6 @@
 import com.github.lette1394.calculator3.calculator.ExhaustiveCalculator
 import com.github.lette1394.calculator3.evaluator.DivideByZeroException
+import com.github.lette1394.calculator3.evaluator.OverflowException
 import spock.lang.Specification
 
 
@@ -130,6 +131,21 @@ class CalculatorSpec extends Specification {
       '((7 * 2 + 3) * ((10 + 2 - 5)* 9 + 3) * 4)'              | '4488'
       '((((((((1)))) + 2 + (6 * (51 - 59)) + ((3)))))+ 7) * 3' | '-105'
       '((((((((1)))) + 2 + (6 * (80 - 59)) + ((3)))))+ 7) * 3' | '417'
+  }
+
+  def 'throw overflow  #expression == #expected'() {
+    given: 'overflow expression'
+    and: 'normal calculator'
+    when: 'evaluate'
+      evaluate(expression)
+    then: 'throw overflow exception'
+      OverflowException exception = thrown()
+    where:
+      expression                              | expected
+      '9223372036854775807 + 1'               | '9223372036854775808'
+      '-9223372036854775808 - 1'              | '-9223372036854775809'
+      '9223372036854775808 * 12980321798142'  | '119722337102359424610218840948736'
+      '-9223372036854775809 * 12980321798142' | '-119722337102359424610218840948736'
   }
 
   static def evaluate(String expression) {

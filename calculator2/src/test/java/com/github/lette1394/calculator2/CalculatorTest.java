@@ -86,11 +86,9 @@ class CalculatorTest {
     assertThat(subjectString("9223372036854775807 + 1"), is("9223372036854775808"));
     assertThat(subjectString("9223372036854775808 + 1"), is("9223372036854775809"));
     assertThat(subjectString("-9223372036854775808 - 1"), is("-9223372036854775809"));
-    assertThat(
-      subjectString("9223372036854775808 * 12980321798142"),
+    assertThat(subjectString("9223372036854775808 * 12980321798142"),
       is("119722337102359424610218840948736"));
-    assertThat(
-      subjectString("-9223372036854775808 * 12980321798142"),
+    assertThat(subjectString("-9223372036854775808 * 12980321798142"),
       is("-119722337102359424610218840948736"));
 
     assertThrows(

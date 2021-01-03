@@ -19,7 +19,8 @@ public class AddEvaluator implements Evaluator {
                                                    UnderflowException,
                                                    EvaluationTimeoutException {
     final Matcher matcher = pattern.matcher(expression);
-    Contracts.requires(matcher.matches(), "Not supported expression");
+    Contracts
+      .requires(matcher.matches(), new UnsupportedExpressionException("Not supported expression"));
 
     final String left = matcher.group(1);
     final String right = matcher.group(3);

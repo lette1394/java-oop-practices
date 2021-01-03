@@ -10,6 +10,12 @@ public class NumericDivider extends Operator implements Divider {
     if (isDecimal(left) || isDecimal(right)) {
       return toString(parseDouble(left) / parseDouble(right));
     }
-    return toString(parseLong(left) / parseLong(right));
+
+    final long leftLong = parseLong(left);
+    final long rightLong = parseLong(right);
+    if (leftLong % rightLong == 0) {
+      return toString(leftLong / rightLong);
+    }
+    return toString(((double) leftLong) / rightLong);
   }
 }

@@ -25,7 +25,7 @@ abstract class Operator {
     return Double.parseDouble(value);
   }
 
-  protected static double parseLong(String value) {
+  protected static long parseLong(String value) {
     return Long.parseLong(value);
   }
 

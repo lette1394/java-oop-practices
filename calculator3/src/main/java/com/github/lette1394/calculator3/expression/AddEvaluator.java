@@ -13,12 +13,11 @@ public class AddEvaluator implements Evaluator {
   private final Adder adder;
 
   @Override
-  public String evaluate(String expression) throws
-                                            UnsupportedExpressionException,
-                                            DivideByZeroException,
-                                            OverflowException,
-                                            UnderflowException,
-                                            EvaluationTimeoutException {
+  public String evaluate(String expression) throws UnsupportedExpressionException,
+                                                   DivideByZeroException,
+                                                   OverflowException,
+                                                   UnderflowException,
+                                                   EvaluationTimeoutException {
     final Matcher matcher = pattern.matcher(expression);
     Contracts.requires(matcher.matches(), "Not supported expression");
 

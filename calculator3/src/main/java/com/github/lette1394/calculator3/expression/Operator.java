@@ -1,6 +1,6 @@
 package com.github.lette1394.calculator3.expression;
 
-abstract class BaseOperator {
+abstract class Operator {
   protected static String toInteger(String value) {
     if (value.contains(".")) {
       final int dot = value.indexOf(".");

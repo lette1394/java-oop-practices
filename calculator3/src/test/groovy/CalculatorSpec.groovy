@@ -10,9 +10,9 @@ class CalculatorSpec extends Specification {
       evaluate(number) == expected
     where:
       number | expected
-      '123'  | 123
-      '456'  | 456
-      '3.14' | 3.14
+      '123'  | '123'
+      '456'  | '456'
+      '3.14' | '3.14'
   }
 
 

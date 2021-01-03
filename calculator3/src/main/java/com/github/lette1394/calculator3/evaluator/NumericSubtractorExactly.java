@@ -18,4 +18,19 @@ public class NumericSubtractorExactly extends Operator implements Subtractor {
       throw new UnderflowException(format("%s - %s", left, right), e);
     }
   }
+
+  public static void main(String[] args) {
+    System.out.println(Double.MAX_VALUE + 9999999999999999L);
+    final double v = Double.MAX_VALUE + 9999999999999999L;
+    System.out.println(v == Double.MAX_VALUE);
+    System.out.println(1.7976931348623157e+308 == Double.MAX_VALUE);
+    System.out.println(Double.parseDouble("1.7976931348623157e+308") == Double.MAX_VALUE);
+    System.out.println(Double.isFinite(v));
+
+    System.out.println(Double.isInfinite(v));
+    System.out.println(Double.isNaN(v));
+
+    System.out.println();
+    System.out.println(Double.parseDouble("1.7e+309") == (1.0 / 0.0));
+  }
 }

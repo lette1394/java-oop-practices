@@ -29,7 +29,7 @@ abstract class Operator {
 
   protected static long parseLong(String value) {
     try {
-      return Long.parseLong(value);
+      return Long.parseLong(toInteger(value));
     } catch (NumberFormatException e) {
       if (value.contains("-")) {
         throw new UnderflowException(format("underflow: %s", value));

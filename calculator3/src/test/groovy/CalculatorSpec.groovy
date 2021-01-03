@@ -1,6 +1,7 @@
 import com.github.lette1394.calculator3.calculator.ExhaustiveCalculator
 import com.github.lette1394.calculator3.evaluator.DivideByZeroException
 import com.github.lette1394.calculator3.evaluator.OverflowException
+import com.github.lette1394.calculator3.evaluator.UnderflowException
 import spock.lang.Specification
 
 
@@ -133,7 +134,7 @@ class CalculatorSpec extends Specification {
       '((((((((1)))) + 2 + (6 * (80 - 59)) + ((3)))))+ 7) * 3' | '417'
   }
 
-  def 'throw overflow  #expression == #expected'() {
+  def 'throw overflow exception #expression == #expected'() {
     given: 'overflow expression'
     and: 'normal calculator'
     when: 'evaluate'
@@ -141,11 +142,22 @@ class CalculatorSpec extends Specification {
     then: 'throw overflow exception'
       OverflowException exception = thrown()
     where:
-      expression                              | expected
-      '9223372036854775807 + 1'               | '9223372036854775808'
-      '-9223372036854775808 - 1'              | '-9223372036854775809'
-      '9223372036854775808 * 12980321798142'  | '119722337102359424610218840948736'
-      '-9223372036854775809 * 12980321798142' | '-119722337102359424610218840948736'
+      expression                | expected
+      '9223372036854775807 + 1' | '9223372036854775808'
+      '9223372036854775808'     | '9223372036854775808'
+  }
+
+  def 'throw underflow exception #expression == #expected'() {
+    given: 'underflow expression'
+    and: 'normal calculator'
+    when: 'evaluate'
+      evaluate(expression)
+    then: 'throw overflow exception'
+      UnderflowException exception = thrown()
+    where:
+      expression                 | expected
+      '-9223372036854775808 - 1' | '-9223372036854775809'
+      '-9223372036854775809'     | '-9223372036854775809'
   }
 
   static def evaluate(String expression) {

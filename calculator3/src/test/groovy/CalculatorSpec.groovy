@@ -30,6 +30,20 @@ class CalculatorSpec extends Specification {
       '-10+-500' | '-510'
   }
 
+  def 'evaluate subtract operator #expression == #expected'() {
+    given: 'subtract expression'
+    and: 'two operand'
+    when: 'evaluate'
+    then: 'get a evaluated value'
+      evaluate(expression) == expected
+    where:
+      expression | expected
+      '10-2'     | '8'
+      '10-500'   | '-490'
+      '0-0'      | '0'
+      '-10-500'  | '-510'
+  }
+
   static def evaluate(String expression) {
     return new ExhaustiveCalculator().evaluate(expression)
   }

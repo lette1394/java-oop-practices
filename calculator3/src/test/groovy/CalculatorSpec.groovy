@@ -112,6 +112,26 @@ class CalculatorSpec extends Specification {
   }
 
 
+  def 'evaluate parentheses #expression == #expected'() {
+    given: 'complex expression with parentheses'
+    when: 'evaluate'
+    then: 'get a evaluated value'
+      evaluate(expression) == expected
+    where:
+      expression                                               | expected
+      '(1)'                                                    | '1'
+      '(50)'                                                   | '50'
+      '((1))'                                                  | '1'
+      '(((1)))'                                                | '1'
+      '(1) + 2'                                                | '3'
+      '1 + (2)'                                                | '3'
+      '(1) + (2)'                                              | '3'
+      '((1 + 2) * 4)'                                          | '12'
+      '((7 * 2 + 3) * ((10 + 2 - 5)* 9 + 3) * 4)'              | '4488'
+      '((((((((1)))) + 2 + (6 * (51 - 59)) + ((3)))))+ 7) * 3' | '-105'
+      '((((((((1)))) + 2 + (6 * (80 - 59)) + ((3)))))+ 7) * 3' | '417'
+  }
+
   static def evaluate(String expression) {
     return new ExhaustiveCalculator().evaluate(expression)
   }

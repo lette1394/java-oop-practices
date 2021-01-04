@@ -2,7 +2,7 @@ package com.github.lette1394.calculator3.pattern
 
 import spock.lang.Specification
 
-class IntegerPatternSpec extends Specification {
+class IntegerPatternFinderSpec extends Specification {
   def 'find a integer:[#expected] at #expression'() {
     given: 'expression'
     when: 'call find()'
@@ -31,6 +31,6 @@ class IntegerPatternSpec extends Specification {
   }
 
   static def subject(String expression) {
-    return new IntegerPattern().find(expression)
+    return new IntegerPatternFinder().find(expression)
   }
 }

@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 public class IntegerPattern {
   private static final Pattern pattern = Pattern.compile("\\s*(-?\\d+)\\s*");
 
-  public String find(String expression) {
+  public String find(String expression) throws NotFoundPatternException {
     final Matcher matcher = pattern.matcher(expression);
     if (matcher.matches()) {
       return matcher.group(1);

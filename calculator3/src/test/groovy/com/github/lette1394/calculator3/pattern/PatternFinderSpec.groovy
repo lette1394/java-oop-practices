@@ -13,7 +13,6 @@ class PatternFinderSpec extends Specification {
       '0'        | '0'
       '123'      | '123'
       '-500'     | '-500'
-
       '0.0' | '0.0'
       '1.23'     | '1.23'
       '-50.0'    | '-50.0'

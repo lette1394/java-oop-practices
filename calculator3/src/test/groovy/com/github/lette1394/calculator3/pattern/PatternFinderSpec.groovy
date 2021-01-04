@@ -19,8 +19,8 @@ class PatternFinderSpec extends Specification {
       '-50.0'    | '-50.0'
 
       '4.9e-3'   | '4.9e-3'
-      '4.9E-3'   | '4.9E-3'
       '4.9e+3'   | '4.9e+3'
+      '4.9E-3'   | '4.9E-3'
       '4.9E+3'   | '4.9E+3'
   }
 

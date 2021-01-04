@@ -31,6 +31,6 @@ public class AddEvaluator implements Evaluator {
 
   @Override
   public String toString() {
-    return "";
+    return "add evaluator";
   }
 }

@@ -5,7 +5,7 @@ import static java.lang.String.format;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class NumericPattern {
+public class IntegerPattern {
   private static final Pattern pattern = Pattern.compile("\\s*(-?\\d+)\\s*");
 
   public String find(String expression) {

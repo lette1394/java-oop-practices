@@ -4,7 +4,7 @@ import spock.lang.Specification
 
 
 class NumericPatternSpec extends Specification {
-  def 'find a integer at #expression'() {
+  def 'find a integer:[#expected] at #expression'() {
     given: 'expression'
     when: 'find()'
     then: 'return only a number string'

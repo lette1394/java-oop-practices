@@ -5,7 +5,6 @@ import com.github.lette1394.calculator3.evaluator.UnderflowException
 import spock.lang.Ignore
 import spock.lang.Specification
 
-
 class CalculatorSpec extends Specification {
   def 'evaluate just a number #expression == #expected'() {
     given: 'a number'

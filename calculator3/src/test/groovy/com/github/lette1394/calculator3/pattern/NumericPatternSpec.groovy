@@ -16,6 +16,6 @@ class NumericPatternSpec extends Specification {
   }
 
   static def subject(String expression) {
-    return new NumericPattern().find();
+    return new NumericPattern().find(expression)
   }
 }

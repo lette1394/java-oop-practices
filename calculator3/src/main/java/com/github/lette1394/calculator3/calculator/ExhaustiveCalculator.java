@@ -13,6 +13,7 @@ import com.github.lette1394.calculator3.evaluator.NumericSubtractorExactly;
 import com.github.lette1394.calculator3.evaluator.ParenthesesEvaluator;
 import com.github.lette1394.calculator3.evaluator.PriorReducingEvaluator;
 import com.github.lette1394.calculator3.evaluator.SubtractEvaluator;
+import com.github.lette1394.calculator3.pattern.PatternFinderFactory;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -20,8 +21,9 @@ public class ExhaustiveCalculator implements Calculator {
   private final Evaluator evaluator;
 
   public ExhaustiveCalculator() {
+
     final Evaluator operators = new FallbackEvaluator(List.of(
-      new AddEvaluator(new NumericAdderExactly()),
+      new AddEvaluator(PatternFinderFactory.realNumber(), new NumericAdderExactly()),
       new SubtractEvaluator(new NumericSubtractorExactly()),
       new MultiplyEvaluator(new NumericMultiplierExactly()),
       new DivideEvaluator(new NumericDivider()),

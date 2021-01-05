@@ -5,7 +5,7 @@ import static java.lang.String.format;
 import com.github.lette1394.calculator3.pattern.NotFoundPatternException;
 import com.github.lette1394.calculator3.pattern.PatternFinder;
 
-public abstract class BaseEvaluator implements Evaluator {
+abstract class BaseEvaluator implements Evaluator {
   private static final int INDEX_NOT_FOUND = -1;
 
   private final PatternFinder patternFinder;

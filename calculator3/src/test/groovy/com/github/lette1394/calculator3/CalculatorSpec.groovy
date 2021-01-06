@@ -1,3 +1,5 @@
+package com.github.lette1394.calculator3
+
 import com.github.lette1394.calculator3.calculator.ExhaustiveCalculator
 import com.github.lette1394.calculator3.evaluator.DivideByZeroException
 import com.github.lette1394.calculator3.evaluator.OverflowException

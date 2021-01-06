@@ -13,6 +13,23 @@ class IntegerMatchedPatternSpec extends Specification {
       targets = ['10', '2']
   }
 
+  def 'throw exception when expression does not contain integer'() {
+    when:
+      subject(expression).next()
+    then:
+      thrown(NotMatchedAnymoreException.class)
+    where:
+      expression << [
+        '       ',
+        'abc',
+        'not a number',
+        '2.7',
+        '2.0',
+        '2e+8',
+        '2.0e+8'
+      ]
+  }
+
   def 'throw exception when call find() more than it needs'() {
     given: 'a expression'
       def pattern = subject(expression)

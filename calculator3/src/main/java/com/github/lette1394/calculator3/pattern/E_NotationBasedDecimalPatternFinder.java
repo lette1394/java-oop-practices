@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class E_NotationBasedDecimalPatternFinder implements PatternFinder {
-  private static final Pattern pattern = Pattern.compile("\\s*(-?\\d+.\\d+[eE][+-]\\d+)\\s*");
+  private static final Pattern pattern = Pattern.compile("\\s*(-?\\d+\\.\\d+[eE][+-]\\d+)\\s*");
 
   public String find(String expression) throws NotFoundPatternException {
     final Matcher matcher = pattern.matcher(expression);

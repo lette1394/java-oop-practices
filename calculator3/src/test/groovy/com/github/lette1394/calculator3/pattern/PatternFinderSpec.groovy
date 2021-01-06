@@ -26,9 +26,9 @@ class PatternFinderSpec extends Specification {
 
   static def subject() {
     return new FirstMatchedPatternFinder(List.of(
-      new IntegerPatternFinder(),
       new DecimalPatternFinder(),
       new E_NotationBasedDecimalPatternFinder(),
+      new IntegerPatternFinder(),
     ))
   }
 

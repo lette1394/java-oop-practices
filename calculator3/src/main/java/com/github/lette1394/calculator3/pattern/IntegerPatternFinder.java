@@ -6,12 +6,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class IntegerPatternFinder implements PatternFinder {
-  private static final Pattern pattern = Pattern.compile("\\s*(-?\\d+)\\s*");
+  private static final Pattern pattern = Pattern.compile("([^0-9\\-])*(-?[0-9]+).*");
 
   public String find(String expression) throws NotFoundPatternException {
     final Matcher matcher = pattern.matcher(expression);
     if (matcher.matches()) {
-      return matcher.group(1);
+      return matcher.group(2);
     }
     throw new NotFoundPatternException(format("not found a integer at:[%s]", expression));
   }

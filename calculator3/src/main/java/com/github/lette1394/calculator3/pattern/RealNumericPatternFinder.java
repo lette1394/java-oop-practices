@@ -7,9 +7,9 @@ public class RealNumericPatternFinder implements PatternFinder {
 
   public RealNumericPatternFinder() {
     this.patternFinder = new FirstMatchedPatternFinder(List.of(
-      new IntegerPatternFinder(),
       new DecimalPatternFinder(),
-      new E_NotationBasedDecimalPatternFinder()));
+      new E_NotationBasedDecimalPatternFinder(),
+      new IntegerPatternFinder()));
   }
 
   @Override

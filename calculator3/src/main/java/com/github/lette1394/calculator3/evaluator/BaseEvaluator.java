@@ -18,7 +18,7 @@ abstract class BaseEvaluator implements Evaluator {
     try {
       return patternFinder.find(expression);
     } catch (NotFoundPatternException e) {
-      throw new UnsupportedExpressionException(format("Not supported expression: %s", expression), e);
+      throw new UnsupportedExpressionException(format("Not supported expression: [%s]", expression), e);
     }
   }
 

@@ -2,25 +2,28 @@ package com.github.lette1394.calculator3.pattern
 
 import spock.lang.Specification
 
-class IntegerMatchedPatternSpec extends Specification {
+class DecimalMatchedPatternSpec extends Specification {
   def 'find #targets in #expression'() {
     expect:
       def pattern = subject(expression)
       findAll(pattern) == targets
     where:
-      expression   | targets
-      '1'          | ['1']
-      '10'         | ['10']
-      '10+2'       | ['10', '2']
-      '10abc123'   | ['10', '123']
-      '10abc 123'  | ['10', '123']
-      '10 abc123'  | ['10', '123']
-      '10 abc 123' | ['10', '123']
+      expression                | targets
+      '1.0'                     | ['1.0']
+      '10.4'                    | ['10.4']
+      '10.555+2.123123'         | ['10.555', '2.123123']
+      '10.555+-2.123123'        | ['10.555', '-2.123123']
+      '10.555abc123.123123'     | ['10.555', '123.123123']
+      '10.555abc 123.123123'    | ['10.555', '123.123123']
+      '10.555 abc123.123123'    | ['10.555', '123.123123']
+      '10.555 abc 123.123123'   | ['10.555', '123.123123']
+      '-10.555 abc -123.123123' | ['-10.555', '-123.123123']
 
-      '2.7'        | ['2', '7']
-      '2.0'        | ['2', '0']
-      '2e+8'       | ['2', '8']
-      '2.0e+8'     | ['2', '0', '8']
+      '2e+8'                    | ['2e.8']
+      '2.0e+8'                  | ['2.0e+8']
+      '-2.0e+8'                 | ['-2.0e+8']
+      '2.0e-8'                  | ['2.0e-8']
+      '-2.0e-8'                 | ['-2.0e-8']
   }
 
   def 'throw exception in #expression'() {
@@ -40,13 +43,13 @@ class IntegerMatchedPatternSpec extends Specification {
     given: 'a expression'
       def pattern = subject(expression)
     when: 'call find() more than it needs'
-      pattern.next() == '10'
-      pattern.next() == '2'
+      pattern.next() == '10.0'
+      pattern.next() == '2.123'
       pattern.next()
     then: 'throws exception'
       thrown(NotMatchedAnymoreException.class)
     where:
-      expression = '10+2'
+      expression = '10.0+2.123'
   }
 
   private static def findAll(MatchedPattern matchedPattern) {

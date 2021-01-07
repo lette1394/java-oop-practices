@@ -3,11 +3,11 @@ package com.github.lette1394.calculator3.pattern;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class DecimalMatchedPattern implements MatchedPattern {
-  private static final Pattern pattern = Pattern.compile("(-?\\d+(\\.\\d)?+[Ee][+-]?\\d+)|(-?\\d+\\.\\d+)");
+public class E_NotationBasedDecimalMatchedPattern implements MatchedPattern {
+  private static final Pattern pattern = Pattern.compile("-?\\d+(\\.\\d)?+[Ee][+-]?\\d+");
   private final Matcher matcher;
 
-  public DecimalMatchedPattern(String expression) {
+  public E_NotationBasedDecimalMatchedPattern(String expression) {
     this.matcher = pattern.matcher(expression);
   }
 

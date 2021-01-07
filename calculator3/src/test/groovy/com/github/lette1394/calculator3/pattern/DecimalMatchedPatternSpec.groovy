@@ -5,8 +5,7 @@ import spock.lang.Specification
 class DecimalMatchedPatternSpec extends Specification {
   def 'find #targets in #expression'() {
     expect:
-      def pattern = subject(expression)
-      findAll(pattern) == targets
+      findAll(subject(expression)) == targets
     where:
       expression                | targets
       '1.0'                     | ['1.0']
@@ -19,7 +18,8 @@ class DecimalMatchedPatternSpec extends Specification {
       '10.555 abc 123.123123'   | ['10.555', '123.123123']
       '-10.555 abc -123.123123' | ['-10.555', '-123.123123']
 
-      '2e+8'                    | ['2e.8']
+      '2e+8'                    | ['2e+8']
+      '2E+8'                    | ['2E+8']
       '2.0e+8'                  | ['2.0e+8']
       '-2.0e+8'                 | ['-2.0e+8']
       '2.0e-8'                  | ['2.0e-8']
@@ -65,6 +65,6 @@ class DecimalMatchedPatternSpec extends Specification {
   }
 
   private static MatchedPattern subject(String expression) {
-    return new IntegerMatchedPattern(expression)
+    return new DecimalMatchedPattern(expression)
   }
 }

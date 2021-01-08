@@ -3,7 +3,6 @@ package com.github.lette1394.calculator3.pattern;
 import static java.util.regex.Pattern.compile;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.stream.Collectors;
 
@@ -56,11 +55,6 @@ public class PatternMatcher {
 
   public PatternMatcherResult match(String expression) {
     final Matcher matcher = compile(pattern).matcher(expression);
-    return () -> {
-      if (matcher.find()) {
-        return Optional.of(matcher.group());
-      }
-      return Optional.empty();
-    };
+    return new PatternMatcherResult(expression, matcher);
   }
 }

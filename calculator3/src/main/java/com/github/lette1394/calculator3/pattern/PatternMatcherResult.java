@@ -1,9 +1,28 @@
 package com.github.lette1394.calculator3.pattern;
 
-import java.util.Optional;
+import static java.lang.String.format;
 
-// TODO: rename: MatchedPattern or sth good
-@FunctionalInterface
-public interface PatternMatcherResult {
-  Optional<String> next();
+import java.util.Optional;
+import java.util.regex.Matcher;
+
+public class PatternMatcherResult {
+  private final String expression;
+  private final Matcher matcher;
+
+  PatternMatcherResult(String expression, Matcher matcher) {
+    this.expression = expression;
+    this.matcher = matcher;
+  }
+
+  public Optional<String> next() {
+    if (matcher.find()) {
+      return Optional.of(matcher.group());
+    }
+    return Optional.empty();
+  }
+
+  @Override
+  public String toString() {
+    return format("%s", expression);
+  }
 }

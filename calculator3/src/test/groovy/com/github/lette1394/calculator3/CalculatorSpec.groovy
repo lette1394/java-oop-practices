@@ -195,7 +195,7 @@ class CalculatorSpec extends Specification {
     when: 'evaluate'
       evaluate(expression)
     then: 'throw overflow exception'
-      OverflowException exception = thrown()
+      thrown(OverflowException.class)
     where:
       expression                | expected
       '9223372036854775807 + 1' | void
@@ -208,7 +208,7 @@ class CalculatorSpec extends Specification {
     when: 'evaluate'
       evaluate(expression)
     then: 'throw underflow exception'
-      UnderflowException exception = thrown()
+      thrown(UnderflowException.class)
     where:
       expression                 | expected
       '-9223372036854775808 - 1' | void
@@ -222,7 +222,7 @@ class CalculatorSpec extends Specification {
     when: 'evaluate'
       evaluate(expression)
     then: 'throw overflow exception'
-      OverflowException exception = thrown()
+      thrown(OverflowException.class)
     where:
       expression                    | expected
       '1.7976931348623157e+308 + 1' | void
@@ -236,7 +236,7 @@ class CalculatorSpec extends Specification {
     when: 'evaluate'
       evaluate(expression)
     then: 'throw underflow exception'
-      UnderflowException exception = thrown()
+      thrown(UnderflowException.class)
     where:
       expression     | expected
       '4.9e-324 - 1' | void

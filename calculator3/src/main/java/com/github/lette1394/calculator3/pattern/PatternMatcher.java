@@ -1,9 +1,13 @@
 package com.github.lette1394.calculator3.pattern;
 
+import static java.lang.String.format;
 import static java.util.regex.Pattern.compile;
+import static java.util.stream.Collectors.joining;
 
 import java.util.List;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class PatternMatcher {
@@ -13,8 +17,12 @@ public class PatternMatcher {
     return matcher("");
   }
 
-  public static PatternMatcher matcher(String pattern) {
-    return new PatternMatcher(pattern);
+  public static PatternMatcher matcher(Pattern pattern) {
+    return matcher(pattern.pattern());
+  }
+
+  public static PatternMatcher matcher(String regex) {
+    return new PatternMatcher(regex);
   }
 
   public PatternMatcher(String pattern) {
@@ -26,19 +34,32 @@ public class PatternMatcher {
   }
 
   public static PatternMatcher or(PatternMatcher... others) {
+    return merge(joining("|", "(", ")"), others);
+  }
+
+  public static PatternMatcher and(PatternMatcher... others) {
+    return merge(joining(""), others);
+  }
+
+  private static PatternMatcher merge(Collector<CharSequence, ?, String> collector,
+    PatternMatcher... others) {
     final String composedOr = List.of(others)
       .stream()
       .map(builder -> builder.pattern)
-      .collect(Collectors.joining("|"));
+      .collect(collector);
     return matcher(composedOr);
   }
 
-  public static PatternMatcher single(char ch) {
-    return matcher("" + ch);
+  public static PatternMatcher just(String regex) {
+    return matcher(format("(%s)", regex));
   }
 
   public static PatternMatcher integer() {
     return matcher("(-?\\d+)");
+  }
+
+  public static PatternMatcher blank() {
+    return matcher("\\s*");
   }
 
   public static PatternMatcher decimal() {
@@ -53,8 +74,12 @@ public class PatternMatcher {
     return matcher("(-?\\d+(\\.\\d)?\\d*[Ee][+-]?\\d+)");
   }
 
+  public static PatternMatcher realNumber() {
+    return or(decimal(), integer());
+  }
+
   public PatternMatcherResult match(String expression) {
     final Matcher matcher = compile(pattern).matcher(expression);
-    return new PatternMatcherResult(expression, matcher);
+     return new PatternMatcherResult(expression, matcher);
   }
 }

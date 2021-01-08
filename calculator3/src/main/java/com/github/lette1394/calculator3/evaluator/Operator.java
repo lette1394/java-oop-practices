@@ -32,9 +32,9 @@ abstract class Operator {
       return Long.parseLong(toInteger(value));
     } catch (NumberFormatException e) {
       if (value.contains("-")) {
-        throw new UnderflowException(format("underflow: %s", value));
+        throw new UnderflowException(format("underflow: [%s]", value));
       }
-      throw new OverflowException(format("overflow: %s", value));
+      throw new OverflowException(format("overflow: [%s]", value));
     }
   }
 

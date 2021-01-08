@@ -30,6 +30,7 @@ class PatternMatcherSpec extends Specification {
       '2.0'        | ['2', '0']
       '2e+8'       | ['2', '8']
       '2.0e+8'     | ['2', '0', '8']
+      '2.0E+8'     | ['2', '0', '8']
   }
 
   private static def findAll(PatternMatcherResult matchedPattern) {

@@ -28,11 +28,11 @@ public class ExhaustiveCalculator implements Calculator {
 
   public ExhaustiveCalculator() {
     final Evaluator operators = new FallbackEvaluator(List.of(
+      new JustEvaluator(),
       new AddEvaluator(and(realNumber(), blank(), just("\\+"), blank(), realNumber()), TrimmedAdder.trim(new NumericAdderExactly())),
       new SubtractEvaluator(and(realNumber(), blank(), just("\\-"), blank(), realNumber()), TrimmedSubtractor.trim(new NumericSubtractorExactly())),
       new MultiplyEvaluator(new NumericMultiplierExactly()),
-      new DivideEvaluator(new NumericDivider()),
-      new JustEvaluator()
+      new DivideEvaluator(new NumericDivider())
     ));
 
     final Evaluator priority = new FallbackEvaluator(List.of(

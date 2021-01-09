@@ -29,7 +29,7 @@ public class PatternMatcher {
     this.pattern = pattern;
   }
 
-  public PatternMatcher then(PatternMatcher other) {
+  public PatternMatcher compose(PatternMatcher other) {
     return matcher(this.pattern + other.pattern);
   }
 

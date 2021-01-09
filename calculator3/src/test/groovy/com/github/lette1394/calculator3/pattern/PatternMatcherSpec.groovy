@@ -8,7 +8,7 @@ class PatternMatcherSpec extends Specification {
   def 'find integer #targets in #expression'() {
     expect:
       PatternMatcherResult result = matcher()
-        .then(integer())
+        .compose(integer())
         .match(expression)
 
       findAll(result) == targets
@@ -34,7 +34,7 @@ class PatternMatcherSpec extends Specification {
   def 'find real number #targets in #expression'() {
     expect:
       PatternMatcherResult result = matcher()
-        .then(realNumber())
+        .compose(realNumber())
         .match(expression)
 
       findAll(result) == targets
@@ -64,7 +64,7 @@ class PatternMatcherSpec extends Specification {
   def 'find expression #targets in #expression'() {
     expect:
       PatternMatcherResult result = matcher()
-        .then(and(realNumber(), just("\\+"), realNumber()))
+        .compose(and(realNumber(), just("\\+"), realNumber()))
         .match(expression)
 
       findAll(result) == targets

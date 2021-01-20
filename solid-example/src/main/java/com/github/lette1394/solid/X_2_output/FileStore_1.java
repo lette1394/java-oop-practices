@@ -1,11 +1,11 @@
 package com.github.lette1394.solid.X_2_output;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.SneakyThrows;
 
 @Getter
 @Setter(AccessLevel.PRIVATE)
@@ -34,25 +34,31 @@ public class FileStore_1 {
     this.workingDirectory = workingDirectory;
   }
 
-  @SneakyThrows
-  public void save(long id, String message) {
+  public void save(long id, String message) throws IOException {
     final Path path = Path.of(this.workingDirectory, id + ".txt");
     Files.write(path, message.getBytes());
   }
 
-  @SneakyThrows
-  public String read(long id) {
+
+  public String read(long id) throws IOException {
     final Path path = Path.of(this.workingDirectory, id + ".txt");
+
+    // 파일이 존재하지 않을 때 exception을 던질 거다.
+    // read()가 성공하면 항상 return valid string
     final byte[] bytes = Files.readAllBytes(path);
+
+
     return new String(bytes);
   }
 
   public String getFilePath(long id) {
     final Path path = Path.of(this.workingDirectory, id + ".txt");
+    // 항상 string 을 반환하는가? null을 반환하지는 않나?
+    // 이게 실제로 존재하는지 신경쓰는가?
+    // workingDirectory => null일 수 없다
+    // id => null일 수 없다
+    // ".txt" => null일 수 없다
+    // 전체 => null일 수 없다
     return path.toString();
   }
 }
-
-// - NO context switching between code and documentation system
-// - closer to the code (the problem lives)
-// - not aimed to user, but programmer

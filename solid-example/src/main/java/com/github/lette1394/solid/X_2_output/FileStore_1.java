@@ -35,7 +35,7 @@ public class FileStore_1 {
   }
 
   public void save(long id, String message) throws IOException {
-    final Path path = Path.of(this.workingDirectory, id + ".txt");
+    final Path path = getFilePath(id);
     Files.write(path, message.getBytes());
   }
 
@@ -56,7 +56,7 @@ public class FileStore_1 {
   // how do we signal with this API, that read() method가 string을 리턴하는지 안하는지?
   // throw NotFoundException?
   public String read(long id) throws IOException {
-    final Path path = Path.of(this.workingDirectory, id + ".txt");
+    final Path path = getFilePath(id);
 
     // 파일이 존재하지 않을 때 exception을 던질 거다.
     // read()가 성공하면 항상 return valid string
@@ -67,7 +67,7 @@ public class FileStore_1 {
   // 매우 복잡하고
   // 에러를 구분해야하면 여러 에러코드/에러 계층이 발생할 수 있다.
   public String read1(long id) throws IOException {
-    final Path path = Path.of(this.workingDirectory, id + ".txt");
+    final Path path = getFilePath(id);
     if (Files.exists(path)) {
       final byte[] bytes = Files.readAllBytes(path);
       return new String(bytes);
@@ -76,7 +76,7 @@ public class FileStore_1 {
   }
 
   public String read2(long id) {
-    final Path path = Path.of(this.workingDirectory, id + ".txt");
+    final Path path = getFilePath(id);
 
     try {
       final byte[] bytes = Files.readAllBytes(path);
@@ -86,14 +86,13 @@ public class FileStore_1 {
     }
   }
 
-  public String getFilePath(long id) {
-    final Path path = Path.of(this.workingDirectory, id + ".txt");
+  public Path getFilePath(long id) {
     // 항상 string 을 반환하는가? null을 반환하지는 않나?
     // 이게 실제로 존재하는지 신경쓰는가?
     // workingDirectory => null일 수 없다
     // id => null일 수 없다
     // ".txt" => null일 수 없다
     // 전체 => null일 수 없다
-    return path.toString();
+    return Path.of(this.workingDirectory, id + ".txt");
   }
 }

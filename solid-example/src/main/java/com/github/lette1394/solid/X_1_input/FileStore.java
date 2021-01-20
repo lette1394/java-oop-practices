@@ -12,19 +12,18 @@ public class FileStore {
   private String workingDirectory;
 
   public void save(long id, String message) throws IOException {
-    final Path path = Path.of(this.workingDirectory, id + ".txt");
+    final Path path = getFilePath(id);
     Files.write(path, message.getBytes());
   }
 
   public String read(long id) throws IOException {
-    final Path path = Path.of(this.workingDirectory, id + ".txt");
+    final Path path = getFilePath(id);
     final byte[] bytes = Files.readAllBytes(path);
     return new String(bytes);
   }
 
-  public String getFilePath(long id) {
-    final Path path = Path.of(this.workingDirectory, id + ".txt");
-    return path.toString();
+  public Path getFilePath(long id) {
+    return Path.of(this.workingDirectory, id + ".txt");
   }
 }
 

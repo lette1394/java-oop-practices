@@ -1,9 +1,13 @@
 package com.github.lette1394.calculator3.pattern;
 
+import static java.lang.String.format;
+import static java.util.regex.Pattern.compile;
+import static java.util.stream.Collectors.joining;
+
 import java.util.List;
-import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class PatternMatcher {
@@ -13,8 +17,12 @@ public class PatternMatcher {
     return matcher("");
   }
 
-  public static PatternMatcher matcher(String pattern) {
-    return new PatternMatcher(pattern);
+  public static PatternMatcher matcher(Pattern pattern) {
+    return matcher(pattern.pattern());
+  }
+
+  public static PatternMatcher matcher(String regex) {
+    return new PatternMatcher(regex);
   }
 
   public PatternMatcher(String pattern) {
@@ -22,48 +30,56 @@ public class PatternMatcher {
   }
 
   public PatternMatcher then(PatternMatcher other) {
-    return build(this.pattern + other.pattern);
+    return matcher(this.pattern + other.pattern);
   }
 
-  public PatternMatcher or(PatternMatcher... others) {
+  public static PatternMatcher or(PatternMatcher... others) {
+    return merge(joining("|", "(", ")"), others);
+  }
+
+  public static PatternMatcher and(PatternMatcher... others) {
+    return merge(joining(""), others);
+  }
+
+  private static PatternMatcher merge(Collector<CharSequence, ?, String> collector,
+    PatternMatcher... others) {
     final String composedOr = List.of(others)
       .stream()
       .map(builder -> builder.pattern)
-      .collect(Collectors.joining("|"));
-    return build(composedOr);
+      .collect(collector);
+    return matcher(composedOr);
   }
 
-  public PatternMatcher single(char ch) {
-    return this;
+  public static PatternMatcher just(String regex) {
+    return matcher(format("(%s)", regex));
   }
 
-  public PatternMatcher integer() {
-    return this;
+  public static PatternMatcher integer() {
+    return matcher("(-?\\d+)");
   }
 
-  public PatternMatcher decimal() {
-    return this;
+  public static PatternMatcher blank() {
+    return matcher("\\s*");
   }
 
-  public PatternMatcher plainDecimal() {
-    return this;
+  public static PatternMatcher decimal() {
+    return or(eBasedDecimal(), plainDecimal());
   }
 
-  public PatternMatcher eBasedDecimal() {
-    return this;
+  public static PatternMatcher plainDecimal() {
+    return matcher("(-?\\d+\\.\\d+)");
+  }
+
+  public static PatternMatcher eBasedDecimal() {
+    return matcher("(-?\\d+(\\.\\d)?\\d*[Ee][+-]?\\d+)");
+  }
+
+  public static PatternMatcher realNumber() {
+    return or(decimal(), integer());
   }
 
   public PatternMatcherResult match(String expression) {
-    final Matcher matcher = Pattern.compile(Pattern.quote(pattern)).matcher(expression);
-    return () -> {
-      if (matcher.find()) {
-        return Optional.of(matcher.group());
-      }
-      return Optional.empty();
-    };
-  }
-
-  private PatternMatcher build(String expression) {
-    return new PatternMatcher(expression);
+    final Matcher matcher = compile(pattern).matcher(expression);
+     return new PatternMatcherResult(expression, matcher);
   }
 }

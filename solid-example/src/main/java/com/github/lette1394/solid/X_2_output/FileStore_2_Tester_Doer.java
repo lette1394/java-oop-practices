@@ -12,11 +12,18 @@ import lombok.Setter;
 public class FileStore_2_Tester_Doer {
   private String workingDirectory;
 
-  public boolean exists(long id) {
-    if (Files.exists(getFilePath(id))) {
-      return true;
+  public static void main(String[] args) throws IOException {
+    final FileStore_2_Tester_Doer fileStore = new FileStore_2_Tester_Doer();
+
+    // main-problem: not thread-safe
+    String message = "";
+    if (fileStore.exists(13)) {
+      message = fileStore.read(13);
     }
-    return false;
+  }
+
+  public boolean exists(long id) {
+    return Files.exists(getFilePath(id));
   }
 
   public String read(long id) throws IOException {

@@ -2,25 +2,14 @@ package com.github.lette1394.solid.X_1_input;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.SneakyThrows;
 
 @Getter
-@Setter(AccessLevel.PRIVATE)
-public class FileStore_Input_6 {
+@Setter
+public class FileStore {
   private String workingDirectory;
-
-  public FileStore_Input_6(String workingDirectory) {
-    if (workingDirectory == null) {
-      throw new IllegalArgumentException();
-    }
-    if (!Files.exists(Path.of(workingDirectory))) {
-      throw new IllegalArgumentException();
-    }
-    this.workingDirectory = workingDirectory;
-  }
 
   @SneakyThrows
   public void save(long id, String message) {
@@ -40,3 +29,13 @@ public class FileStore_Input_6 {
     return path.toString();
   }
 }
+
+
+// 이 구현 중에서 어떤 input이 주어졌을 때
+// 뭔가 잘못될 부분이 있는가?
+// 후보1: id < 0 - 동작함
+// 후보2: message == null - 역시 동작함
+// 후보3: workingDirectory- 여기는 좀 문제.
+//    - null 이면? exception or 잘못된 동
+//    - 잘못된 directory이면? 모든 메서드가 영향 받음
+//    -

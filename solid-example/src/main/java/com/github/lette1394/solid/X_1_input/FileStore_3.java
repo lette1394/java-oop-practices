@@ -2,22 +2,18 @@ package com.github.lette1394.solid.X_1_input;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.SneakyThrows;
 
 @Getter
-@Setter(AccessLevel.PRIVATE)
-public class FileStore_Input_5 {
-  private String workingDirectory;
+@Setter
+public class FileStore_3 {
 
-  public FileStore_Input_5(String workingDirectory) {
-    if (workingDirectory == null) {
-      throw new IllegalArgumentException();
-    }
-    this.workingDirectory = workingDirectory;
-  }
+  // INVARIANTS LIVES HERE !!
+  // pre-condition: if it breaks, nothing is going to work.
+  // "workingDirectory never be null"
+  private String workingDirectory;
 
   @SneakyThrows
   public void save(long id, String message) {

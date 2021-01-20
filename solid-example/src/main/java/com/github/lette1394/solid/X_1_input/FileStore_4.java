@@ -8,12 +8,12 @@ import lombok.SneakyThrows;
 
 @Getter
 @Setter
-public class FileStore_Input_3 {
-
-  // INVARIANTS LIVES HERE !!
-  // pre-condition: if it breaks, nothing is going to work.
-  // "workingDirectory never be null"
+public class FileStore_4 {
   private String workingDirectory;
+
+  public FileStore_4(String workingDirectory) {
+    this.workingDirectory = workingDirectory;
+  }
 
   @SneakyThrows
   public void save(long id, String message) {
@@ -33,3 +33,10 @@ public class FileStore_Input_3 {
     return path.toString();
   }
 }
+
+
+// 생성자가 추가되었다. 이걸로 괜찮은가?
+// 앞서 "발견"한 불변식을 깨트릴 수 있는 방법은 없는가?
+//  ==> 있다. 2가지나.
+//  1. new FileStore_Input_4(null) => check precondition guard clause
+//  2. public setter => private setter로 바꾸자

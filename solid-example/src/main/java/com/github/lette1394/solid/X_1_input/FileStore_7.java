@@ -9,10 +9,10 @@ import lombok.SneakyThrows;
 
 @Getter
 @Setter(AccessLevel.PRIVATE)
-public class FileStore_Input_7 {
+public class FileStore_7 {
   private String workingDirectory;
 
-  public FileStore_Input_7(String workingDirectory) {
+  public FileStore_7(String workingDirectory) {
     if (workingDirectory == null) {
       throw new IllegalArgumentException();
     }

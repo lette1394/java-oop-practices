@@ -12,7 +12,7 @@ import lombok.Setter;
 public class FileStore_2_Tester_Doer {
   private String workingDirectory;
 
-  public static void main(String[] args) throws IOException {
+  public static void main(String[] args) {
     final FileStore_2_Tester_Doer fileStore = new FileStore_2_Tester_Doer();
 
     // main-problem: not thread-safe
@@ -26,27 +26,7 @@ public class FileStore_2_Tester_Doer {
     return Files.exists(getFilePath(id));
   }
 
-  public String read(long id) throws IOException {
-    final Path path = getFilePath(id);
-
-    // 파일이 존재하지 않을 때 exception을 던질 거다.
-    // read()가 성공하면 항상 return valid string
-    final byte[] bytes = Files.readAllBytes(path);
-    return new String(bytes);
-  }
-
-  // 매우 복잡하고
-  // 에러를 구분해야하면 여러 에러코드/에러 계층이 발생할 수 있다.
-  public String read1(long id) throws IOException {
-    final Path path = getFilePath(id);
-    if (Files.exists(path)) {
-      final byte[] bytes = Files.readAllBytes(path);
-      return new String(bytes);
-    }
-    throw new IllegalArgumentException("not found id");
-  }
-
-  public String read2(long id) {
+  public String read(long id) {
     final Path path = getFilePath(id);
 
     try {

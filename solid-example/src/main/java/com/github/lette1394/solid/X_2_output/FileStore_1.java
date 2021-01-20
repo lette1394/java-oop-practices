@@ -12,28 +12,6 @@ import lombok.Setter;
 public class FileStore_1 {
   private String workingDirectory;
 
-  public FileStore_1(String workingDirectory) {
-    if (workingDirectory == null) {
-      throw new IllegalArgumentException();
-    }
-
-    // LIKE DOCUMENTATION ! for programmer
-    // - 어떠한 상황인가?
-    // - 문제가 무엇인가?
-    // - 원인이 무엇인가?
-    // - 어떻게 해결하는가?
-    // - 유머?
-    if (!Files.exists(Path.of(workingDirectory))) {
-      throw new IllegalArgumentException(String.format(
-        "You tried to provide a working directory which does not exist."
-          + "The FileStore class prevented to work in illegal state, "
-          + "so you have to check that a valid working directory exists in your filesystem. "
-          + "This exception was created from statically typed pre-condition."
-          + "workingDirectory: [%s]", workingDirectory));
-    }
-    this.workingDirectory = workingDirectory;
-  }
-
   public void save(long id, String message) throws IOException {
     final Path path = getFilePath(id);
     Files.write(path, message.getBytes());

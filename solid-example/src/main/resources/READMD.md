@@ -243,7 +243,7 @@ Start with concrete,
 then discover abstractions as commonality emerges.
 
 Rule of three.
-=> 3개가 모이기 전에는 리팩토링 하지 말자ㅎㅎ 
+=> 3개가 모이기 전에는 리팩토링 뿐 아니라 추상화도 하지 말자ㅎㅎ 
 => 우리는 조그만 중복이 발생해도 helper나 static method를 만드는 경향이 있다. 
 => 근데 비슷한게 보여도 많은 sample이 모이지 않으면 뭐가 비슷한지/뭐가 다른지에 대한 데이터가 없어서  
 => 그러면 잘못된 helper나 잘못된 추상화로 이어질 가능성이 높다.
@@ -254,7 +254,20 @@ Rule of three.
 
 
 ### OCP
+Open for extensibility, closed for modification
+확장에는 열려있고 수정에는 닫혀있다.
 
+유일한 예외: bug fixing OK
+
+왜? 
+어떤 A 클래스가 작성되고, 다른 클래스나 메서드가 방금 작성된 A 클래스에 
+의존하기 시작한다고 해보자.
+그러면 A 클래스를 조금만 수정해도 A에 의존하는 모든 곳들에 영향을 받으니까.
+이걸 일일히 조사하는거... 우리 이미 많이 해봤다.
+
+Favour composition over inheritance
+상속은 확장에 불리하다 - strategy pattern
+composite, decorator pattern
 
 ### LSP 
 

@@ -40,3 +40,8 @@ public class FileStore {
     return Path.of(this.workingDirectory, id + ".txt").toFile();
   }
 }
+
+// 질문: 읽기 쉬운가?
+//  쉽다는 뜻의 정의:
+//  실제로 무엇을 하고 있는지만 간결하게 표현하고 있는가?
+//  그렇지 않다: cache, logging 등으로 방해받고 있어서

@@ -3,6 +3,7 @@ package com.github.lette1394.solid.X_3_SOLID_SRP_1;
 import com.github.lette1394.solid.X_3_SOLID_SRP.Files;
 import java.io.File;
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import lombok.Getter;
@@ -13,7 +14,19 @@ public class FileStore {
   @Getter
   private final String workingDirectory;
   private final Map<Long, String> cache;
-  private final StoreLogger log = new StoreLogger();
+  private final StoreLogger log;
+
+  public FileStore(String workingDirectory) {
+    if (workingDirectory == null) {
+      throw new IllegalArgumentException("workingDirectory is null");
+    }
+    if (!Path.of(workingDirectory).toFile().exists()) {
+      throw new IllegalArgumentException("workingDirectory not exist");
+    }
+    this.workingDirectory = workingDirectory;
+    this.cache = new HashMap<>();
+    this.log = new StoreLogger();
+  }
 
   public void save(long id, String message) {
     log.saving(id);

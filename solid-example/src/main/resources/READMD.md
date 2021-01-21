@@ -121,10 +121,90 @@ Be liberal in what you accept
 
 
 
+------------------------------
+SOLID 
+
+### do you/why you want to write SOLID code?
+
+
+SOLID - 딱딱하다?
+아니다 
+supple - 부드러운거
+소프트웨어 라는 말에 있따 
+하드웨어가 아니자나 "소프트"웨어자나
+
+우리는 변경사항을 그 시점에 다 알 수 없기 때문에,
+그래서 
+
+
+SOLID가 아닌거
+- 프레임워크가 아니다
+- 라이브러리도 아니다
+- 어떤 기술이 아니다 
+=> 어떤 기술이나 어떤 언어나 어떤 상황에서도 모두 적용할 수 있다
+java, C#, js, ...
+
+측정할 수 있거나 잴 수 있는게 아니다
+- pattern도 아니다
+- 어떤 목표도 아니다 -> SOLIDness를 측정할 수 없기 때문에
+
+SOLID code is different
+계속 다가갈수만 있고 달성할 수는 없다
 
 
 
 
+
+그래서 oop 언어를 쓴다고해서 oop 스타일로 코딩 할 수 있는건아니다
+solid를 따르면 근데 할 수 있다
+
+
+절차식으로 익숙해진 머리를 말랑말랑하게 해서
+SOLID 코드에 익숙해져 보도록 하자
+처음에는 낯설기 때문에 거부감을 느끼는게 당연하지만 
+코드가 매우 많아지고 프로젝트가 커지면 OOP가 효과적이다
+
+
+SOLID의 목적: be more productive
+by making code more maintainable
+through decomposition and decoupling 
+
+**SOLID is a reaction to a set of design smells**
+어떤 문제인지에 따라 SOLID가 최고의 해답이 아닐수도 있다 (성능 문제 등)
+
+그러나 아래의 design smell들은 SOLID가 해결할 수 있다
+- Rigidity - the design is difficult to change
+- Fragility - the design is easy to break
+- Immobility - the design is difficult to reuse
+- Viscosity - It's difficult to do the right thing
+- Needless Complexity - over design
+
+개발자들은 약간 지금 작성하는 코드를 
+"일반적인" 용도로 막~ 작성하고 쓰지도 않을거를 가지고 막 일반화 해서 코딩하려는 욕구가 있음
+
+리팩토링 하고 나서도 complexity가 개선되지 않으면?
+미안하지만 헛수고 한거다...
+
+
+--------------------
+SRP가 제일 중요해서 먼저 나온게 아니라 
+그냥 아무런 순서 없이 아래처럼 조합하면 
+SOLID라는 이름이 나와서 그런거
+
+각각의 원칙은 매우 긴밀하게 조합해서 적용될 수 있다
+"이번주에는 SRP를 적용해보자~" -> 이럴 수 없다. 오히려 더 나빠질 수 있다
+"이 모듈에서 / 이 클래스에서 / 이 패키지에서" SOLID를 조금 적용해보자
+이럴수는 있다
+
+### SRP 
+
+### OCP 
+
+### LSP 
+
+### ISP
+
+### DIP 
 
 
 

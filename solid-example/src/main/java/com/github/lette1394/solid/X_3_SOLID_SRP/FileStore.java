@@ -9,9 +9,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Getter
 @RequiredArgsConstructor
 public class FileStore {
+  @Getter
   private final String workingDirectory;
   private final Map<Long, String> cache;
 

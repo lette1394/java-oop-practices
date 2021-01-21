@@ -269,6 +269,12 @@ Favour composition over inheritance
 상속은 확장에 불리하다 - strategy pattern
 composite, decorator pattern
 
+((상속은 확장에 불리한 이유 설명하기))
+OCP - 3번째 강의 (Refactoring the Example Code 3:00 쯔음)
+
+Factory Method pattern 
+
+
 ### LSP 
 
 ### ISP

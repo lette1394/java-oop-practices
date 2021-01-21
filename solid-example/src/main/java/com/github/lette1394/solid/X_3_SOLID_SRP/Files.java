@@ -13,9 +13,9 @@ public class Files {
     }
   }
 
-  public static Path write(Path path, String string) {
+  public static void write(Path path, String string) {
     try {
-      return java.nio.file.Files.write(path, string.getBytes());
+      java.nio.file.Files.write(path, string.getBytes());
     } catch (IOException e) {
       e.printStackTrace();
       throw new RuntimeException(e);

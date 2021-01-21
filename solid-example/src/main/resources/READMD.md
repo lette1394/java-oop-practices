@@ -197,8 +197,64 @@ SOLID라는 이름이 나와서 그런거
 이럴수는 있다
 
 ### SRP 
+(끝나고 나서 전체 클래스 의존성을 그래프로 그리고
+각 클래스별로 책임이 이동한 걸 보여주기)
 
-### OCP 
+
+============= 
+하나 가지고는 좋아진 걸 느낄 수 없을거다.
+SOLID는 모두 같이 적용되어야 좋음
+
+GOTO conference; Greg Young 이라는 사람이 아래와 같은 말을 함
+"Developers have a tendency to attempt to solve specific problems with general solutions"
+=> this leads to coupling and complexity
+
+"so, instead of being general, code should be specific"
+SRP를 지키면, 각각의 class는 매우 문제에 집중하는 specific 해진다
+
+근데 만약에 generality가 필요하면 어쩌나?
+code duplication 이 발생하는데?
+=> role interface 를 도입하라!
+=> IStoreWriter, IStoreReader, IFileLocator
+=> 이런 추상화는 "발견"하는거지, 내가 만드는게 아니다 
+
+**Reused abstraction principle**
+어떤 인터페이스나 추상 클래스의 구현체가 몇 개 안되면,
+추상화가 구린거다.
+
+추상화는 그래서 뭔데?
+=> elimination of the irrelevant and the amplification of the essential
+관련 없는 건 제거하고 본질적인건 과장하기.
+예시) lock 인터페이스 - ttl을 내가 알 필요가 있나?
+
+
+((OCP 부분 - SOLID concrete 에서 약 7분 경의 사각형 10개 그림 꼭 내용 넣기)
+Reused abstraction principle을 위반하는 형태
+=> 어떤 인터페이스가 특정한 구현에만 꼭 맞게 작성이 되어 있어서 
+구현을 재사용 할 수 없을 때.
+
+그래서 인터페이스를 먼저 선언하지 말고,
+구현체를 먼저 만들어라. **SRP에 입각해서!!!!**
+그리고 나서 잘 살펴봐라. 어디가 공통점이 있는지.
+그래서 interface는 설계되는게 아니다.
+시스템이 진화하면서 **발견**되는 거다. 
+
+Start with concrete, 
+then discover abstractions as commonality emerges.
+
+Rule of three.
+=> 3개가 모이기 전에는 리팩토링 하지 말자ㅎㅎ 
+=> 우리는 조그만 중복이 발생해도 helper나 static method를 만드는 경향이 있다. 
+=> 근데 비슷한게 보여도 많은 sample이 모이지 않으면 뭐가 비슷한지/뭐가 다른지에 대한 데이터가 없어서  
+=> 그러면 잘못된 helper나 잘못된 추상화로 이어질 가능성이 높다.
+=> 그러니까 3개가 되기 전에는 그런 유혹을 참자.
+=> 나중에 하면 더 좋은 코드가 나올 수 있다.
+
+
+
+
+### OCP
+
 
 ### LSP 
 

@@ -400,9 +400,52 @@ INDICATES
 LSP compliance
 
 
+#### SOLID Isn't : (6. The ISP: SOLID Isn't)
+Duplo example
+-> duplo 4개로 dragon을 만들어달라
+
+Granularity: 입자의 단위?  
+Granularity 가 smaller 할 수록 more recognizable 하다.
+
+
+lots of classes
+
+
+hundreds of classes which contain dozens lines of code (smaller Granularity)
+vs
+few class which contains hundreds/thousand lines of code (bigger Granularity)
+
+duplo 드래곤이 더 알아보기 쉬웠나?
+lego 드래곤이 더 알아보기 쉬웠나?
+
+재사용성은 덤이다. 
+
 
 
 ### ISP
+client should NOT be forced to depend on method they do not use
+
+**Who owns the interfaces?**
+who defineds the interfaces?
+
+==> 일단 interface가 필요한 이유는 loose coupling이고,
+concrete class가 그 인터페이스를 "구현"하려고 필요한게 아니다
+
+오히려 그 interface를 사용하는 "CLIENT"가 
+CLIENT가 interface를 정의한다.
+왜? client가 없으면 그걸 사용하는 곳이 없으니까
+
+
+Favor Role interfaces over header interfaces
+
+ISP help LSP issues
+문제는 기능을 추가하는게 아니라 빼는데에 있다.
+
+
+
+
+
+
 
 ### DIP 
 

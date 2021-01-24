@@ -445,6 +445,21 @@ ISP help LSP issues
 
 
 
+#### Functional
+closure vs object vs function?
+
+object are data with behaviour
+closure are data with behaviour
+
+
+that if you follow the SOLID principles to some of its logical conclusions, 
+you end up with some object-oriented code that's not too far from being functional, 
+or it could easily become functional code, so that's interesting. 
+
+==> 성능 향상?
+==> functional programming 은 상태가 없으므로 근본적으로 멀티스레딩 이슈에 대응하는...
+==> 결국 고성능의 아키텍처를 구축하기 용이해진다 
+
 
 
 ### DIP 

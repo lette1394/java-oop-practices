@@ -1,4 +1,4 @@
-package com.github.lette1394.solid.X_6_SOLID_ISP_2;
+package com.github.lette1394.solid.X_6_SOLID_ISP_3;
 
 import java.io.File;
 import java.util.Optional;
@@ -22,25 +22,12 @@ public class MessageStore {
   public void save(long id, String message) {
 
     // 아래 4개의 메서드의 공통점은 무엇일까?
-    log().saving(id);
+    log().saving(id, message);
     store().writeAllText(id, message);
     cache().put(id, message);
-    log().saved(id);
+    log().saved(id, message);
 
-
-    // 일단 이름은 같지 않다
-    // 1. id를 parameter로 받는다
-    // 2. 전부 void를 반환한다. => 모두 command이다.
-    // 3. message parameter를 받기도 하고, 안 받기도 한다
-    //
-    // save() 메서드는 항상 messgae를 입력으로 받으므로
-    // 이 메서드 안에서는 항상 messsage를 사용할 수 있다.
-
-    // save() 메서드가 client 인데,
-    // client가 interface를 결정하므로,
-    // log().saving(id); 에서
-    // log().saving(id, message); 으로 변경할 수 있다.
-
+    // 이제는 이름만 다르다.
   }
 
   public Optional<String> read(long id) {

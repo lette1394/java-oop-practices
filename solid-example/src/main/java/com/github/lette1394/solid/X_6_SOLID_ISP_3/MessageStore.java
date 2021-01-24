@@ -23,11 +23,13 @@ public class MessageStore {
 
     // 아래 4개의 메서드의 공통점은 무엇일까?
     log().saving(id, message);
-    store().writeAllText(id, message);
+    store().writeAllText(id, message); // 이거부터 봐보자.
     cache().put(id, message);
     log().saved(id, message);
 
     // 이제는 이름만 다르다.
+    // 공통점을 찾을 때 구체적인 이름은 덜 중요하게 보는 편이다.
+    // -> compiler 에러가 아니니까 (기술적인 그런게 아니니까)
   }
 
   public Optional<String> read(long id) {

@@ -275,7 +275,132 @@ OCP - 3번째 강의 (Refactoring the Example Code 3:00 쯔음)
 Factory Method pattern 
 
 
+#### append-only
+변경은 진짜 코드를 한 글자라도 바꾸는거
+코드를 CRUD 관점에서 생각할 수 있다.
+코드를 생성하고 읽고 변경하고(update), 삭제하고...
+
+OCP는 source code에 대해서 Create or Read만 해야한다고 말한다
+이건 뭔가 이상한데, 우리가 코딩하던 방식이 아니기 때문이다.
+
+장점은 무엇인가? 
+이렇게 했을 때 장점이 있나?
+
+너가 작성하는 소프트웨어 시스템에서 변경을 없앨 수만 있다면,
+
+git 같은 시스템을 생각해보자
+이걸 소스코드에도 적용하면 효과적일까?
+
+그럼 이 말이 매번 완전한 코드를 완벽하게 만들라는 말일까?
+완벽한 시스템으로 만들었다고 하더라도 그 시점에 우리의 요구사항을 완벽하게 알 수 없기 때문에
+결국 변경을 해야 하고 게다가 우리는 사람이라서 항상 실수를 한다.
+
+strangler pattern
+우리가 모듈을 교체할 때 자연스럽게 하는거
+1. 새로운 시스템을 만든다
+2. client를 새로운 시스템을 사용하도록 
+3. 점진적으로 변경한다
+4. 모든 client가 새로운 시스템을 사용하면
+5. old 시스템을 삭제한다
+=> 이걸 코드 레벨에서도 할 수 있을까??
+
+근데 같은 코드베이스, 내가 수정할 수 있는 범위에서는
+IDE 들이 리팩토링 기능을 지원해주기 때문에 
+이렇게까지 안해도된다
+
+내가 근데 만약에 open source를 작성하고 있고
+내 client가 누군지 모르면은 
+이런 전략을 해볼 수 있다.
+
+
+
 ### LSP 
+You should favor composition over inheritance
+LSP is about polymorphism.
+이건 약간 논문으로...
+이해가 잘 안됐음...
+
+Robert martin 
+=> Subtypes must be substitutable for their base types
+(not very helpful, sounds very abstract)
+
+예제를 많이 익히는게 좋지만...
+다시 정의해보면
+
+"If you imagine that you have a client,
+that client should be able to consume any implementation 
+without changing the correctness of the system"
+
+'the correctness of the system'의 정확한 기준?
+'정확하다'는 기준이 무엇인가? 
+
+행동을 바꾸는 건 일단 아니다. 왜? 다형성은 행위를 바꾸는거니까
+'the correctness of the system' 이건 application 마다 다를 수 밖에 없다
+
+In the end, the correctness of the system is application specific,
+but you can think about the correctness of the system as the superset of all the correct behavior that a system might exhibit.
+
+////
+아... 그러니까 
+다운로드라고 하면은
+
+1. storage download가 있고: correct behavior
+2. thumbnail download가 있고: correct behavior
+3. file cache download가 있는데: correct behavior
+
+the superset of all the correct behavior: {1,2,3}
+따라서 이 셋중에 하나기만하면은 
+'the correctness of the system' 이라는 말이구나...ㅇㅋㅇㅋ
+////
+
+common the correctness of the system:
+: the system should not be crashed
+
+client가 A 구현을 사용할때는 crash 없다가
+B 구현을 사용할때 crash가 일어나면, 
+then you changed the correctness of the system 
+
+
+#### When LSP violated?
+throw UnsupportedOperationException 
+
+코드 어딘가에서 저걸 던지고 있다는거는 
+'the correctness of the system'이 무너진 상태라는 거. 
+왜냐면 일부 operation이 저 예외로 동작하지 않을테니까
+
+ex) Collection - UnmodifiableList
+기존에 그냥 List를 잘 사용하고 있던 서버에
+갑자기 UnmodifiableList를 사용하게 되면
+일부 연산이 제대로 동작하지 않을 '위험'이 있기 때문에
+'the correctness of the system'가 깨질 수 있다
+
+
+ex2) downcast 
+=> 하위 타입이 뭔지 확인하고 뭔가를 처리한다는거는 
+인터페이스에서 말하는 약속을, 하위 구현체가 제대로 지원하지 않을 가능성이 높기 때문
+
+  
+ex3) (most common, subtle) Extracted interfaces 
+-> concrete class 에서 interface를 만드는 행위
+-> intellij에서 class를 interface로 만들기! 라고 하면은 자동으로 interface를 만들어주는데, 이건 거의 모든 경우에 문제각 된다
+
+
+**LSP is often violated by attempts to REMOVE features**
+- UnmodifiableList는 List에서 `add,remove,clear, ...`를 없애려고 하는거다
+- 근데 interface에서 메서드를 삭제할 수는 없으니... throw UOE
+
+=> 그래서 인터페이스의 모든 부분을 다 구현하든지, 아예 구현하면 안된다.
+
+interface에 더 많은 멤버, 메서드, 구현이 있을 수록
+하위 구현에서 뭔가 지우고 싶은 기능이 많아질 가능성이 높기 때문에
+
+interface의 메서드가 많을 수록, LSP를 위반할 가능성도 같이 높아진다
+=> Reused abstractions principle compliance
+INDICATES
+LSP compliance
+
+
+
 
 ### ISP
 

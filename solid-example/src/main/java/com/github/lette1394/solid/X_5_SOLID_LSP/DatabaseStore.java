@@ -1,19 +1,24 @@
 package com.github.lette1394.solid.X_5_SOLID_LSP;
 
-import com.github.lette1394.solid.X_3_SOLID_SRP.Files;
 import java.io.File;
 import java.nio.file.Path;
 
-public class FileStore {
+public class DatabaseStore extends FileStore {
   public String readAllText(Path path) {
-    return Files.readAllBytes(path);
+    // read from database;
+    return "";
   }
 
   public void writeAllText(Path path, String string) {
-    Files.write(path, string);
+    // write to database;
   }
 
   public File getFile(long id, String workingDirectory) {
-    return Path.of(workingDirectory, id + ".txt").toFile();
+    // LSP 위반!
+    return super.getFile(id, workingDirectory);
   }
 }
+
+
+// 일단 계층이 이상하다
+// SqlStore -> FileStore ?

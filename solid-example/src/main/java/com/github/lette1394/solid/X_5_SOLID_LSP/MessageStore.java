@@ -29,7 +29,7 @@ public class MessageStore {
   public void save(long id, String message) {
     log().saving(id);
     File file = getFile(id);
-    fileStore().write(file.toPath(), message);
+    fileStore().writeAllText(file.toPath(), message);
     cache().put(id, message);
     log().saved(id);
   }
@@ -42,7 +42,7 @@ public class MessageStore {
       return Optional.empty();
     }
     String message = cache().computeIfAbsent(id,
-      () -> fileStore().readAllBytes(file.toPath()));
+      () -> fileStore().readAllText(file.toPath()));
     log().returning(id);
     return Optional.of(message);
   }

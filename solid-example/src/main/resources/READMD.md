@@ -306,6 +306,13 @@ business rule과 영속성
 끝
 
 -----
+Greg Young 
+developers have a tendency to 
+
+
+
+
+----- 
 
 
 ### OCP
@@ -405,6 +412,9 @@ Client가 interface 를 소유한다.
 
 
 
+어디를 닫을 것인가?
+
+
 ----------
 
 ### LSP 
@@ -447,7 +457,7 @@ the superset of all the correct behavior: {1,2,3}
 ////
 
 common the correctness of the system:
-: the system should not be crashed
+: the system should not crash
 
 client가 A 구현을 사용할때는 crash 없다가
 B 구현을 사용할때 crash가 일어나면, 
@@ -471,11 +481,17 @@ ex) Collection - UnmodifiableList
 ex2) downcast 
 => 하위 타입이 뭔지 확인하고 뭔가를 처리한다는거는 
 인터페이스에서 말하는 약속을, 하위 구현체가 제대로 지원하지 않을 가능성이 높기 때문
-
+- 그러나 하위타입을 체크한다고 해도 실제로 LSP를 위반하지 않을 수는 있다
+- 여기서 우리가 해야할 일은 하위 구현 타입을 체크하면서, 내가 the correctness of the system을 깨뜨리지 않을 수 있는 fallback rule이 항상 있는 지가 중요
+- fallback rule이 없는 상태에서, 기대하는 하위 구현 타입이 아니라면, 시스템은 잘못 동작하기 쉬워진다. 
   
 ex3) (most common, subtle) Extracted interfaces 
--> concrete class 에서 interface를 만드는 행위
--> intellij에서 class를 interface로 만들기! 라고 하면은 자동으로 interface를 만들어주는데, 이건 거의 모든 경우에 문제각 된다
+- concrete class 에서 interface를 만드는 행위
+- 가장 흔하게 LSP가 위반되는 경우 
+- intellij에서 class를 interface로 만들기! 라고 하면은 자동으로 interface를 만들어주는데, 이건 거의 모든 경우에 문제가 된다
+- very very likely to violate LSP
+
+
 
 
 **LSP is often violated by attempts to REMOVE features**
@@ -486,11 +502,17 @@ ex3) (most common, subtle) Extracted interfaces
 
 interface에 더 많은 멤버, 메서드, 구현이 있을 수록
 하위 구현에서 뭔가 지우고 싶은 기능이 많아질 가능성이 높기 때문에
-
 interface의 메서드가 많을 수록, LSP를 위반할 가능성도 같이 높아진다
+
 => Reused abstractions principle compliance
 INDICATES
 LSP compliance
+
+어떤 interface에 대해, 다수의 구현체가 있다면
+그건 이미 그 interface를 통해 다양한 동작을(with correctness) 할 수 있다는 증명이 되는 셈이므로
+LSP도 덩달아 만족할 가능성이 높다.
+항상 그렇다는 건 아니고 그런 경향이 있다!
+
 
 
 #### SOLID Isn't : (6. The ISP: SOLID Isn't)
@@ -530,9 +552,15 @@ CLIENT가 interface를 정의한다.
 
 
 Favor Role interfaces over header interfaces
+header class: cpp header file 같은 interface. extracted interface와 같은 맥락. big interface, lots of members on the interface 
+role interface: very few members. client가 interface를 정의하므로, 정확히 딱 필요한 것만 interface에 정의가 됨 
+extreme role interface: an interface with only a single member.
+
+FileStore 예제에서 보듯, 3개의 메서드만 있는 interface도 충분히 문제가 될 수 있다.(LSP 위반)
+
 
 ISP help LSP issues
-문제는 기능을 추가하는게 아니라 빼는데에 있다.
+**문제는 기능을 추가하는게 아니라 빼는데에 있다**
 
 
 
@@ -557,8 +585,11 @@ or it could easily become functional code, so that's interesting.
 
 ### DIP 
 
+favor composition over inheritance
 
-
+composition을 어떻게 하는지 알려주겠다. 크게 두 가지 방법.
+1. composite pattern
+2. decorator pattern
 
 
 

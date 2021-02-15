@@ -21,7 +21,7 @@ public class MessageStore {
 
   public void save(long id, String message) {
     log().saving(id);
-    store().writeAllText(id, message);
+    store().writeAllText(id, message); // 이 메서드에서는 writeAllText()만 사용하고
     cache().put(id, message);
     log().saved(id);
   }
@@ -29,7 +29,7 @@ public class MessageStore {
   public Optional<String> read(long id) {
     log().reading(id);
     Optional<String> message = cache()
-      .computeIfAbsent(id, () -> store().readAllText(id));
+      .computeIfAbsent(id, () -> store().readAllText(id)); // 이 메서드에서는 readAllText()만 사용하고
 
     if (message.isPresent()) {
       log().returning(id);
@@ -40,7 +40,7 @@ public class MessageStore {
   }
 
   public File getFile(long id) {
-    return fileLocator().getFile(id);
+    return fileLocator().getFile(id); // 이 메서드에서는 getFile()만 사용하고 => ISP 위반!
   }
 
   // factory method

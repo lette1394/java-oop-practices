@@ -1,0 +1,16 @@
+@startuml
+class Iphone {}
+class Galaxy {}
+class Pixel {}
+class Main {}
+
+interface Phone {
+  dial()
+}
+
+Main -> Phone
+Phone <|--Iphone
+Phone <|--Galaxy
+Phone <|--Pixel
+@enduml
+

@@ -5,7 +5,7 @@ import java.util.Optional;
 
 // header interface
 public interface Store {
-  Optional<String> readAllText(long id);
+  Optional<String> readAllText(long id); // 추상화 레벨을 맞췄다. (id 사용)
 
   void writeAllText(long id, String string);
 

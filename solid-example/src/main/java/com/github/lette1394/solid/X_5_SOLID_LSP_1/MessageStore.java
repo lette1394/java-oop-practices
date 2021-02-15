@@ -43,6 +43,10 @@ public class MessageStore {
     }
     String message = cache().computeIfAbsent(id,
       () -> fileStore().readAllText(file.toPath()));
+//    String message = cache().computeIfAbsent(id,
+//      () -> fileStore().readAllText(file.toPath()).get()); // readAllText()가 Optional 을 반환해서 get()을 호출하는거는
+    // 이게 file store일 때만 유효한 구현이다. 왜냐면 위에서 file.exists()를 체크하고 있으니깐.
+
     log().returning(id);
     return Optional.of(message);
   }

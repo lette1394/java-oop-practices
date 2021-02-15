@@ -18,7 +18,7 @@ public class MessageStore {
   }
 
   public void save(long id, String message) {
-    log().saving(id);
+    log().saving(id); // File file = getFile(id); 가 사라졌다!
     store().writeAllText(id, message);
     cache().put(id, message);
     log().saved(id);

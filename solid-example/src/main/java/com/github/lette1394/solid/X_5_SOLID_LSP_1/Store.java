@@ -20,6 +20,15 @@ public interface Store {
   void writeAllText(Path path, String string);
 
   File getFile(long id, String workingDirectory);
+  // readAllText의 path parameter와 비교해서 그림으로 추상화 범위를 그려보자
+  // 안정적인 것에 의존하자는 원칙 적용
+  // id => 더 안정적
+  // path => id에 비하면 불안정적. path를 바꾸는데 더 쉽다.
+  //
+  // 이 interface는 안정적이게 설계되었다. 안정적으로 잘 변하지 않는 의도를 가지고 있다.
+  // 그런데, path를 사용하게 되면 원래 의도와 어긋나게 된다.
+  // 그래서 상위 추상화 개념으로 parameter를 변경해야 하는 것! path -> id 
+
 }
 
 // 전형적인 LSP 위반!!!

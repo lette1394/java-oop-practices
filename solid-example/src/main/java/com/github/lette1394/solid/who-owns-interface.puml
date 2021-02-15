@@ -1,0 +1,216 @@
+@startuml
+interface MyInterface
+
+Client -> MyInterface
+MyInterface <|-- Server
+
+class Client {}
+class Server {}
+@enduml
+
+
+@startuml
+Client -> Server
+
+class Client {}
+class Server {}
+@enduml
+
+
+@startuml
+Button -> Light
+
+class Button {
+  click()
+}
+class Light {
+  turnOn()
+  turnOff()
+}
+@enduml
+
+
+@startuml
+Button -> ButtonHandler
+ButtonHandler <|-- Light
+
+interface ButtonHandler {
+  turnOn()
+  turnOff()
+}
+class Button {
+  click()
+}
+class Light {
+}
+@enduml
+
+@startuml
+package button {
+  class Button {
+    click()
+  }
+}
+
+package light {
+  class Light
+  interface ButtonHandler {
+      turnOn()
+      turnOff()
+    }
+}
+
+Button -> ButtonHandler
+ButtonHandler <|-- Light
+@enduml
+
+
+@startuml
+Button -> LightServer
+LightServer <|-- Light
+
+interface LightServer {
+  turnOn()
+  turnOff()
+}
+class Button {
+  click()
+}
+class Light {
+}
+@enduml
+
+
+@startuml
+Button -> Switchable
+Switchable <|-- Light
+
+interface Switchable {
+  turnOn()
+  turnOff()
+}
+class Button {
+  click()
+}
+class Light {
+}
+@enduml
+
+
+@startuml
+package controller {
+  interface Switchable {
+    turnOn()
+    turnOff()
+  }
+
+  class Button {
+      click()
+    }
+  class Speaker {
+    onListen()
+  }
+}
+
+package device {
+  class Light {
+  }
+}
+
+
+Button -> Switchable
+Speaker -> Switchable
+Switchable <|-- Light
+
+@enduml
+
+
+
+
+
+
+@startuml
+package "Policy Layer" {
+  class Policy
+}
+
+package "Mechanism Layer" {
+  class Mechanism
+}
+
+package "Utility Layer" {
+  class Utility
+}
+
+Policy --> Mechanism
+Mechanism --> Utility
+@enduml
+
+
+@startuml
+package "Policy Layer" {
+  class Policy
+  interface "Policy Service Interface"
+}
+
+package "Mechanism Layer" {
+  class Mechanism
+  interface "Mechanism Service Interface"
+}
+
+package "Utility Layer" {
+  class Utility
+}
+
+Policy -> "Policy Service Interface"
+"Policy Service Interface" <|-- Mechanism
+
+Mechanism -> "Mechanism Service Interface"
+"Mechanism Service Interface" <|-- Utility
+@enduml
+
+
+
+@startuml
+class Very-Stable
+
+Class1 -up-> "Very-Stable"
+Class2 -up-> "Very-Stable"
+Class3 -up-> "Very-Stable"
+Class4 -up-> "Very-Stable"
+Class5 -up-> "Very-Stable"
+@enduml
+@startuml
+"Very-Stable" -> Unstable
+
+Class1 -up-> "Very-Stable"
+Class2 -up-> "Very-Stable"
+Class3 -up-> "Very-Stable"
+Class4 -up-> "Very-Stable"
+Class5 -up-> "Very-Stable"
+@enduml
+
+@startuml
+class Very-UnStable
+
+Class1 <-down- "Very-UnStable"
+Class2 <-down- "Very-UnStable"
+Class3 <-down- "Very-UnStable"
+Class4 <-down- "Very-UnStable"
+Class5 <-down- "Very-UnStable"
+@enduml
+
+
+@startuml
+package stable {
+  interface "Very-Stable-Interface"
+  "Very-Stable" -> "Very-Stable-Interface"
+}
+
+"Very-Stable-Interface" <|-right- Unstable
+Class1 -up-> "Very-Stable"
+Class2 -up-> "Very-Stable"
+Class3 -up-> "Very-Stable"
+Class4 -up-> "Very-Stable"
+Class5 -up-> "Very-Stable"
+@enduml

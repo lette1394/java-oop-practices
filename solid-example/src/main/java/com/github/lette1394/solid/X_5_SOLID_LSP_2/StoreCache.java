@@ -13,6 +13,10 @@ public class StoreCache {
   }
 
   public Optional<String> computeIfAbsent(long id, Supplier<Optional<String>> stringSupplier) {
-    return cache.computeIfAbsent(id, __ -> stringSupplier.get());
+    final Optional<String> entry = stringSupplier.get();
+    if (!cache.containsKey(id) && entry.isPresent()) {
+      return cache.put(id, entry);
+    }
+    return entry;
   }
 }

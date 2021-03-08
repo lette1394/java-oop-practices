@@ -3,7 +3,7 @@ package com.github.lette1394.solid.X_5_SOLID_LSP_1;
 import java.io.File;
 import java.nio.file.Path;
 
-public class DatabaseStore implements Store {
+public class DatabaseStore implements Store2 {
   public String readAllText(Path path) {
     // read from database;
     return "";

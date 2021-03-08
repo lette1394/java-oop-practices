@@ -4,7 +4,7 @@ import com.github.lette1394.solid.X_3_SOLID_SRP.Files;
 import java.io.File;
 import java.nio.file.Path;
 
-public class FileStore implements Store {
+public class FileStore implements Store2 {
   public String readAllText(Path path) {
     return Files.readAllBytes(path);
   }

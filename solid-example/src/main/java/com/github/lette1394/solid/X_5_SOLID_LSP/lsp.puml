@@ -1,0 +1,96 @@
+@startuml
+class Client {}
+@enduml
+
+
+
+@startuml
+interface ClientInterface
+Client -> ClientInterface
+class Client {}
+@enduml
+
+
+
+@startuml
+interface ClientInterface
+Client -> ClientInterface
+class Client {}
+
+ClientInterface <|-- Implements_1
+ClientInterface <|-- Implements_2
+ClientInterface <|-- Implements_3
+@enduml
+
+
+@startuml
+interface List
+class UnmodifiableList {}
+
+List <|-- UnmodifiableList
+@enduml
+
+
+@startuml
+MessageStore --> FileStore
+MessageStore --> StoreCache
+MessageStore --> StoreLogger
+
+class MessageStore
+class FileStore {
+  String readAllText(path)
+  void readAllText(path, message)
+  File getFile(id, workingDirectory)
+}
+class StoreCache
+class StoreLogger
+
+class DatabaseStore
+
+FileStore <|-- DatabaseStore
+@enduml
+
+
+
+@startuml
+MessageStore --> Store
+MessageStore --> StoreCache
+MessageStore --> StoreLogger
+
+interface Store {
+  String readAllText(path)
+  void readAllText(path, message)
+  File getFile(id, workingDirectory)
+}
+Store <|-- FileStore
+Store <|-- DatabaseStore
+class MessageStore
+class FileStore {
+}
+class StoreCache
+class StoreLogger
+
+class DatabaseStore
+@enduml
+
+
+@startuml
+MessageStore --> Store
+MessageStore --> StoreCache
+MessageStore --> StoreLogger
+
+interface Store {
+  String readAllText(id)
+  void readAllText(id, message)
+  File getFile(id)
+}
+Store <|-- FileStore
+Store <|-- DatabaseStore
+class MessageStore
+class FileStore {
+}
+class StoreCache
+class StoreLogger
+
+class DatabaseStore
+@enduml

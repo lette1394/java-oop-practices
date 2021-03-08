@@ -4,13 +4,13 @@ import java.io.File;
 import java.util.Optional;
 
 public class MessageStore {
-  private final IStoreCache cache;
+  private final StoreCache cache;
   private final StoreLogger log;
   private final Store store;
   private final FileLocator fileLocator;
 
   public MessageStore(String workingDirectory) {
-    this.cache = new StoreCache();
+    this.cache = new MemoryStoreCache();
     this.log = new StoreLogger();
     this.store = new FileStore(workingDirectory);
     this.fileLocator = new FileStore(workingDirectory);
@@ -62,7 +62,7 @@ public class MessageStore {
   }
 
   // factory method
-  public IStoreCache cache() {
+  public StoreCache cache() {
     return cache;
   }
 

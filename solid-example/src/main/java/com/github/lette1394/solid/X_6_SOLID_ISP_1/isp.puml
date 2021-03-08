@@ -1,0 +1,480 @@
+@startuml
+class Client {}
+
+interface HugeInterface {
+  void doA()
+  B getB()
+  Future callC()
+  void markD()
+}
+
+Client -> HugeInterface
+
+HugeInterface <|-- Impl_1
+HugeInterface <|-- Impl_2
+HugeInterface <|-- Impl_3
+@enduml
+
+
+
+@startuml
+package "Package_1" {
+  class A
+}
+
+package "Package_2" {
+  class B
+}
+
+A --> B
+@enduml
+
+
+
+@startuml
+package "Package_1" {
+  class A
+}
+
+package "Package_2" {
+  class B
+  class C
+  class D
+  class E
+  class F
+  class G
+  class H
+}
+
+A --> B
+@enduml
+
+
+@startuml
+package "Package_1" {
+  class A
+}
+
+package "Package_2" {
+  class B
+  class C
+  class D
+}
+
+package "Package_3" {
+  class E
+  class F
+  class G
+  class H
+  class XYZ
+}
+
+package "Package_4" {
+  class I
+  class J
+  class K
+  class L
+}
+
+
+A --> B
+A --> F
+A --> L
+A --> K
+@enduml
+
+
+@startuml
+package "Package_1" {
+  class A
+}
+
+package "Package_11" {
+  class B
+  class F
+  class L
+  class K
+}
+
+package "Package_2" {
+  class C
+  class D
+}
+
+package "Package_3" {
+  class E
+  class G
+  class H
+  class XYZ
+}
+
+package "Package_4" {
+  class I
+  class J
+}
+
+
+A -> B
+A --> F
+A --> L
+A --> K
+@enduml
+
+
+
+@startuml
+interface Store {
+  String readAllText(id)
+  void writeAllText(id, message)
+}
+interface FileLocator {
+  File getFile(id)
+}
+
+class MessageStore {
+  void save(long id, String message)
+  Optional<String> read(long id)
+  File getFile(long id)
+}
+class FileStore
+class StoreCache {
+  void put(long id, String message)
+  Optional<String> computeIfAbsent(long id, Supplier<Optional<String>> stringSupplier)
+}
+class StoreLogger {
+  void saving(long id, String message)
+  void saved(long id, String message)
+  void reading(long id)
+  void didNotFound(long id)
+  void returning(long id)
+}
+class DatabaseStore
+
+
+Store <|-- FileStore
+FileLocator <|-- FileStore
+Store <|-- DatabaseStore
+
+
+
+MessageStore --> Store
+MessageStore --> StoreCache
+MessageStore --> StoreLogger
+MessageStore --> FileLocator
+
+@enduml
+
+
+@startuml
+class MessageStore {
+  void save(long id, String message)
+  Optional<String> read(long id)
+  File getFile(long id)
+}
+interface Store {
+  String readAllText(id)
+  void writeAllText(id, message)
+}
+interface FileLocator {
+  File getFile(id)
+}
+interface StoreCache {
+  void put(long id, String message)
+  Optional<String> computeIfAbsent(long id, Supplier<Optional<String>> stringSupplier)
+}
+interface StoreLogger {
+  void saving(long id, String message)
+  void saved(long id, String message)
+  void reading(long id)
+  void didNotFound(long id)
+  void returning(long id)
+}
+
+
+Store <|-- FileStore
+FileLocator <|-- FileStore
+Store <|-- DatabaseStore
+
+StoreCache <|-- LocalMemoryCache
+StoreCache <|-- RedisCache
+StoreCache <|-- ArcusCache
+
+StoreLogger <|-- Log4j2Logger
+StoreLogger <|-- AccessLogger
+
+MessageStore --> Store
+MessageStore --> StoreCache
+MessageStore --> StoreLogger
+MessageStore --> FileLocator
+@enduml
+
+
+@startuml
+class MessageStore {
+  void save(long id, String message)
+}
+interface Store {
+  String readAllText(id)
+  void writeAllText(id, message)
+}
+interface FileLocator {
+  File getFile(id)
+}
+interface StoreCache {
+  void put(long id, String message)
+  Optional<String> computeIfAbsent(long id, Supplier<Optional<String>> stringSupplier)
+}
+interface StoreLogger {
+  void saving(long id, String message)
+  void saved(long id, String message)
+  void reading(long id)
+  void didNotFound(long id)
+  void returning(long id)
+}
+
+
+Store <|-- FileStore
+FileLocator <|-- FileStore
+Store <|-- DatabaseStore
+
+StoreCache <|-- LocalMemoryCache
+StoreCache <|-- RedisCache
+StoreCache <|-- ArcusCache
+
+StoreLogger <|-- Log4j2Logger
+StoreLogger <|-- AccessLogger
+
+MessageStore --> Store
+MessageStore --> StoreCache
+MessageStore --> StoreLogger
+MessageStore --> FileLocator
+@enduml
+
+
+@startuml
+class MessageStore {
+  void save(long id, String message)
+  Optional<String> read(long id)
+  File getFile(long id)
+}
+interface StoreCache {
+  void put(long id, String message)
+  Optional<String> computeIfAbsent(long id, Supplier<Optional<String>> stringSupplier)
+}
+StoreCache <|-- LocalMemoryCache
+StoreCache <|-- RedisCache
+StoreCache <|-- ArcusCache
+
+MessageStore --> StoreCache
+@enduml
+
+
+
+@startuml
+class MessageStore {
+  void save(long id, String message)
+}
+
+interface Store {
+  void save(long id, String message)
+}
+interface StoreCache {
+  void save(long id, String message)
+}
+interface StoreLogger {
+  void saving(long id, String message)
+  void saved(long id, String message)
+}
+
+Store <|-- FileStore
+Store <|-- DatabaseStore
+
+StoreCache <|-- LocalMemoryCache
+StoreCache <|-- RedisCache
+StoreCache <|-- ArcusCache
+
+StoreLogger <|-- Log4j2Logger
+StoreLogger <|-- AccessLogger
+
+MessageStore --> Store
+MessageStore --> StoreCache
+MessageStore --> StoreLogger
+@enduml
+
+
+@startuml
+package message {
+class MessageStore {
+  void save(long id, String message)
+}
+}
+
+package store {
+interface Store {
+  void readAllText(long id, String message)
+}
+class FileStore
+class DatabaseStore
+}
+
+package cache {
+interface StoreCache {
+  void save(long id, String message)
+}
+class LocalMemoryCache
+class RedisCache
+class ArcusCache
+}
+
+package log {
+interface StoreLogger {
+  void saving(long id, String message)
+  void saved(long id, String message)
+}
+class Log4j2Logger
+class AccessLogger
+}
+
+Store <|-- FileStore
+Store <|-- DatabaseStore
+
+StoreCache <|-- LocalMemoryCache
+StoreCache <|-- RedisCache
+StoreCache <|-- ArcusCache
+
+StoreLogger <|-- Log4j2Logger
+StoreLogger <|-- AccessLogger
+
+MessageStore --> Store
+MessageStore --> StoreCache
+MessageStore --> StoreLogger
+@enduml
+
+@startuml
+package message {
+class MessageStore {
+  void save(long id, String message)
+}
+interface Store {
+  void readAllText(long id, String message)
+}
+interface StoreCache {
+  void save(long id, String message)
+}
+interface StoreLogger {
+  void saving(long id, String message)
+  void saved(long id, String message)
+}
+}
+
+package store {
+class FileStore
+class DatabaseStore
+}
+
+package cache {
+class LocalMemoryCache
+class RedisCache
+class ArcusCache
+}
+
+package log {
+class Log4j2Logger
+class AccessLogger
+}
+
+Store <|-- FileStore
+Store <|-- DatabaseStore
+
+StoreCache <|-- LocalMemoryCache
+StoreCache <|-- RedisCache
+StoreCache <|-- ArcusCache
+
+StoreLogger <|-- Log4j2Logger
+StoreLogger <|-- AccessLogger
+
+MessageStore --> Store
+MessageStore --> StoreCache
+MessageStore --> StoreLogger
+@enduml
+
+
+@startuml
+class MessageStore {
+  void save(long id, String message)
+}
+interface Store {
+  void writeAllText(long id, message)
+}
+interface StoreCache {
+  void put(long id, String message)
+}
+interface StoreLogger {
+  void saving(long id)
+  void saved(long id)
+}
+
+MessageStore --> Store
+MessageStore --> StoreCache
+MessageStore --> StoreLogger
+@enduml
+
+
+
+@startuml
+class MessageStore {
+  void save(long id, String message)
+}
+interface Store {
+  void save(long id, String message)
+}
+interface StoreCache {
+  void save(long id, String message)
+}
+interface StoreLogger {
+  void saving(long id, String message)
+  void saved(long id, String message)
+}
+
+MessageStore --> Store
+MessageStore --> StoreCache
+MessageStore --> StoreLogger
+@enduml
+
+
+
+
+@startuml
+class message.MessageStore {
+  void save(long id, String message)
+}
+interface message.StoreWriter {
+  void save(long id, String message)
+}
+
+package log {
+class LogSavedStoreWriter
+class LogSavingStoreWriter
+
+interface Logger
+
+Logger <|-- Log4j2Logger
+Logger <|-- AccessLogger
+
+LogSavedStoreWriter --> Logger
+LogSavingStoreWriter --> Logger
+}
+
+
+message.MessageStore -right-> message.StoreWriter
+
+message.StoreWriter <|-- LogSavedStoreWriter
+message.StoreWriter <|-- LogSavingStoreWriter
+
+message.StoreWriter <|-- cache.LocalMemoryCache
+message.StoreWriter <|-- cache.ArcusCache
+
+message.StoreWriter <|-- store.FileStore
+message.StoreWriter <|-- store.DatabaseStore
+
+@enduml

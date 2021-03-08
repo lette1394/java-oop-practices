@@ -22,10 +22,10 @@ public class MessageStore {
   public void save(long id, String message) {
 
     // 아래 4개의 메서드의 공통점은 무엇일까?
-    log().saving(id, message);
-    store().writeAllText(id, message); // 이거부터 봐보자.
-    cache().put(id, message);
-    log().saved(id, message);
+    log.saving(id, message);
+    store.writeAllText(id, message); // 이거부터 봐보자.
+    cache.put(id, message);
+    log.saved(id, message);
 
     // 이제는 이름만 다르다.
     // 공통점을 찾을 때 구체적인 이름은 덜 중요하게 보는 편이다.
@@ -33,14 +33,14 @@ public class MessageStore {
   }
 
   public Optional<String> read(long id) {
-    log().reading(id);
-    Optional<String> message = cache()
-      .computeIfAbsent(id, () -> store().readAllText(id));
+    log.reading(id);
+    Optional<String> message = cache
+      .computeIfAbsent(id, () -> store.readAllText(id));
 
     if (message.isPresent()) {
-      log().returning(id);
+      log.returning(id);
     } else {
-      log().didNotFound(id);
+      log.didNotFound(id);
     }
     return message;
   }
@@ -53,19 +53,6 @@ public class MessageStore {
 
   public File getFile(long id) {
     return fileLocator().getFile(id);
-  }
-
-  // factory method
-  public StoreCache cache() {
-    return cache;
-  }
-
-  public StoreLogger log() {
-    return log;
-  }
-
-  public Store store() {
-    return store;
   }
 
   public FileLocator fileLocator() {

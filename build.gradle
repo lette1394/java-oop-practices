@@ -27,17 +27,28 @@ subprojects {
     implementation 'commons-io:commons-io:2.8.0'
 
     implementation 'org.slf4j:slf4j-api:1.7.30'
-
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
 
     implementation 'org.projectlombok:lombok:1.18.16'
     annotationProcessor 'org.projectlombok:lombok:1.18.16'
+
+
+    implementation 'org.springframework.boot:spring-boot-starter:2.4.3'
+    implementation 'io.netty:netty-all:4.1.59.Final'
+
 
 
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     testImplementation 'org.hamcrest:hamcrest:2.2'
     testImplementation 'org.spockframework:spock-core:2.0-M4-groovy-3.0'
     testImplementation 'org.codehaus.groovy:groovy:3.0.7'
+    testImplementation 'org.jmock:jmock-junit5:2.12.0'
+    testImplementation 'org.testcontainers:spock:1.15.2'
+    testImplementation 'org.testcontainers:mockserver:1.15.2'
+    testImplementation 'org.mock-server:mockserver-client-java:5.11.2'
+    testImplementation 'org.mockito:mockito-core:3.8.0'
 
+    implementation 'com.spotify:completable-futures:0.3.3'
   }
 
   task initSourceFolders {

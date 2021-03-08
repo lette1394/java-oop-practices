@@ -11,7 +11,7 @@ public class MessageStore {
   private final String workingDirectory;
   private final StoreCache cache;
   private final StoreLogger log;
-  private final Store store;
+  private final Store2 store;
 
   public MessageStore(String workingDirectory) {
     if (workingDirectory == null) {
@@ -64,7 +64,7 @@ public class MessageStore {
     return log;
   }
 
-  public Store fileStore() {
+  public Store2 fileStore() {
     return store;
   }
 }

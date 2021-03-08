@@ -19,13 +19,15 @@ public class MessageStore {
   }
 
   // 모든 곳에서 ISP를 적용할 수 있을까?
+  // header interface를 모두 없애고, role interface로 모두 바꾸자.
+  // 아래의 save() 메서드에서 호출하는 또 다른 4가지의 메서드들은 header interface 들이다.
   public void save(long id, String message) {
 
     // 아래 4개의 메서드의 공통점은 무엇일까?
-    log().saving(id);
-    store().writeAllText(id, message);
-    cache().put(id, message);
-    log().saved(id);
+    log.saving(id);
+    store.writeAllText(id, message);
+    cache.put(id, message);
+    log.saved(id);
 
 
     // 일단 이름은 같지 않다

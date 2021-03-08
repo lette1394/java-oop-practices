@@ -467,7 +467,7 @@ then you changed the correctness of the system
 #### When LSP violated?
 throw UnsupportedOperationException 
 
-코드 어딘가에서 저걸 던지고 있다는거는 
+코드 어딘가에서 저걸 던지고 있다는거는
 'the correctness of the system'이 무너진 상태라는 거. 
 왜냐면 일부 operation이 저 예외로 동작하지 않을테니까
 
@@ -585,12 +585,41 @@ or it could easily become functional code, so that's interesting.
 
 ### DIP 
 
-favor composition over inheritance
+### DIP definition
+---
+high-level modules should not depend on low-level modules
+Both should depend on abstractions
+
+abstraction should not depend upon details. 
+details should depend upon abstractions
+
+---
+
+#### favor composition over inheritance
+- 요즘 언어들은 single inheritance만 허용한다
+- 한 번 상속을 하면 다른 클래스를 상속 받을 수 없음
+- 그 말은 곧 한 번 상속을 하면 다른 기능을 확장하기 어렵다는 말 -> 매우 큰 제약, 상속받은 클래스는 매우 딱딱해짐 
+- 다중 상속을 지원하면 이런 문제가 없을지도 모르지만... 다중 상속을 언어차원에서 금지하는 이유가 있음. e.g. 다이아몬드 문제 등
+- 게다가 상속으로 수행하는 모든 작업은 조합으로도 당연히 수행할 수 있기 때문에 -> 조합을 이용하면 잃는게 전혀 없음
+- 따라서 코드 유지보수 측면에서는 조합이 더 나은 방법
+
+
+
+
+
+
 
 composition을 어떻게 하는지 알려주겠다. 크게 두 가지 방법.
 1. composite pattern
 2. decorator pattern
 
+
+
+
+### composite 
+
+
+### decorator 
 
 
 

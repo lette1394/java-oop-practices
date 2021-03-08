@@ -1,0 +1,236 @@
+@startuml
+class mydomain.StableService
+annotation org.springframework.stereotype.Service
+
+mydomain.StableService --> org.springframework.stereotype.Service
+@enduml
+
+
+@startuml
+class mydomain.StableService
+class io.netty.channel.ChannelDuplexHandler
+
+mydomain.StableService --|> io.netty.channel.ChannelDuplexHandler
+@enduml
+
+
+@startuml
+interface mydomain.AbstractNotifier {
+  void notify(URL url)
+}
+
+class java.net.URL
+mydomain.AbstractNotifier --> java.net.URL
+@enduml
+
+
+@startuml
+package stable {
+  interface Stable
+}
+
+package unstable {
+  class Concrete
+}
+
+Concrete -up-|> Stable
+@enduml
+
+
+@startuml
+package stable {
+  interface Stable
+  class StableFactory
+}
+
+package unstable {
+  class Concrete
+}
+
+Concrete -up-|> Stable
+StableFactory -right-> Stable
+StableFactory --> Concrete
+@enduml
+
+
+@startuml
+package stable {
+  interface Stable
+}
+
+package unstable {
+  class Concrete
+  class StableFactory
+}
+
+Concrete -up-|> Stable
+StableFactory -up-> Stable
+StableFactory -right-> Concrete
+@enduml
+
+
+@startuml
+package stable {
+  interface Stable
+}
+
+package unstable {
+  class Concrete
+}
+
+package factory {
+  class StableFactory
+}
+
+Concrete -up-|> Stable
+StableFactory -up-> Stable
+StableFactory -right-> Concrete
+@enduml
+
+
+@startuml
+package stable {
+  interface Stable
+  interface StableFactory {
+    Stable newStable()
+  }
+}
+
+package unstable {
+  class Concrete
+  class ConcreteFactory
+}
+
+StableFactory -right-> Stable
+Concrete -up-|> Stable
+ConcreteFactory -left-> Concrete
+ConcreteFactory --|> StableFactory
+
+
+@enduml
+
+
+@startuml
+package stable {
+  interface Stable
+  interface StableFactory {
+    Stable newStable()
+  }
+}
+
+package unstable1 {
+  class Concrete1
+  class ConcreteFactory1
+}
+
+package unstable2 {
+  class Concrete2
+  class ConcreteFactory2
+}
+
+package unstable3 {
+  class Concrete3
+  class ConcreteFactory3
+}
+
+StableFactory -right-> Stable
+Concrete1 -up-|> Stable
+ConcreteFactory1 -left-> Concrete1
+ConcreteFactory1 -up-|> StableFactory
+@enduml
+
+
+
+
+@startuml
+package stable {
+  interface Stable
+  interface StableFactory {
+    Stable newStable()
+  }
+}
+
+package unstable1 {
+  class Concrete1
+  class ConcreteFactory1
+}
+
+package unstable2 {
+  class Concrete2
+  class ConcreteFactory2
+}
+
+package unstable3 {
+  class Concrete3
+  class ConcreteFactory3
+}
+
+StableFactory -right-> Stable
+Concrete1 -up-|> Stable
+ConcreteFactory1 -left-> Concrete1
+ConcreteFactory1 -up-|> StableFactory
+
+
+class Main
+
+Main -up-> Stable
+Main -up-> StableFactory
+Main -up-> ConcreteFactory1
+Main -up-> ConcreteFactory2
+Main -up-> ConcreteFactory3
+@enduml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@startuml
+class message.MessageStore {
+  void save(long id, String message)
+}
+interface message.StoreWriter {
+  void save(long id, String message)
+}
+interface message.StoreReader {
+  void save(long id, String message)
+}
+interface message.FileLocator {
+  void save(long id, String message)
+}
+
+package log {
+class AccessLogger
+class Slf4jStoreLogger
+}
+
+
+message.MessageStore --> message.StoreReader
+message.MessageStore --> message.StoreWriter
+message.MessageStore --> message.FileLocator
+
+message.StoreReader <|-- Slf4jStoreLogger
+message.StoreWriter <|-- Slf4jStoreLogger
+
+cache.ArcusCache --> cache.ArcusClient
+class cache.LocalMemoryStoreCache
+class cache.RedisCache
+
+message.StoreReader <|-- store.LocalFileStore
+message.StoreWriter <|-- store.LocalFileStore
+message.FileLocator <|-- store.LocalFileStore
+
+message.StoreReader <|-- cache.LocalMemoryStoreCache
+message.StoreWriter <|-- cache.LocalMemoryStoreCache
+
+
+@enduml

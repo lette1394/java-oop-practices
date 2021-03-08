@@ -114,3 +114,44 @@ class OrderedCompositePhone implements Phone {
     throw new UnsupportedOperationException();
   }
 }
+
+
+
+
+
+
+
+
+
+
+class MyImplements implements ExtractedInterface {
+  @Override
+  public void doA() {
+  }
+
+  @Override
+  public String getB() {
+    return "";
+  }
+
+  @Override
+  public List<Integer> parseC() {
+    return null;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

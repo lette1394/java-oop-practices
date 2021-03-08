@@ -16,8 +16,7 @@ public interface Store {
   // 결과적으로는 Path path와 다를게 없다.
   // 오히려 명시적으로 드러내는게 아니므로 더 나쁘다.
 
-
-  void writeAllText(Path path, String string);
+  void writeAllText(Path path, String message);
 
   File getFile(long id, String workingDirectory);
   // readAllText의 path parameter와 비교해서 그림으로 추상화 범위를 그려보자
@@ -31,18 +30,5 @@ public interface Store {
 
 }
 
-// 전형적인 LSP 위반!!!
-// => 구현 클래스에서 바로 interface를 추출한 경우
-//
-// 특별한 하나의 구현체를 위한 인터페이스임 (FileStore)
-// 추상화를 잘못 한 경우.
-//
-//
-// 그래서 어떤 interface에 많은 메서드가 있을 경우에
-// LSP를 위반할 가능성이 높아진다.
-//
-// 여기서는 FileStore만 올바른 구현이다.
-//
-//
 
 

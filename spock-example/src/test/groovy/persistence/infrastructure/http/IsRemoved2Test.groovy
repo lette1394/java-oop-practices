@@ -35,4 +35,19 @@ class IsRemoved2Test extends Specification {
         .xLineStorageDeleted(Optional.of("True"))
         .build())
   }
+
+  def 'refactor test'() {
+    expect:
+      isDeleted().test(given("true"))
+
+      !isDeleted().test(given("TRUE"))
+
+      !isDeleted().test(given("True"))
+  }
+
+  private static RemoveResponse given(String value) {
+    RemoveResponse.builder()
+      .xLineStorageDeleted(Optional.of(value))
+      .build()
+  }
 }

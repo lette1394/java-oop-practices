@@ -1,7 +1,9 @@
 package integration
 
+import spock.lang.Ignore
 import spock.lang.Specification
 
+@Ignore
 class UploadingSpec extends Specification {
   def storage = new Storage()
   def server = new Server()

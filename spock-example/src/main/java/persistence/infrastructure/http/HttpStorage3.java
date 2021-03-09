@@ -1,6 +1,8 @@
-package remover;
+package persistence.infrastructure.http;
 
 import static java.lang.String.format;
+import static persistence.infrastructure.http.IsRemoved2.isDeleted;
+import static persistence.infrastructure.http.IsRemoved2.statusCodeIs200;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -8,12 +10,17 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodySubscribers;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Predicate;
-import lombok.RequiredArgsConstructor;
+import operation.domain.CannotRemoveException;
+import persistence.domain.Storage;
 
-@RequiredArgsConstructor
-public class HttpStorage implements Storage {
+public class HttpStorage3 implements Storage {
   private final String httpStorageEndpoint;
+  private final IsRemoved2 isRemoved2;
+
+  public HttpStorage3(String httpStorageEndpoint) {
+    this.httpStorageEndpoint = httpStorageEndpoint;
+    this.isRemoved2 = response -> statusCodeIs200().and(isDeleted()).test(response);
+  }
 
   @Override
   public CompletableFuture<Void> save(String id, String message) {
@@ -28,11 +35,18 @@ public class HttpStorage implements Storage {
         throw new CannotRemoveException(throwable);
       })
       .thenAccept(response -> {
-        if (statusCodeIs200().and(isDeleted()).test(response)) {
+        if (isRemoved2.test(toRemoveResponse(response))) {
           return;
         }
         throw new CannotRemoveException("status code != 200");
       });
+  }
+
+  private RemoveResponse toRemoveResponse(HttpResponse<Void> response) {
+    return RemoveResponse.builder()
+      .statusCode(response.statusCode())
+      .xLineStorageDeleted(response.headers().firstValue("x-line-storage-deleted"))
+      .build();
   }
 
   @Override
@@ -45,15 +59,5 @@ public class HttpStorage implements Storage {
       .DELETE()
       .uri(URI.create(format("%s/id/%s", httpStorageEndpoint, id)))
       .build();
-  }
-
-  private static Predicate<HttpResponse<Void>> statusCodeIs200() {
-    return response -> response.statusCode() == 200;
-  }
-
-  private static Predicate<HttpResponse<Void>> isDeleted() {
-    return response -> response.headers()
-      .firstValue("x-line-storage-deleted")
-      .map(deleted -> deleted.equals("true")).orElse(false);
   }
 }

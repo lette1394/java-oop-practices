@@ -1,0 +1,173 @@
+@startuml
+
+package operation {
+  package domain as remover.domain {
+    interface AsyncRemoveOperation
+  }
+
+  package application as remover.application {
+    interface RetryableAsyncRemoveOperation
+  }
+
+  package infrastructure as remover.infra {
+    class HttpRemoveOperation
+  }
+}
+
+
+package persistence {
+  package domain as persistence.domain {
+    interface Storage
+  }
+  package infrastructure as persistence.infra {
+    class MemoryStorage
+    class HttpStorage
+  }
+}
+
+MemoryStorage -up-|> Storage
+HttpStorage -up-|> Storage
+HttpStorage --> java.net.http.HttpClient
+
+RetryableAsyncRemoveOperation -up-|> AsyncRemoveOperation
+HttpRemoveOperation -up-> Storage
+HttpRemoveOperation -up-|> AsyncRemoveOperation
+
+@enduml
+
+
+@startuml
+package persistence {
+  package domain as persistence.domain {
+    interface Storage
+  }
+  package infrastructure as persistence.infra {
+    class MemoryStorage
+    class HttpStorage
+  }
+}
+
+MemoryStorage -up-|> Storage
+HttpStorage -up-|> Storage
+HttpStorage --> java.net.http.HttpClient
+@enduml
+
+
+
+@startuml
+package persistence {
+  package domain as persistence.domain {
+    interface Storage
+  }
+  package infrastructure as persistence.infra {
+    class MemoryStorage
+
+    package http as persistence.infra.http {
+      class HttpStorage
+    }
+  }
+}
+
+MemoryStorage -up-|> Storage
+HttpStorage -up-|> Storage
+HttpStorage --> java.net.http.HttpClient
+@enduml
+
+
+@startuml
+package persistence {
+  package domain as persistence.domain {
+    interface Storage
+  }
+  package infrastructure as persistence.infra {
+    class MemoryStorage
+
+    package http as persistence.infra.http {
+      class HttpStorage
+
+      interface IsRemoved {
+        boolean test(HttpResponse<Void> response)
+
+        static Predicate<HttpResponse<Void>> statusCodeIs200()
+        static Predicate<HttpResponse<Void>> isDeleted()
+      }
+    }
+  }
+}
+
+MemoryStorage -up-|> Storage
+HttpStorage -up-|> Storage
+HttpStorage --> java.net.http.HttpClient
+HttpStorage -right-> IsRemoved
+@enduml
+
+
+
+@startuml
+class java.net.http.HttpResponse
+
+package persistence {
+  package domain as persistence.domain {
+    interface Storage
+  }
+  package infrastructure as persistence.infra {
+    class MemoryStorage
+
+    package http as persistence.infra.http {
+      class HttpStorage
+
+      interface IsRemoved {
+        boolean test(HttpResponse<Void> response)
+
+        static Predicate<HttpResponse<Void>> statusCodeIs200()
+        static Predicate<HttpResponse<Void>> isDeleted()
+      }
+    }
+  }
+}
+
+MemoryStorage -up-|> Storage
+HttpStorage -up-|> Storage
+HttpStorage --> java.net.http.HttpClient
+HttpStorage -right-> IsRemoved
+IsRemoved --> java.net.http.HttpResponse
+@enduml
+
+
+
+@startuml
+class java.net.http.HttpResponse
+
+package persistence {
+  package domain as persistence.domain {
+    interface Storage
+  }
+  package infrastructure as persistence.infra {
+    class MemoryStorage
+
+    package http as persistence.infra.http {
+      class HttpStorage
+
+      class RemoveResponse {
+        int statusCode
+        Optional<String> xLineStorageDeleted
+      }
+
+      interface IsRemoved {
+        boolean test(RemoveResponse response)
+
+        static Predicate<RemoveResponse> statusCodeIs200()
+        static Predicate<RemoveResponse> isDeleted()
+      }
+    }
+  }
+}
+
+MemoryStorage -up-|> Storage
+HttpStorage -up-|> Storage
+HttpStorage --> java.net.http.HttpClient
+HttpStorage -right-> IsRemoved
+IsRemoved --> RemoveResponse
+@enduml
+
+

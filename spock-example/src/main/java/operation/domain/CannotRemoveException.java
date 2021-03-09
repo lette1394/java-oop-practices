@@ -1,4 +1,4 @@
-package remover;
+package operation.domain;
 
 public class CannotRemoveException extends RuntimeException {
   public CannotRemoveException() {

@@ -1,7 +1,10 @@
-package remover;
+package operation.infrastructure;
 
 import java.util.concurrent.CompletionStage;
 import lombok.RequiredArgsConstructor;
+import operation.domain.AsyncRemoveOperation;
+import operation.domain.CannotRemoveException;
+import persistence.domain.Storage;
 
 @RequiredArgsConstructor
 public class HttpRemoveOperation implements AsyncRemoveOperation {

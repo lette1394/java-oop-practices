@@ -1,4 +1,4 @@
-package remover;
+package operation.domain;
 
 import java.util.concurrent.CompletionStage;
 

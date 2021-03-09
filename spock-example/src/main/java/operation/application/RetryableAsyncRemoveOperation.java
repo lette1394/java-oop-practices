@@ -1,4 +1,4 @@
-package remover;
+package operation.application;
 
 import static java.util.concurrent.CompletableFuture.failedFuture;
 
@@ -8,6 +8,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.function.Function;
 import lombok.RequiredArgsConstructor;
+import operation.domain.AsyncRemoveOperation;
+import operation.domain.CannotRemoveException;
 import org.jetbrains.annotations.NotNull;
 
 @RequiredArgsConstructor

@@ -1,6 +1,7 @@
 import org.mockserver.client.MockServerClient
 import org.testcontainers.containers.MockServerContainer
 import org.testcontainers.spock.Testcontainers
+import spock.lang.Ignore
 import spock.lang.Specification
 
 import java.net.http.HttpClient
@@ -10,6 +11,7 @@ import java.net.http.HttpResponse
 import static org.mockserver.model.HttpRequest.request
 import static org.mockserver.model.HttpResponse.response
 
+@Ignore
 @Testcontainers
 class MockServerContainerTest extends Specification {
   MockServerContainer mockServer = new MockServerContainer("5.11.2")

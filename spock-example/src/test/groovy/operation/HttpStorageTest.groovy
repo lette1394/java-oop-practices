@@ -1,5 +1,6 @@
-package remover
+package operation
 
+import persistence.infrastructure.http.HttpStorage
 import spock.lang.Specification
 
 class HttpStorageTest extends Specification {

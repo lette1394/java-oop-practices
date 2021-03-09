@@ -1,43 +1,28 @@
-package remover
+package operation
 
+import operation.application.RetryableAsyncRemoveOperation
+import operation.domain.AsyncRemoveOperation
+import persistence.domain.Storage
+import persistence.infrastructure.MemoryStorage
 import spock.lang.Specification
 
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.CompletionException
 import java.util.concurrent.CompletionStage
 
-class RetryableAsyncRemoveOperationTest2 extends Specification {
+class RetryableAsyncRemoveOperationTest3 extends Specification {
   Storage storage
   String unknownId
-
-  var alwaysFailedOperation = Mock(AsyncRemoveOperation)
+  AsyncRemoveOperation alwaysFailedOperation
 
   def setup() {
     storage = new MemoryStorage()
     unknownId = anyNonBlankString()
+    alwaysFailedOperation = Mock()
   }
 
-  def 'retry 2: verify interactions'() {
-    given:
-      var subject = subjectWithRetryCount(3)
-    when:
-      await subject.remove(unknownId)
-    then:
-      def e = thrown(CompletionException)
-      def cause = e.cause
-
-      3 * alwaysFailedOperation.remove(unknownId) >> CompletableFuture.failedFuture(new RuntimeException())
-
-      cause.class == CannotRemoveException
-      cause.message == "retry count exceed: 3"
-      cause.suppressed.size() == 3
-  }
-
-  def 'retry 3: refactor test assertions'() {
-    // '<이거 이름 어떻게 짓지...?>'
-    // '로직을 설명하면 안되고 스펙을 설명해야 한다'
-
-    given:
+  def 'retry 4: refactor test assertions'() {
+    given: 'retry count == 3'
       var retryCount = 3
       var subject = subjectWith(retryCount)
     when:
@@ -47,12 +32,26 @@ class RetryableAsyncRemoveOperationTest2 extends Specification {
       retryCount * alwaysFailedOperation.remove(unknownId) >> failed()
   }
 
-  private static CompletableFuture<Object> failed() {
-    return CompletableFuture.failedFuture(new RuntimeException())
+  def '''
+      ## retry 5:
+
+      the other way (with)
+
+      '''() {
+    given:
+      var retryCount = 3
+      var subject = subjectWith(retryCount)
+    when:
+      await subject.remove(unknownId)
+    then:
+      thrown CompletionException
+      with(alwaysFailedOperation) {
+        retryCount * remove(unknownId) >> failed()
+      }
   }
 
-  private RetryableAsyncRemoveOperation subjectWithRetryCount(int retryCount) {
-    return new RetryableAsyncRemoveOperation(alwaysFailedOperation, retryCount)
+  private static CompletableFuture<Object> failed() {
+    return CompletableFuture.failedFuture(new RuntimeException())
   }
 
   private RetryableAsyncRemoveOperation subjectWith(int retryCount) {

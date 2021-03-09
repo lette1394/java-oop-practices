@@ -1,5 +1,10 @@
-package remover
+package operation
 
+import operation.application.RetryableAsyncRemoveOperation
+import operation.domain.CannotRemoveException
+import operation.infrastructure.HttpRemoveOperation
+import persistence.domain.Storage
+import persistence.infrastructure.MemoryStorage
 import spock.lang.Specification
 
 import java.util.concurrent.CompletionException

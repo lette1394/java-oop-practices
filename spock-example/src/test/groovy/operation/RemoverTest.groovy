@@ -1,6 +1,10 @@
-package remover
+package operation
 
+import operation.domain.AsyncRemoveOperation
+import operation.infrastructure.HttpRemoveOperation
 import org.junit.jupiter.api.Assertions
+import persistence.domain.Storage
+import persistence.infrastructure.MemoryStorage
 import spock.lang.Specification
 
 class RemoverTest extends Specification {

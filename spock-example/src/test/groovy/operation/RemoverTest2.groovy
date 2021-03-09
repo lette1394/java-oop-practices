@@ -1,7 +1,7 @@
 package operation
 
 import operation.domain.AsyncRemoveOperation
-import operation.infrastructure.HttpRemoveOperation
+import operation.infrastructure.StorageRemoveOperation
 import persistence.domain.Storage
 import persistence.infrastructure.MemoryStorage
 import spock.lang.Specification
@@ -18,7 +18,7 @@ class RemoverTest2 extends Specification {
   def 'remove 5: Make assertion be much more readable'() {
     given:
       storage.save(id, "message")
-      AsyncRemoveOperation operation = new HttpRemoveOperation(storage)
+      AsyncRemoveOperation operation = new StorageRemoveOperation(storage)
     when:
       operation.remove(id).toCompletableFuture().join()
     then:

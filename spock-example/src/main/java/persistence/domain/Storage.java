@@ -7,3 +7,9 @@ public interface Storage {
   CompletableFuture<Void> remove(String id);
   CompletableFuture<Boolean> exists(String id);
 }
+
+
+
+
+
+

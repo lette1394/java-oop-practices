@@ -2,7 +2,50 @@
 
 package operation {
   package domain as remover.domain {
-    interface AsyncRemoveOperation
+    interface AsyncRemoveOperation {
+      CompletionStage<Void> remove(String id);
+    }
+  }
+
+  package application as remover.application {
+    interface RetryableAsyncRemoveOperation
+  }
+
+    package infrastructure as remover.infra {
+      class StorageRemoveOperation
+    }
+}
+
+
+package persistence {
+  package domain as persistence.domain {
+    interface Storage {
+      CompletableFuture<Void> save(String id, String message);
+      CompletableFuture<Void> remove(String id);
+      CompletableFuture<Boolean> exists(String id);
+    }
+  }
+  package infrastructure as persistence.infra {
+    class MemoryStorage
+  }
+}
+
+MemoryStorage -up-|> Storage
+StorageRemoveOperation -up-|> AsyncRemoveOperation
+StorageRemoveOperation -up-> Storage
+RetryableAsyncRemoveOperation -up-|> AsyncRemoveOperation
+@enduml
+
+
+
+
+
+@startuml
+package operation {
+  package domain as remover.domain {
+    interface AsyncRemoveOperation {
+      CompletionStage<Void> remove(String id);
+    }
   }
 
   package application as remover.application {
@@ -10,14 +53,18 @@ package operation {
   }
 
   package infrastructure as remover.infra {
-    class HttpRemoveOperation
+    class StorageRemoveOperation
   }
 }
 
 
 package persistence {
   package domain as persistence.domain {
-    interface Storage
+    interface Storage {
+      CompletableFuture<Void> save(String id, String message);
+      CompletableFuture<Void> remove(String id);
+      CompletableFuture<Boolean> exists(String id);
+    }
   }
   package infrastructure as persistence.infra {
     class MemoryStorage
@@ -30,8 +77,8 @@ HttpStorage -up-|> Storage
 HttpStorage --> java.net.http.HttpClient
 
 RetryableAsyncRemoveOperation -up-|> AsyncRemoveOperation
-HttpRemoveOperation -up-> Storage
-HttpRemoveOperation -up-|> AsyncRemoveOperation
+StorageRemoveOperation -up-> Storage
+StorageRemoveOperation -up-|> AsyncRemoveOperation
 
 @enduml
 
@@ -39,7 +86,11 @@ HttpRemoveOperation -up-|> AsyncRemoveOperation
 @startuml
 package persistence {
   package domain as persistence.domain {
-    interface Storage
+    interface Storage {
+      CompletableFuture<Void> save(String id, String message);
+      CompletableFuture<Void> remove(String id);
+      CompletableFuture<Boolean> exists(String id);
+    }
   }
   package infrastructure as persistence.infra {
     class MemoryStorage
@@ -57,7 +108,11 @@ HttpStorage --> java.net.http.HttpClient
 @startuml
 package persistence {
   package domain as persistence.domain {
-    interface Storage
+    interface Storage {
+      CompletableFuture<Void> save(String id, String message);
+      CompletableFuture<Void> remove(String id);
+      CompletableFuture<Boolean> exists(String id);
+    }
   }
   package infrastructure as persistence.infra {
     class MemoryStorage
@@ -77,7 +132,11 @@ HttpStorage --> java.net.http.HttpClient
 @startuml
 package persistence {
   package domain as persistence.domain {
-    interface Storage
+    interface Storage {
+      CompletableFuture<Void> save(String id, String message);
+      CompletableFuture<Void> remove(String id);
+      CompletableFuture<Boolean> exists(String id);
+    }
   }
   package infrastructure as persistence.infra {
     class MemoryStorage
@@ -108,7 +167,11 @@ class java.net.http.HttpResponse
 
 package persistence {
   package domain as persistence.domain {
-    interface Storage
+    interface Storage {
+      CompletableFuture<Void> save(String id, String message);
+      CompletableFuture<Void> remove(String id);
+      CompletableFuture<Boolean> exists(String id);
+    }
   }
   package infrastructure as persistence.infra {
     class MemoryStorage
@@ -140,7 +203,11 @@ class java.net.http.HttpResponse
 
 package persistence {
   package domain as persistence.domain {
-    interface Storage
+    interface Storage {
+      CompletableFuture<Void> save(String id, String message);
+      CompletableFuture<Void> remove(String id);
+      CompletableFuture<Boolean> exists(String id);
+    }
   }
   package infrastructure as persistence.infra {
     class MemoryStorage

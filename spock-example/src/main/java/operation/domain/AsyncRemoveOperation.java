@@ -6,3 +6,11 @@ import java.util.concurrent.CompletionStage;
 public interface AsyncRemoveOperation {
   CompletionStage<Void> remove(String id);
 }
+
+
+
+
+
+
+
+

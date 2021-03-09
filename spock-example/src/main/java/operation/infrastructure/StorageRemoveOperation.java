@@ -7,7 +7,7 @@ import operation.domain.CannotRemoveException;
 import persistence.domain.Storage;
 
 @RequiredArgsConstructor
-public class HttpRemoveOperation implements AsyncRemoveOperation {
+public class StorageRemoveOperation implements AsyncRemoveOperation {
   private final Storage storage;
 
   @Override

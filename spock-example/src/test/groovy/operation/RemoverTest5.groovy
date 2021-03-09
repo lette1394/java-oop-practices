@@ -1,7 +1,7 @@
 package operation
 
 import operation.domain.AsyncRemoveOperation
-import operation.infrastructure.HttpRemoveOperation
+import operation.infrastructure.StorageRemoveOperation
 import persistence.domain.Storage
 import persistence.infrastructure.MemoryStorage
 import spock.lang.Specification
@@ -52,7 +52,7 @@ class RemoverTest5 extends Specification {
   }
 
   private AsyncRemoveOperation subject() {
-    return new HttpRemoveOperation(storage)
+    return new StorageRemoveOperation(storage)
   }
 
   private static String anyNonBlankString() {

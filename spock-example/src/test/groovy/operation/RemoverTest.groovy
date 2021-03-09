@@ -1,7 +1,7 @@
 package operation
 
 import operation.domain.AsyncRemoveOperation
-import operation.infrastructure.HttpRemoveOperation
+import operation.infrastructure.StorageRemoveOperation
 import org.junit.jupiter.api.Assertions
 import persistence.domain.Storage
 import persistence.infrastructure.MemoryStorage
@@ -13,7 +13,7 @@ class RemoverTest extends Specification {
     String id = "id-123"
     Storage storage = new MemoryStorage()
     storage.save(id, "message")
-    AsyncRemoveOperation operation = new HttpRemoveOperation(storage)
+    AsyncRemoveOperation operation = new StorageRemoveOperation(storage)
     operation.remove(id).toCompletableFuture().join()
 
     expect:
@@ -25,7 +25,7 @@ class RemoverTest extends Specification {
       String id = "id-123"
       Storage storage = new MemoryStorage()
       storage.save(id, "message")
-      AsyncRemoveOperation operation = new HttpRemoveOperation(storage)
+      AsyncRemoveOperation operation = new StorageRemoveOperation(storage)
     when:
       operation.remove(id).toCompletableFuture().join()
     then:
@@ -37,7 +37,7 @@ class RemoverTest extends Specification {
       String id = "id-123"
       Storage storage = new MemoryStorage()
       storage.save(id, "message")
-      AsyncRemoveOperation operation = new HttpRemoveOperation(storage)
+      AsyncRemoveOperation operation = new StorageRemoveOperation(storage)
     when:
       operation.remove(id).toCompletableFuture().join()
     then:
@@ -50,7 +50,7 @@ class RemoverTest extends Specification {
       String id = "id-123"
       Storage storage = new MemoryStorage()
       storage.save(id, "message")
-      AsyncRemoveOperation operation = new HttpRemoveOperation(storage)
+      AsyncRemoveOperation operation = new StorageRemoveOperation(storage)
     when:
       operation.remove(id).toCompletableFuture().join()
     then:

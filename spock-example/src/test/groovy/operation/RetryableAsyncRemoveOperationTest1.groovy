@@ -2,7 +2,7 @@ package operation
 
 import operation.application.RetryableAsyncRemoveOperation
 import operation.domain.CannotRemoveException
-import operation.infrastructure.HttpRemoveOperation
+import operation.infrastructure.StorageRemoveOperation
 import persistence.domain.Storage
 import persistence.infrastructure.MemoryStorage
 import spock.lang.Specification
@@ -34,7 +34,7 @@ class RetryableAsyncRemoveOperationTest1 extends Specification {
   }
 
   private RetryableAsyncRemoveOperation subjectWithRetryCount(int retryCount) {
-    return new RetryableAsyncRemoveOperation(new HttpRemoveOperation(storage), retryCount)
+    return new RetryableAsyncRemoveOperation(new StorageRemoveOperation(storage), retryCount)
   }
 
   private static await(CompletionStage<?> stage) {

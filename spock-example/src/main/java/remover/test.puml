@@ -1,0 +1,118 @@
+@startuml
+
+package operation {
+  package domain as remover.domain {
+    interface AsyncRemoveOperation
+  }
+
+  package application as remover.application {
+    interface RetryableAsyncRemoveOperation
+  }
+
+  package infrastructure as remover.infra {
+    class HttpRemoveOperation
+  }
+}
+
+
+package persistence {
+  package domain as persistence.domain {
+    interface Storage
+  }
+  package infrastructure as persistence.infra {
+    class MemoryStorage
+    class HttpStorage
+
+    object HTTP {
+      * PUT / DELETE
+      * URL endpoint
+      * valid status code
+      * header values
+    }
+  }
+}
+
+MemoryStorage -up-|> Storage
+HttpStorage -up-|> Storage
+HttpStorage --> HTTP
+
+RetryableAsyncRemoveOperation -up-|> AsyncRemoveOperation
+HttpRemoveOperation -up-> Storage
+HttpRemoveOperation -up-|> AsyncRemoveOperation
+
+@enduml
+
+
+@startuml
+package persistence {
+  package domain as persistence.domain {
+    interface Storage
+  }
+  package infrastructure as persistence.infra {
+    class MemoryStorage
+    class HttpStorage
+
+    object HTTP {
+      * PUT / DELETE
+      * URL endpoint
+      * valid status code
+      * header values
+    }
+  }
+}
+
+MemoryStorage -up-|> Storage
+HttpStorage -up-|> Storage
+HttpStorage --> HTTP
+@enduml
+
+
+
+@startuml
+package persistence {
+  package domain as persistence.domain {
+    interface Storage
+  }
+  package infrastructure as persistence.infra {
+    class MemoryStorage
+    class HttpStorage
+
+    object HTTP {
+      * PUT / DELETE
+      * URL endpoint
+      * valid status code
+      * header values
+    }
+  }
+}
+
+MemoryStorage -up-|> Storage
+HttpStorage -up-|> Storage
+HttpStorage --> HTTP
+@enduml
+
+
+
+@startuml
+package persistence {
+  package domain as persistence.domain {
+    interface Storage
+  }
+  package infrastructure as persistence.infra {
+    class MemoryStorage
+    class HttpStorage
+
+    object HTTP {
+      * PUT / DELETE
+      * URL endpoint
+      * valid status code
+      * header values
+    }
+  }
+}
+
+MemoryStorage -up-|> Storage
+HttpStorage -up-|> Storage
+HttpStorage --> HTTP
+@enduml
+

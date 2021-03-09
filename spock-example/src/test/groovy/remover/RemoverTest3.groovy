@@ -8,7 +8,7 @@ class RemoverTest3 extends Specification {
   String savedId
 
   def setup() {
-    storage = new Storage()
+    storage = new MemoryStorage()
     savedId = "id-123"
 //  existingId
 //  remainingId

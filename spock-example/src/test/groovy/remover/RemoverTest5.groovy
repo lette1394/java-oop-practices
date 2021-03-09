@@ -10,7 +10,7 @@ class RemoverTest5 extends Specification {
   String savedId
 
   def setup() {
-    storage = new Storage()
+    storage = new MemoryStorage()
     savedId = anyNonBlankString()
     storage.save(savedId, anyNonBlankString())
   }

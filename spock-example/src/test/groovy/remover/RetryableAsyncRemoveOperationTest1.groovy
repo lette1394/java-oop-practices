@@ -10,7 +10,7 @@ class RetryableAsyncRemoveOperationTest1 extends Specification {
   String unknownId
 
   def setup() {
-    storage = new Storage()
+    storage = new MemoryStorage()
     unknownId = anyNonBlankString()
   }
 

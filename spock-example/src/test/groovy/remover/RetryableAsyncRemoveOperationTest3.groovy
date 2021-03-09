@@ -12,7 +12,7 @@ class RetryableAsyncRemoveOperationTest3 extends Specification {
   AsyncRemoveOperation alwaysFailedOperation
 
   def setup() {
-    storage = new Storage()
+    storage = new MemoryStorage()
     unknownId = anyNonBlankString()
     alwaysFailedOperation = Mock()
   }

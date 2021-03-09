@@ -13,7 +13,7 @@ class RetryableAsyncRemoveOperationTest2 extends Specification {
   var alwaysFailedOperation = Mock(AsyncRemoveOperation)
 
   def setup() {
-    storage = new Storage()
+    storage = new MemoryStorage()
     unknownId = anyNonBlankString()
   }
 

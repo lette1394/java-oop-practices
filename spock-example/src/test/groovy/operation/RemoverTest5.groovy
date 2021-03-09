@@ -40,7 +40,7 @@ class RemoverTest5 extends Specification {
     when:
       await subject().remove(savedId)
     then:
-      isRemoved()
+      isRemoved(savedId)
   }
 
   private static await(CompletionStage<?> stage) {

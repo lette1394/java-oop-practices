@@ -50,6 +50,28 @@ class RetryableAsyncRemoveOperationTest3 extends Specification {
       }
   }
 
+  def '''
+    RetryableAsyncRemoveOperation 은
+
+    ko: (O) 삭제에 실패하는 경우 정해진 횟수만큼 재시도 한 후에
+            모두 실패하면 최종 실패 처리 된다
+
+    ko: (X) 실패가 발생하면 retryCount 만큼 재시도를 하고,
+            (retryCount+1) 번째 storage.remove(id)를 호출하기 전에 CannotRemoveException 예외를 던진다
+    '''() {
+    given:
+      var retryCount = 3
+      var subject = subjectWith(retryCount)
+    when:
+      await subject.remove(unknownId)
+    then:
+      thrown CompletionException
+      with(alwaysFailedOperation) {
+        retryCount * remove(unknownId) >> failed()
+      }
+  }
+
+
   private static CompletableFuture<Object> failed() {
     return CompletableFuture.failedFuture(new RuntimeException())
   }

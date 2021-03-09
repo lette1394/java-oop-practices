@@ -22,7 +22,7 @@ class RemoverTest2 extends Specification {
     when:
       operation.remove(id).toCompletableFuture().join()
     then:
-      isRemoved()
+      isRemoved(id)
   }
 
   private boolean isRemoved(String id) {

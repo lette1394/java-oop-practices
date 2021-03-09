@@ -232,6 +232,7 @@ package persistence {
 
 MemoryStorage -up-|> Storage
 HttpStorage -up-|> Storage
+HttpStorage --> java.net.http.HttpResponse
 HttpStorage --> java.net.http.HttpClient
 HttpStorage -right-> IsRemoved
 IsRemoved --> RemoveResponse

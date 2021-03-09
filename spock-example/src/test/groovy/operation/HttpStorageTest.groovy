@@ -1,14 +1,10 @@
 package operation
 
-import persistence.infrastructure.http.HttpStorage
 import spock.lang.Specification
 
 class HttpStorageTest extends Specification {
 
   def 'test1'() {
-    def storage = new HttpStorage()
-
-    storage.remove("id")
   }
 
   // 1. local 서버를 띄워서 테스트한다

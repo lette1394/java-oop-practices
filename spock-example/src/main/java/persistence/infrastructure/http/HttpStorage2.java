@@ -22,11 +22,6 @@ public class HttpStorage2 implements Storage {
   }
 
   @Override
-  public CompletableFuture<Void> save(String id, String message) {
-    throw new UnsupportedOperationException();
-  }
-
-  @Override
   public CompletableFuture<Void> remove(String id) {
     return HttpClient.newHttpClient()
       .sendAsync(makeRequest(id), responseInfo -> BodySubscribers.discarding())
@@ -39,6 +34,11 @@ public class HttpStorage2 implements Storage {
         }
         throw new CannotRemoveException("status code != 200");
       });
+  }
+
+  @Override
+  public CompletableFuture<Void> save(String id, String message) {
+    throw new UnsupportedOperationException();
   }
 
   @Override

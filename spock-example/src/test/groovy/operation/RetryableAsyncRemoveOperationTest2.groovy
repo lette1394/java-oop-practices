@@ -39,9 +39,6 @@ class RetryableAsyncRemoveOperationTest2 extends Specification {
   }
 
   def 'retry 3: refactor test assertions'() {
-    // '<이거 이름 어떻게 짓지...?>'
-    // '로직을 설명하면 안되고 스펙을 설명해야 한다'
-
     given:
       var retryCount = 3
       var subject = subjectWith(retryCount)

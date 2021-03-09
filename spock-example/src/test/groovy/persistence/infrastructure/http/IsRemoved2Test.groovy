@@ -44,6 +44,15 @@ class IsRemoved2Test extends Specification {
       !isDeleted().test(given("TRUE"))
   }
 
+  def 'deleted successfully if x-line-storage-deleted == <true>'() {
+    expect:
+      isDeleted().test(given("true"))
+
+      !isDeleted().test(given("True"))
+      !isDeleted().test(given("TRUE"))
+  }
+
+
   private static RemoveResponse given(String value) {
     RemoveResponse.builder()
       .xLineStorageDeleted(Optional.of(value))

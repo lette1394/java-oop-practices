@@ -42,7 +42,7 @@ class RemoverTest4 extends Specification {
     when:
       await operation.remove(savedId)
     then:
-      isRemoved()
+      isRemoved(savedId)
   }
 
   private static await(CompletionStage<?> stage) {

@@ -16,10 +16,17 @@ import persistence.domain.Storage;
 public class HttpStorage3 implements Storage {
   private final String httpStorageEndpoint;
   private final IsRemoved2 isRemoved2;
+  private final ResponseHandler responseHandler;
 
   public HttpStorage3(String httpStorageEndpoint) {
     this.httpStorageEndpoint = httpStorageEndpoint;
     this.isRemoved2 = response -> statusCodeIs200().and(isDeleted()).test(response);
+    this.responseHandler = response -> {
+      if (isRemoved2.test(response)) {
+        return;
+      }
+      throw new CannotRemoveException("status code != 200");
+    };
   }
 
   @Override
@@ -34,12 +41,7 @@ public class HttpStorage3 implements Storage {
       .exceptionally(throwable -> {
         throw new CannotRemoveException(throwable);
       })
-      .thenAccept(response -> {
-        if (isRemoved2.test(toRemoveResponse(response))) {
-          return;
-        }
-        throw new CannotRemoveException("status code != 200");
-      });
+      .thenAccept(response -> responseHandler.handle(toRemoveResponse(response)));
   }
 
   private RemoveResponse toRemoveResponse(HttpResponse<Void> response) {

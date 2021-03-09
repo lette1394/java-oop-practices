@@ -26,7 +26,10 @@ public class HttpStorage implements Storage {
   @Override
   public CompletableFuture<Void> remove(String id) {
     return HttpClient.newHttpClient()
-      .sendAsync(makeRequest(id), responseInfo -> BodySubscribers.discarding())
+      .sendAsync(HttpRequest.newBuilder()
+        .DELETE()
+        .uri(URI.create(format("%s/id/%s", httpStorageEndpoint, id)))
+        .build(), responseInfo -> BodySubscribers.discarding())
       .exceptionally(throwable -> {
         throw new CannotRemoveException(throwable);
       })
@@ -57,10 +60,6 @@ public class HttpStorage implements Storage {
       .uri(URI.create(format("%s/id/%s", httpStorageEndpoint, id)))
       .build();
   }
-
-
-
-
 
 
   private static Predicate<HttpResponse<Void>> statusCodeIs200() {

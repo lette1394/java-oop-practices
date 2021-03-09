@@ -40,9 +40,8 @@ class IsRemoved2Test extends Specification {
     expect:
       isDeleted().test(given("true"))
 
-      !isDeleted().test(given("TRUE"))
-
       !isDeleted().test(given("True"))
+      !isDeleted().test(given("TRUE"))
   }
 
   private static RemoveResponse given(String value) {

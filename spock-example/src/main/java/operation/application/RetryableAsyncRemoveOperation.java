@@ -10,7 +10,6 @@ import java.util.function.Function;
 import lombok.RequiredArgsConstructor;
 import operation.domain.AsyncRemoveOperation;
 import operation.domain.CannotRemoveException;
-import org.jetbrains.annotations.NotNull;
 
 @RequiredArgsConstructor
 public class RetryableAsyncRemoveOperation implements AsyncRemoveOperation {
@@ -22,7 +21,7 @@ public class RetryableAsyncRemoveOperation implements AsyncRemoveOperation {
     return remove(id, 0, new ArrayList<>());
   }
 
-  public CompletionStage<Void> remove(String id, int retryCount, List<Throwable> suppressed) {
+  private CompletionStage<Void> remove(String id, int retryCount, List<Throwable> suppressed) {
     if (retryCount < maxRetryCount) {
       return exceptionallyCompose(operation.remove(id), e -> {
         suppressed.add(e);
@@ -48,7 +47,6 @@ public class RetryableAsyncRemoveOperation implements AsyncRemoveOperation {
     return stage.thenApply(CompletableFuture::completedFuture);
   }
 
-  @NotNull
   private CannotRemoveException exception(int retryCount, List<Throwable> suppressedThrowableList) {
     final var exception = new CannotRemoveException("retry count exceed: " + retryCount);
     for (Throwable throwable : suppressedThrowableList) {

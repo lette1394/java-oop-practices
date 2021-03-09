@@ -18,7 +18,7 @@ class RetryableAsyncRemoveOperationTest3 extends Specification {
   }
 
   def 'retry 4: refactor test assertions'() {
-    given:
+    given: 'retry count == 3'
       var retryCount = 3
       var subject = subjectWith(retryCount)
     when:

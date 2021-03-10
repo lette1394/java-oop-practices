@@ -24,7 +24,7 @@ class RemoverTest5 extends Specification {
     when:
       await operation.remove(savedId)
     then:
-      isRemoved()
+      doesRemoved()
   }
 
   def 'remove 11: Apply type hide of groovy/java'() {
@@ -33,21 +33,21 @@ class RemoverTest5 extends Specification {
     when:
       await operation.remove(savedId)
     then:
-      isRemoved()
+      doesRemoved()
   }
 
   def 'remove 12: Delete meaningless given label'() {
     when:
       await subject().remove(savedId)
     then:
-      isRemoved(savedId)
+      doesRemoved(savedId)
   }
 
   private static await(CompletionStage<?> stage) {
     return stage.toCompletableFuture().join()
   }
 
-  private boolean isRemoved(String id) {
+  private boolean doesRemoved(String id) {
     return !storage.exists(id).join()
   }
 

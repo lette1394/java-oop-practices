@@ -41,7 +41,7 @@ class RemoverTest extends Specification {
     when:
       operation.remove(id).toCompletableFuture().join()
     then:
-      isNotExist(id, storage)
+      doesNotExist(id, storage)
   }
 
 
@@ -54,14 +54,14 @@ class RemoverTest extends Specification {
     when:
       operation.remove(id).toCompletableFuture().join()
     then:
-      isRemoved(id, storage)
+      doesRemoved(id, storage)
   }
 
-  private static boolean isRemoved(String id, Storage storage) {
+  private static boolean doesRemoved(String id, Storage storage) {
     return !storage.exists(id).join()
   }
 
-  private static boolean isNotExist(String id, Storage storage) {
+  private static boolean doesNotExist(String id, Storage storage) {
     return !storage.exists(id).join()
   }
 }

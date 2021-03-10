@@ -25,10 +25,10 @@ class RemoverTest3 extends Specification {
     when:
       operation.remove(savedId).toCompletableFuture().join()
     then:
-      isRemoved(savedId)
+      doesRemoved(savedId)
   }
 
-  private boolean isRemoved(String id) {
+  private boolean doesRemoved(String id) {
     return !storage.exists(id).join()
   }
 }

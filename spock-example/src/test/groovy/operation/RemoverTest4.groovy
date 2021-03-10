@@ -24,7 +24,7 @@ class RemoverTest4 extends Specification {
     when:
       operation.remove(savedId).toCompletableFuture().join()
     then:
-      isRemoved()
+      doesRemoved()
   }
 
   def 'remove 8: Prepare AsyncRemoveOperation using method'() {
@@ -33,7 +33,7 @@ class RemoverTest4 extends Specification {
     when:
       operation.remove(savedId).toCompletableFuture().join()
     then:
-      isRemoved()
+      doesRemoved()
   }
 
   def 'remove 9: Add helper'() {
@@ -42,14 +42,14 @@ class RemoverTest4 extends Specification {
     when:
       await operation.remove(savedId)
     then:
-      isRemoved(savedId)
+      doesRemoved(savedId)
   }
 
   private static await(CompletionStage<?> stage) {
     return stage.toCompletableFuture().join()
   }
 
-  private boolean isRemoved(String id) {
+  private boolean doesRemoved(String id) {
     return !storage.exists(id).join()
   }
 
